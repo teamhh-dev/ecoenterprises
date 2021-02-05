@@ -3,7 +3,7 @@ from mailmerge import MailMerge
 from datetime import date
 import os
 
-template = "quatation.docx"
+template = "Invoice.docx"
 
 document = MailMerge(template)
 # print(document.get_merge_fields())
@@ -26,11 +26,11 @@ services_list = []
 
 
 services = {
-    'sr_num': '1', 'qty': '10', 'amount': '1000', 'description': 'a black little boy have ajump on to the road to avoid car. He knows the value of life', 'rate': '200'}
+    'qty': '10', 'amount': '1000', 'description': 'pcb kit repair aeroflex isulation', 'rate': '200'}
 
-for _ in range(10):
+for count in range(5):
     services_list.append(services)
-document.merge_rows('sr_num', services_list)
+document.merge_rows('qty', services_list)
 document.write('test-output.docx')
 print(os.name)
 # filename = 'test-output1.docx'
