@@ -89,7 +89,6 @@ def formattingCells(x: int):
         x = x+1
 
 
-#  what the fuck dude
 # formattingCells(16)
 workbook.save(filename="sample.xlsx")
 
