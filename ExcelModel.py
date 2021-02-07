@@ -11,7 +11,6 @@ ws = workbook["testing"]
 
 # ws['B16'] = "hello"
 # ws['A7'] = datetime.datetime.now()
-
 # ws['A9'] = 'obj.address'
 # cells = ws['A1': 'H28']
 # contentList = []
