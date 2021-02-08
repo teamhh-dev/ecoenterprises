@@ -28,8 +28,8 @@ myList = [
 ]
 
 
-bill = Bill(ComplaintInfo("lhr", str(datetime.datetime.now()),
-                          "11", "Lahore", 1), Services(myList))
+bill = Bill(ComplaintInfo("LB005-02-2021", str(datetime.datetime.now().strftime("%d/%b/%Y")),
+                          "Malakwal Branch,Africa Zone", "Africa", 1), Services(myList))
 
 eM = ExcelModel()
 

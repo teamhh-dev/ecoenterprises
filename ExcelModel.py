@@ -11,17 +11,35 @@ class ExcelModel():
         self.workbook = None
         self.worksheet = None
         self.activeWorkSheet = None
+        self.fileName = None
 
     def addBill(self, bill: Bill):
         self.selectExcelFile(bill.getComplainInfo().getZone())
+        print(bill.getComplainInfo().getInvoiceId())
+        self.createWorksheet(bill.getComplainInfo().getInvoiceId())
+
+        self.saveBillComlaintInfo(bill.getComplainInfo())
+
+        self.workbook.save(filename=self.fileName)
 
     def selectExcelFile(self, zone: str):
 
-        fileName = zone+'.xlsx'
+        self.fileName = 'User Data/Feburary/'+zone+'.xlsx'
 
-        print(fileName)
-        # self.workbook = load_workbook(filename=''.xlsx')
+        print(self.fileName)
 
+        self.workbook = load_workbook(filename=self.fileName)
+        self.worksheet = self.workbook['template']
+
+    def createWorksheet(self, name: str):
+        self.activeWorkSheet = self.workbook.copy_worksheet(self.worksheet)
+        self.activeWorkSheet.title = name
+
+    def saveBillComlaintInfo(self, complainInfo: ComplaintInfo):
+        self.activeWorkSheet['D2'] = complainInfo.getInvoiceId()
+        self.activeWorkSheet['A7'] = complainInfo.getDate()
+        self.activeWorkSheet['H7'] = complainInfo.getComplainNo()
+        self.activeWorkSheet['A9'] = complainInfo.getAddress()
         # workbook = load_workbook(filename='sample.xlsx')
         # ws = workbook["testing"]
         # # Data can be assigned directly to cells
