@@ -8,49 +8,58 @@ from openpyxl.styles.alignment import Alignment
 
 class ExcelModel():
     def __init__(self):
+
+        # all global variables
         self.workbook = None
         self.worksheet = None
         self.activeWorkSheet = None
         self.fileName = None
+        self.firstRow = 0
+        self.service_len = 0
+        self.sr_number = 0
 
+    #  Selecting Excel file in which data has to stored
+    def selectExcelFile(self, zone: str):
+
+        self.fileName = 'User Data/Feburary/'+zone+'.xlsx'
+        self.workbook = load_workbook(filename=self.fileName)
+        self.worksheet = self.workbook['template']
+
+    # Creating worksheet
+    def createWorksheet(self, name: str):
+
+        self.activeWorkSheet = self.workbook.copy_worksheet(self.worksheet)
+        self.activeWorkSheet.title = name
+
+    # Adding Bill to Excel sheet
     def addBill(self, bill: Bill):
-        self.selectExcelFile(bill.getComplainInfo().getZone())
-        # print(bill.getComplainInfo().getInvoiceId())
-        self.createWorksheet(bill.getComplainInfo().getInvoiceId())
 
+        self.selectExcelFile(bill.getComplainInfo().getZone())
+        self.createWorksheet(bill.getComplainInfo().getInvoiceId())
         self.saveBillComlaintInfo(bill.getComplainInfo())
         self.saveBillServices(bill.getServices())
         self.workbook.save(filename=self.fileName)
 
-    def selectExcelFile(self, zone: str):
-
-        self.fileName = 'User Data/Feburary/'+zone+'.xlsx'
-
-        # print(self.fileName)
-
-        self.workbook = load_workbook(filename=self.fileName)
-        self.worksheet = self.workbook['template']
-
-    def createWorksheet(self, name: str):
-        self.activeWorkSheet = self.workbook.copy_worksheet(self.worksheet)
-        self.activeWorkSheet.title = name
-
+    # Adding essential information about complaint in the worksheet
     def saveBillComlaintInfo(self, complainInfo: ComplaintInfo):
+
         self.activeWorkSheet['D2'] = complainInfo.getInvoiceId()
         self.activeWorkSheet['A7'] = complainInfo.getDate()
         self.activeWorkSheet['H7'] = complainInfo.getComplainNo()
         self.activeWorkSheet['A9'] = complainInfo.getAddress()
 
+    # adding services rows to active worksheet , format them and then adding data in them
     def saveBillServices(self, services: Services):
-        # print(services.getServicesList()[0]['rate'])
-        global count, service_len
-        count = 16
-        i = 0
-        j = count
-        service_len = len(services.getServicesList())-2
-        self.activeWorkSheet.insert_rows(17, service_len)
+
+        self.firstRow = 16
+        self.service_len = len(services.getServicesList())-2
+        self.activeWorkSheet.insert_rows(17, self.service_len)
         row = list(self.activeWorkSheet.rows)[15]
-        while j <= count+service_len:
+        i = 0
+        j = self.firstRow
+
+    # Adding service rows to active worksheet
+        while j <= self.firstRow + self.service_len:
 
             for cell in row:
 
@@ -60,125 +69,52 @@ class ExcelModel():
                     j][i].font = copy(cell.font)
                 list(self.activeWorkSheet.rows)[
                     j][i].number_format = copy(cell.number_format)
-
                 i = i+1
-
             i = 0
             j = j+1
-        print(j)
-        sr_number = 1
-        for service in services.getServicesList():
-            self.activeWorkSheet['A'+str(count)] = sr_number
-            self.activeWorkSheet['B'+str(count)] = service['description']
-            self.activeWorkSheet['E'+str(count)] = service['qty']
-            self.activeWorkSheet['G'+str(count)] = service['rate']
-            self.activeWorkSheet['H'+str(count)] = service['amount']
-            count = count + 1
-            sr_number = sr_number + 1
 
+    # Adding services to worksheet
+        self.sr_number = 1
+        for service in services.getServicesList():
+
+            self.activeWorkSheet['A'+str(self.firstRow)] = self.sr_number
+            self.activeWorkSheet['B' +
+                                 str(self.firstRow)] = service['description']
+            self.activeWorkSheet['E'+str(self.firstRow)] = service['qty']
+            self.activeWorkSheet['G'+str(self.firstRow)] = service['rate']
+            self.activeWorkSheet['H'+str(self.firstRow)] = service['amount']
+            self.firstRow = self.firstRow + 1
+            self.sr_number = self.sr_number + 1
+
+    # Updating the formulas
         self.activeWorkSheet["H"+str(j+1)] = "=SUM(H16:H"+str(j)+")"
         self.activeWorkSheet["H" + str(j+2)] = "=H" + str(j+1)+"*0.16"
         self.activeWorkSheet["H" +
                              str(j+5)] = "=SUM(H" + str(j+1)+":H"+str(j+4)+")"
 
+    # Calling the formatting cells function
         self.formattingCells(16)
 
-    def formattingCells(self, x: int):
-        while x <= (count+service_len)-2:
-            self.activeWorkSheet.merge_cells('B'+str(x)+':'+'D'+str(x))
-            self.activeWorkSheet.cell(row=x, column=1).alignment = Alignment(
+    # Perform formatting cells
+    def formattingCells(self, rowNo: int):
+
+        while rowNo <= (self.firstRow+self.service_len)-2:
+
+            self.activeWorkSheet.merge_cells('B'+str(rowNo)+':'+'D'+str(rowNo))
+            self.activeWorkSheet.cell(row=rowNo, column=1).alignment = Alignment(
                 horizontal='center', vertical='center', wrap_text=True)
-            self.activeWorkSheet.cell(row=x, column=2).alignment = Alignment(
+            self.activeWorkSheet.cell(row=rowNo, column=2).alignment = Alignment(
                 horizontal='left', vertical='top', wrap_text=True)
-            self.activeWorkSheet.cell(row=x, column=5).alignment = Alignment(
+            self.activeWorkSheet.cell(row=rowNo, column=5).alignment = Alignment(
                 horizontal='center', vertical='center', wrap_text=True)
-            self.activeWorkSheet.cell(row=x, column=7).alignment = Alignment(
+            self.activeWorkSheet.cell(row=rowNo, column=7).alignment = Alignment(
                 horizontal='center', vertical='center', wrap_text=True)
-            self.activeWorkSheet.cell(row=x, column=8).alignment = Alignment(
+            self.activeWorkSheet.cell(row=rowNo, column=8).alignment = Alignment(
                 horizontal='center', vertical='center', wrap_text=True)
 
-            if (len(str(self.activeWorkSheet.cell(row=x, column=2).value))) > 36:
-                self.activeWorkSheet.row_dimensions[x].height = 31.50
+            #  Increasing the size of height of row
+            if (len(str(self.activeWorkSheet.cell(row=firstRow, column=2).value))) > 36:
 
-            x = x+1
+                self.activeWorkSheet.row_dimensions[firstRow].height = 31.50
 
-# workbook = load_workbook(filename='sample.xlsx')
-# ws = workbook["testing"]
-# # Data can be assigned directly to cells
-
-# # ws['B16'] = "hello"
-# # ws['A7'] = datetime.datetime.now()
-# # ws['A9'] = 'obj.address'
-# # cells = ws['A1': 'H28']
-# contentList = []
-# # for i in range(26):
-# #     for j in range(7):
-# #             contentList.append(cells[i][j].value)
-# # i=0
-# # while i<len(contentList):
-# #     if contentList[i] is not None:
-# #         print(contentList[i])
-
-# #     i=i+1
-# # ws2 = workbook.copy_worksheet(ws)
-# # wsTitle = ws.title
-# # ws2.title = wsTitle+"2"
-# # print(workbook.active)
-
-# data = {"D2": "lB01-01-2021", "A7": datetime.datetime.now(), "H7": 112022, "A9": "PECO ROAD BRANCH, LHR ZONE",
-#         "B16": "System flushing", "B17": "Gas charging",
-#         "B18": "PCB kit repair aeroflex outdoor AC",
-#         "B19": "PCB kit repair aeroflex outdoor AC",
-#         "B20": "PCB kit repair aeroflex outdoor AC",
-#         "B21": "PCB kit repair aeroflex outdoor AC 25 ton with copper wiring"}
-
-# cell_data = list(data.items())
-# print(cell_data)
-
-# # # to enter multiple inputs
-# # for value in cell_data:
-# #     ws[value[0]] = value[1]
-
-# ws.insert_rows(17, 5)
-# # # ws.delete_rows(17,5)
-# # ws.merge_cells('B16:D16')
-# # ws.cell(row=16, column=2).alignment = Alignment(
-# #     horizontal='left', vertical='top', wrap_text=True)
-# row = list(ws.rows)[15]
-# # row2 = list(ws.rows)[16]
-
-# # i = 0
-# # j = 17
-# # while j <= 20:
-# #     for cell in row:
-# #         list(ws.rows)[j][i].border = copy(cell.border)
-# #         # list(ws.rows)[j][i].alignment = copy(cell.alignment)
-# #         i = i+1
-
-# #     i = 0
-# #     j = j+1
-# # j = 19
-# # ws["H"+str(j+2)] = "=SUM(H16:H"+str(j+1)+")"
-# # ws["H" + str(j+3)] = "=H" + str(j+2)+"*0.16"
-# # ws["H" + str(j+6)] = "=SUM(H" + str(j+2)+":H"+str(j+5)+")"
-# # cell2.value = cell1.value
-# # cell2.border = cell1.border
-# # cell2.alignment = cell1.alignment
-
-# # print(len(ws.cell(row=16, column=2).value))
-# # print(type(ws.cell(row=16, column=2).value))
-
-
-# def formattingCells(x: int):
-#     while x <= 20:
-#             ws.merge_cells('B'+str(x)+':'+'D'+str(x))
-#             ws.cell(row=x, column=2).alignment = Alignment(
-#                horizontal='left', vertical='top', wrap_text=True)
-
-#            if (len(ws.cell(row=x, column=2).value)) > 36:
-#                 ws.row_dimensions[x].height = 31.50
-
-#             x = x+1
-
-# # formattingCells(16)
-# workbook.save(filename="sample.xlsx")
+            firstRow = firstRow + 1
