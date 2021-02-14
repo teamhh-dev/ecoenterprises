@@ -116,5 +116,5 @@ class ExcelModel():
             if (len(str(self.activeWorkSheet.cell(row=rowNo, column=2).value))) > 36:
 
                 self.activeWorkSheet.row_dimensions[rowNo].height = 31.50
-
+            # fixed
             rowNo = rowNo + 1
