@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'final.ui'
+# Form implementation generated from reading ui file 'B.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.2
 #
@@ -14,13 +14,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(789, 603)
-        MainWindow.setMinimumSize(QtCore.QSize(789, 603))
-        MainWindow.setMaximumSize(QtCore.QSize(789, 603))
+        MainWindow.resize(800, 741)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.frame = QtWidgets.QFrame(self.centralwidget)
-        self.frame.setGeometry(QtCore.QRect(10, 10, 211, 581))
+        self.frame.setGeometry(QtCore.QRect(10, 0, 211, 581))
         self.frame.setStyleSheet("")
         self.frame.setFrameShape(QtWidgets.QFrame.Panel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -68,13 +66,13 @@ class Ui_MainWindow(object):
         self.pushButton_9.setFlat(False)
         self.pushButton_9.setObjectName("pushButton_9")
         self.stackedWidget = QtWidgets.QStackedWidget(self.centralwidget)
-        self.stackedWidget.setGeometry(QtCore.QRect(220, 0, 571, 591))
+        self.stackedWidget.setGeometry(QtCore.QRect(220, 10, 571, 611))
         self.stackedWidget.setStyleSheet("")
         self.stackedWidget.setObjectName("stackedWidget")
         self.page = QtWidgets.QWidget()
         self.page.setObjectName("page")
         self.frame_2 = QtWidgets.QFrame(self.page)
-        self.frame_2.setGeometry(QtCore.QRect(0, 11, 561, 581))
+        self.frame_2.setGeometry(QtCore.QRect(10, 20, 541, 571))
         self.frame_2.setCursor(QtGui.QCursor(QtCore.Qt.IBeamCursor))
         self.frame_2.setFocusPolicy(QtCore.Qt.NoFocus)
         self.frame_2.setStyleSheet("box-shadow: 0 8px 6px -6px black;\n"
@@ -452,19 +450,50 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.page)
         self.page_4 = QtWidgets.QWidget()
         self.page_4.setObjectName("page_4")
-        self.frame_6 = QtWidgets.QFrame(self.page_4)
-        self.frame_6.setGeometry(QtCore.QRect(0, 10, 561, 581))
-        self.frame_6.setFrameShape(QtWidgets.QFrame.Panel)
-        self.frame_6.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_6.setLineWidth(2)
-        self.frame_6.setMidLineWidth(2)
-        self.frame_6.setObjectName("frame_6")
-        self.label_11 = QtWidgets.QLabel(self.frame_6)
-        self.label_11.setGeometry(QtCore.QRect(330, 30, 121, 20))
+        self.zoneLabel_2 = QtWidgets.QLabel(self.page_4)
+        self.zoneLabel_2.setGeometry(QtCore.QRect(40, 40, 81, 21))
+        self.zoneLabel_2.setObjectName("zoneLabel_2")
+        self.zoneComBox_2 = QtWidgets.QComboBox(self.page_4)
+        self.zoneComBox_2.setGeometry(QtCore.QRect(130, 40, 71, 22))
+        self.zoneComBox_2.setAcceptDrops(True)
+        self.zoneComBox_2.setStyleSheet("\n"
+                                        ".QComboBox{\n"
+                                        "    border: 2px solid #4CAF50;\n"
+                                        " }\n"
+                                        "\n"
+                                        "\n"
+                                        "\n"
+                                        "QComboBox::down-arrow {\n"
+                                        "    position: relative;\n"
+                                        "     height: 15px;\n"
+                                        "     width: 15px;\n"
+                                        "    border: 12px;\n"
+                                        " \n"
+                                        "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
+                                        "}\n"
+                                        "QComboBox::drop-down {\n"
+                                        "    border: 0px; \n"
+                                        "}\n"
+                                        "")
+        self.zoneComBox_2.setObjectName("zoneComBox_2")
+        self.zoneComBox_2.addItem("")
+        self.zoneComBox_2.addItem("")
+        self.zoneComBox_2.addItem("")
+        self.zoneComBox_2.addItem("")
+        self.label_11 = QtWidgets.QLabel(self.page_4)
+        self.label_11.setGeometry(QtCore.QRect(230, 40, 121, 20))
         self.label_11.setObjectName("label_11")
-        self.tableWidget_2 = QtWidgets.QTableWidget(self.frame_6)
+        self.lineEdit_7 = QtWidgets.QLineEdit(self.page_4)
+        self.lineEdit_7.setGeometry(QtCore.QRect(360, 40, 91, 20))
+        self.lineEdit_7.setStyleSheet("border-bottom:1px solid #eee;\n"
+                                      "border:0;\n"
+                                      "box-shadow:0 0 15px 4px rgba(0,0,0,0.06);\n"
+                                      "border-radius:5px;\n"
+                                      "height:10px;")
+        self.lineEdit_7.setObjectName("lineEdit_7")
+        self.tableWidget_2 = QtWidgets.QTableWidget(self.page_4)
         self.tableWidget_2.setEnabled(True)
-        self.tableWidget_2.setGeometry(QtCore.QRect(20, 70, 531, 461))
+        self.tableWidget_2.setGeometry(QtCore.QRect(30, 140, 491, 221))
         self.tableWidget_2.setStyleSheet("\n"
                                          "QHeaderView::section\n"
                                          "\n"
@@ -503,57 +532,32 @@ class Ui_MainWindow(object):
         self.tableWidget_2.setShowGrid(True)
         self.tableWidget_2.setGridStyle(QtCore.Qt.SolidLine)
         self.tableWidget_2.setRowCount(0)
-        self.tableWidget_2.setColumnCount(6)
+        self.tableWidget_2.setColumnCount(3)
         self.tableWidget_2.setObjectName("tableWidget_2")
         item = QtWidgets.QTableWidgetItem()
         font = QtGui.QFont()
-        font.setPointSize(7)
+        font.setPointSize(10)
         item.setFont(font)
         self.tableWidget_2.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         font = QtGui.QFont()
-        font.setPointSize(6)
+        font.setPointSize(10)
         item.setFont(font)
         self.tableWidget_2.setHorizontalHeaderItem(1, item)
         item = QtWidgets.QTableWidgetItem()
         font = QtGui.QFont()
-        font.setPointSize(13)
+        font.setPointSize(10)
         item.setFont(font)
         self.tableWidget_2.setHorizontalHeaderItem(2, item)
-        item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setPointSize(6)
-        item.setFont(font)
-        self.tableWidget_2.setHorizontalHeaderItem(3, item)
-        item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setPointSize(6)
-        item.setFont(font)
-        self.tableWidget_2.setHorizontalHeaderItem(4, item)
-        item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setPointSize(6)
-        item.setFont(font)
-        self.tableWidget_2.setHorizontalHeaderItem(5, item)
         self.tableWidget_2.horizontalHeader().setCascadingSectionResizes(True)
-        self.tableWidget_2.horizontalHeader().setDefaultSectionSize(106)
+        self.tableWidget_2.horizontalHeader().setDefaultSectionSize(122)
         self.tableWidget_2.horizontalHeader().setHighlightSections(False)
         self.tableWidget_2.horizontalHeader().setSortIndicatorShown(True)
         self.tableWidget_2.horizontalHeader().setStretchLastSection(False)
         self.tableWidget_2.verticalHeader().setCascadingSectionResizes(True)
-        self.tableWidget_2.verticalHeader().setDefaultSectionSize(22)
-        self.tableWidget_2.verticalHeader().setMinimumSectionSize(19)
         self.tableWidget_2.verticalHeader().setStretchLastSection(False)
-        self.lineEdit_7 = QtWidgets.QLineEdit(self.frame_6)
-        self.lineEdit_7.setGeometry(QtCore.QRect(460, 30, 91, 20))
-        self.lineEdit_7.setStyleSheet("border-bottom:1px solid #eee;\n"
-                                      "border:0;\n"
-                                      "box-shadow:0 0 15px 4px rgba(0,0,0,0.06);\n"
-                                      "border-radius:5px;\n"
-                                      "height:10px;")
-        self.lineEdit_7.setObjectName("lineEdit_7")
-        self.bankComBox_3 = QtWidgets.QComboBox(self.frame_6)
-        self.bankComBox_3.setGeometry(QtCore.QRect(120, 30, 201, 22))
+        self.bankComBox_3 = QtWidgets.QComboBox(self.page_4)
+        self.bankComBox_3.setGeometry(QtCore.QRect(120, 90, 201, 22))
         self.bankComBox_3.setAcceptDrops(True)
         self.bankComBox_3.setStyleSheet("\n"
                                         ".QComboBox{\n"
@@ -581,317 +585,27 @@ class Ui_MainWindow(object):
         self.bankComBox_3.addItem("")
         self.bankComBox_3.addItem("")
         self.bankComBox_3.addItem("")
-        self.zoneComBox_2 = QtWidgets.QComboBox(self.frame_6)
-        self.zoneComBox_2.setGeometry(QtCore.QRect(30, 30, 71, 22))
-        self.zoneComBox_2.setAcceptDrops(True)
-        self.zoneComBox_2.setStyleSheet("\n"
-                                        ".QComboBox{\n"
-                                        "    border: 2px solid #4CAF50;\n"
-                                        " }\n"
-                                        "\n"
-                                        "\n"
-                                        "\n"
-                                        "QComboBox::down-arrow {\n"
-                                        "    position: relative;\n"
-                                        "     height: 15px;\n"
-                                        "     width: 15px;\n"
-                                        "    border: 12px;\n"
-                                        " \n"
-                                        "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
-                                        "}\n"
-                                        "QComboBox::drop-down {\n"
-                                        "    border: 0px; \n"
-                                        "}\n"
-                                        "")
-        self.zoneComBox_2.setObjectName("zoneComBox_2")
-        self.zoneComBox_2.addItem("")
-        self.zoneComBox_2.addItem("")
-        self.zoneComBox_2.addItem("")
-        self.zoneComBox_2.addItem("")
-        self.pushButton_14 = QtWidgets.QPushButton(self.frame_6)
-        self.pushButton_14.setGeometry(QtCore.QRect(467, 540, 70, 31))
-        self.pushButton_14.setStyleSheet(".QPushButton {\n"
-                                         "  background-color: white;\n"
-                                         "  color: black;\n"
-                                         "  border: 2px solid rgb(85, 170, 127); /* Green */\n"
-                                         "font: 10pt \"MS Shell Dlg 2\";\n"
-                                         "}\n"
-                                         "\n"
-                                         ".QPushButton {\n"
-                                         "  transition-duration: 0.4s;\n"
-                                         "}\n"
-                                         "\n"
-                                         ".QPushButton:hover {\n"
-                                         "  background-color:rgb(85, 170, 127); /* Green */\n"
-                                         "  color: white;\n"
-                                         "}")
-        self.pushButton_14.setObjectName("pushButton_14")
+        self.label_22 = QtWidgets.QLabel(self.page_4)
+        self.label_22.setGeometry(QtCore.QRect(40, 92, 71, 16))
+        self.label_22.setObjectName("label_22")
         self.stackedWidget.addWidget(self.page_4)
         self.page_3 = QtWidgets.QWidget()
         self.page_3.setObjectName("page_3")
-        self.frame_8 = QtWidgets.QFrame(self.page_3)
-        self.frame_8.setGeometry(QtCore.QRect(0, 10, 561, 581))
-        self.frame_8.setFrameShape(QtWidgets.QFrame.Panel)
-        self.frame_8.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_8.setLineWidth(2)
-        self.frame_8.setMidLineWidth(2)
-        self.frame_8.setObjectName("frame_8")
-        self.label_38 = QtWidgets.QLabel(self.frame_8)
-        self.label_38.setGeometry(QtCore.QRect(330, 30, 121, 20))
-        self.label_38.setObjectName("label_38")
-        self.tableWidget_10 = QtWidgets.QTableWidget(self.frame_8)
-        self.tableWidget_10.setEnabled(True)
-        self.tableWidget_10.setGeometry(QtCore.QRect(20, 70, 531, 491))
-        self.tableWidget_10.setStyleSheet("\n"
-                                          "QHeaderView::section\n"
-                                          "\n"
-                                          "{\n"
-                                          " Font-size:14px; \n"
-                                          " Font-family: \"Microsoft YaHei\"; \n"
-                                          " Color: #FFFFFF; \n"
-                                          " \n"
-                                          " Background:rgb(85, 170, 127); \n"
-                                          "Border:1px; \n"
-                                          " Text-align:left;\n"
-                                          " \n"
-                                          " \n"
-                                          " Min-height: 34px;\n"
-                                          " max-height:34px; \n"
-                                          "\n"
-                                          "\n"
-                                          " Margin:0px;\n"
-                                          " Padding: 0px;\n"
-                                          "\n"
-                                          "}\n"
-                                          "\n"
-                                          "\n"
-                                          "\n"
-                                          "\n"
-                                          "\n"
-                                          "")
-        self.tableWidget_10.setLineWidth(1)
-        self.tableWidget_10.setSizeAdjustPolicy(
-            QtWidgets.QAbstractScrollArea.AdjustToContents)
-        self.tableWidget_10.setSelectionMode(
-            QtWidgets.QAbstractItemView.SingleSelection)
-        self.tableWidget_10.setSelectionBehavior(
-            QtWidgets.QAbstractItemView.SelectRows)
-        self.tableWidget_10.setTextElideMode(QtCore.Qt.ElideRight)
-        self.tableWidget_10.setShowGrid(True)
-        self.tableWidget_10.setGridStyle(QtCore.Qt.SolidLine)
-        self.tableWidget_10.setRowCount(0)
-        self.tableWidget_10.setColumnCount(6)
-        self.tableWidget_10.setObjectName("tableWidget_10")
-        item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setPointSize(7)
-        item.setFont(font)
-        self.tableWidget_10.setHorizontalHeaderItem(0, item)
-        item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setPointSize(6)
-        item.setFont(font)
-        self.tableWidget_10.setHorizontalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setPointSize(13)
-        item.setFont(font)
-        self.tableWidget_10.setHorizontalHeaderItem(2, item)
-        item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setPointSize(6)
-        item.setFont(font)
-        self.tableWidget_10.setHorizontalHeaderItem(3, item)
-        item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setPointSize(6)
-        item.setFont(font)
-        self.tableWidget_10.setHorizontalHeaderItem(4, item)
-        item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setPointSize(6)
-        item.setFont(font)
-        self.tableWidget_10.setHorizontalHeaderItem(5, item)
-        self.tableWidget_10.horizontalHeader().setCascadingSectionResizes(True)
-        self.tableWidget_10.horizontalHeader().setDefaultSectionSize(106)
-        self.tableWidget_10.horizontalHeader().setHighlightSections(False)
-        self.tableWidget_10.horizontalHeader().setSortIndicatorShown(True)
-        self.tableWidget_10.horizontalHeader().setStretchLastSection(False)
-        self.tableWidget_10.verticalHeader().setCascadingSectionResizes(True)
-        self.tableWidget_10.verticalHeader().setDefaultSectionSize(22)
-        self.tableWidget_10.verticalHeader().setMinimumSectionSize(19)
-        self.tableWidget_10.verticalHeader().setStretchLastSection(False)
-        self.lineEdit_24 = QtWidgets.QLineEdit(self.frame_8)
-        self.lineEdit_24.setGeometry(QtCore.QRect(460, 30, 91, 20))
-        self.lineEdit_24.setStyleSheet("border-bottom:1px solid #eee;\n"
+        self.label_23 = QtWidgets.QLabel(self.page_3)
+        self.label_23.setGeometry(QtCore.QRect(230, 39, 121, 20))
+        self.label_23.setObjectName("label_23")
+        self.lineEdit_14 = QtWidgets.QLineEdit(self.page_3)
+        self.lineEdit_14.setGeometry(QtCore.QRect(360, 39, 91, 20))
+        self.lineEdit_14.setStyleSheet("border-bottom:1px solid #eee;\n"
                                        "border:0;\n"
                                        "box-shadow:0 0 15px 4px rgba(0,0,0,0.06);\n"
                                        "border-radius:5px;\n"
                                        "height:10px;")
-        self.lineEdit_24.setObjectName("lineEdit_24")
-        self.bankComBox_10 = QtWidgets.QComboBox(self.frame_8)
-        self.bankComBox_10.setGeometry(QtCore.QRect(120, 30, 201, 22))
-        self.bankComBox_10.setAcceptDrops(True)
-        self.bankComBox_10.setStyleSheet("\n"
-                                         ".QComboBox{\n"
-                                         "    border: 2px solid #4CAF50;\n"
-                                         " }\n"
-                                         "\n"
-                                         "\n"
-                                         "QComboBox::down-arrow {\n"
-                                         "    position: relative;\n"
-                                         "     height: 15px;\n"
-                                         "     width: 15px;\n"
-                                         "    border: 12px;\n"
-                                         " \n"
-                                         "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
-                                         "}\n"
-                                         "QComboBox::drop-down {\n"
-                                         "    border: 0px; \n"
-                                         "}\n"
-                                         "\n"
-                                         "")
-        self.bankComBox_10.setInsertPolicy(
-            QtWidgets.QComboBox.InsertAfterCurrent)
-        self.bankComBox_10.setObjectName("bankComBox_10")
-        self.bankComBox_10.addItem("")
-        self.bankComBox_10.addItem("")
-        self.bankComBox_10.addItem("")
-        self.bankComBox_10.addItem("")
-        self.zoneComBox_11 = QtWidgets.QComboBox(self.frame_8)
-        self.zoneComBox_11.setGeometry(QtCore.QRect(30, 30, 71, 22))
-        self.zoneComBox_11.setAcceptDrops(True)
-        self.zoneComBox_11.setStyleSheet("\n"
-                                         ".QComboBox{\n"
-                                         "    border: 2px solid #4CAF50;\n"
-                                         " }\n"
-                                         "\n"
-                                         "\n"
-                                         "\n"
-                                         "QComboBox::down-arrow {\n"
-                                         "    position: relative;\n"
-                                         "     height: 15px;\n"
-                                         "     width: 15px;\n"
-                                         "    border: 12px;\n"
-                                         " \n"
-                                         "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
-                                         "}\n"
-                                         "QComboBox::drop-down {\n"
-                                         "    border: 0px; \n"
-                                         "}\n"
-                                         "")
-        self.zoneComBox_11.setObjectName("zoneComBox_11")
-        self.zoneComBox_11.addItem("")
-        self.zoneComBox_11.addItem("")
-        self.zoneComBox_11.addItem("")
-        self.zoneComBox_11.addItem("")
-        self.stackedWidget.addWidget(self.page_3)
-        self.page_2 = QtWidgets.QWidget()
-        self.page_2.setObjectName("page_2")
-        self.frame_7 = QtWidgets.QFrame(self.page_2)
-        self.frame_7.setGeometry(QtCore.QRect(0, 11, 561, 581))
-        self.frame_7.setFrameShape(QtWidgets.QFrame.Panel)
-        self.frame_7.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_7.setLineWidth(2)
-        self.frame_7.setMidLineWidth(2)
-        self.frame_7.setObjectName("frame_7")
-        self.label_24 = QtWidgets.QLabel(self.frame_7)
-        self.label_24.setGeometry(QtCore.QRect(330, 30, 121, 20))
-        self.label_24.setObjectName("label_24")
-        self.tableWidget_9 = QtWidgets.QTableWidget(self.frame_7)
-        self.tableWidget_9.setEnabled(True)
-        self.tableWidget_9.setGeometry(QtCore.QRect(20, 70, 531, 461))
-        self.tableWidget_9.setStyleSheet("\n"
-                                         "QHeaderView::section\n"
-                                         "\n"
-                                         "{\n"
-                                         " Font-size:14px; \n"
-                                         " Font-family: \"Microsoft YaHei\"; \n"
-                                         " Color: #FFFFFF; \n"
-                                         " \n"
-                                         " Background:rgb(85, 170, 127); \n"
-                                         "Border:1px; \n"
-                                         " Text-align:left;\n"
-                                         " \n"
-                                         " \n"
-                                         " Min-height: 34px;\n"
-                                         " max-height:34px; \n"
-                                         "\n"
-                                         "\n"
-                                         " Margin:0px;\n"
-                                         " Padding: 0px;\n"
-                                         "\n"
-                                         "}\n"
-                                         "\n"
-                                         "\n"
-                                         "\n"
-                                         "\n"
-                                         "\n"
-                                         "")
-        self.tableWidget_9.setLineWidth(1)
-        self.tableWidget_9.setSizeAdjustPolicy(
-            QtWidgets.QAbstractScrollArea.AdjustToContents)
-        self.tableWidget_9.setSelectionMode(
-            QtWidgets.QAbstractItemView.SingleSelection)
-        self.tableWidget_9.setSelectionBehavior(
-            QtWidgets.QAbstractItemView.SelectRows)
-        self.tableWidget_9.setTextElideMode(QtCore.Qt.ElideRight)
-        self.tableWidget_9.setShowGrid(True)
-        self.tableWidget_9.setGridStyle(QtCore.Qt.SolidLine)
-        self.tableWidget_9.setRowCount(0)
-        self.tableWidget_9.setColumnCount(6)
-        self.tableWidget_9.setObjectName("tableWidget_9")
-        item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setPointSize(7)
-        item.setFont(font)
-        self.tableWidget_9.setHorizontalHeaderItem(0, item)
-        item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setPointSize(6)
-        item.setFont(font)
-        self.tableWidget_9.setHorizontalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setPointSize(13)
-        item.setFont(font)
-        self.tableWidget_9.setHorizontalHeaderItem(2, item)
-        item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setPointSize(6)
-        item.setFont(font)
-        self.tableWidget_9.setHorizontalHeaderItem(3, item)
-        item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setPointSize(6)
-        item.setFont(font)
-        self.tableWidget_9.setHorizontalHeaderItem(4, item)
-        item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setPointSize(6)
-        item.setFont(font)
-        self.tableWidget_9.setHorizontalHeaderItem(5, item)
-        self.tableWidget_9.horizontalHeader().setCascadingSectionResizes(True)
-        self.tableWidget_9.horizontalHeader().setDefaultSectionSize(106)
-        self.tableWidget_9.horizontalHeader().setHighlightSections(False)
-        self.tableWidget_9.horizontalHeader().setSortIndicatorShown(True)
-        self.tableWidget_9.horizontalHeader().setStretchLastSection(False)
-        self.tableWidget_9.verticalHeader().setCascadingSectionResizes(True)
-        self.tableWidget_9.verticalHeader().setDefaultSectionSize(22)
-        self.tableWidget_9.verticalHeader().setMinimumSectionSize(19)
-        self.tableWidget_9.verticalHeader().setStretchLastSection(False)
-        self.lineEdit_23 = QtWidgets.QLineEdit(self.frame_7)
-        self.lineEdit_23.setGeometry(QtCore.QRect(460, 30, 91, 20))
-        self.lineEdit_23.setStyleSheet("border-bottom:1px solid #eee;\n"
-                                       "border:0;\n"
-                                       "box-shadow:0 0 15px 4px rgba(0,0,0,0.06);\n"
-                                       "border-radius:5px;\n"
-                                       "height:10px;")
-        self.lineEdit_23.setObjectName("lineEdit_23")
-        self.bankComBox_9 = QtWidgets.QComboBox(self.frame_7)
-        self.bankComBox_9.setGeometry(QtCore.QRect(120, 30, 201, 22))
-        self.bankComBox_9.setAcceptDrops(True)
-        self.bankComBox_9.setStyleSheet("\n"
+        self.lineEdit_14.setObjectName("lineEdit_14")
+        self.bankComBox_4 = QtWidgets.QComboBox(self.page_3)
+        self.bankComBox_4.setGeometry(QtCore.QRect(120, 89, 201, 22))
+        self.bankComBox_4.setAcceptDrops(True)
+        self.bankComBox_4.setStyleSheet("\n"
                                         ".QComboBox{\n"
                                         "    border: 2px solid #4CAF50;\n"
                                         " }\n"
@@ -910,82 +624,66 @@ class Ui_MainWindow(object):
                                         "}\n"
                                         "\n"
                                         "")
-        self.bankComBox_9.setInsertPolicy(
+        self.bankComBox_4.setInsertPolicy(
             QtWidgets.QComboBox.InsertAfterCurrent)
-        self.bankComBox_9.setObjectName("bankComBox_9")
-        self.bankComBox_9.addItem("")
-        self.bankComBox_9.addItem("")
-        self.bankComBox_9.addItem("")
-        self.bankComBox_9.addItem("")
-        self.zoneComBox_10 = QtWidgets.QComboBox(self.frame_7)
-        self.zoneComBox_10.setGeometry(QtCore.QRect(30, 30, 71, 22))
-        self.zoneComBox_10.setAcceptDrops(True)
-        self.zoneComBox_10.setStyleSheet("\n"
-                                         ".QComboBox{\n"
-                                         "    border: 2px solid #4CAF50;\n"
-                                         " }\n"
-                                         "\n"
-                                         "\n"
-                                         "\n"
-                                         "QComboBox::down-arrow {\n"
-                                         "    position: relative;\n"
-                                         "     height: 15px;\n"
-                                         "     width: 15px;\n"
-                                         "    border: 12px;\n"
-                                         " \n"
-                                         "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
-                                         "}\n"
-                                         "QComboBox::drop-down {\n"
-                                         "    border: 0px; \n"
-                                         "}\n"
-                                         "")
-        self.zoneComBox_10.setObjectName("zoneComBox_10")
-        self.zoneComBox_10.addItem("")
-        self.zoneComBox_10.addItem("")
-        self.zoneComBox_10.addItem("")
-        self.zoneComBox_10.addItem("")
-        self.pushButton_17 = QtWidgets.QPushButton(self.frame_7)
-        self.pushButton_17.setGeometry(QtCore.QRect(471, 541, 71, 31))
-        self.pushButton_17.setStyleSheet(".QPushButton {\n"
-                                         "  background-color: white;\n"
-                                         "  color: black;\n"
-                                         "  border: 2px solid rgb(85, 170, 127); /* Green */\n"
-                                         "font: 10pt \"MS Shell Dlg 2\";\n"
-                                         "}\n"
-                                         "\n"
-                                         ".QPushButton {\n"
-                                         "  transition-duration: 0.4s;\n"
-                                         "}\n"
-                                         "\n"
-                                         ".QPushButton:hover {\n"
-                                         "  background-color:rgb(85, 170, 127); /* Green */\n"
-                                         "  color: white;\n"
-                                         "}")
-        self.pushButton_17.setObjectName("pushButton_17")
-        self.pushButton_18 = QtWidgets.QPushButton(self.frame_7)
-        self.pushButton_18.setGeometry(QtCore.QRect(381, 540, 71, 31))
-        self.pushButton_18.setStyleSheet(".QPushButton {\n"
-                                         "  background-color: white;\n"
-                                         "  color: black;\n"
-                                         "  border: 2px solid rgb(85, 170, 127); /* Green */\n"
-                                         "font: 10pt \"MS Shell Dlg 2\";\n"
-                                         "}\n"
-                                         "\n"
-                                         ".QPushButton {\n"
-                                         "  transition-duration: 0.4s;\n"
-                                         "}\n"
-                                         "\n"
-                                         ".QPushButton:hover {\n"
-                                         "  background-color:rgb(85, 170, 127); /* Green */\n"
-                                         "  color: white;\n"
-                                         "}")
-        self.pushButton_18.setObjectName("pushButton_18")
+        self.bankComBox_4.setObjectName("bankComBox_4")
+        self.bankComBox_4.addItem("")
+        self.bankComBox_4.addItem("")
+        self.bankComBox_4.addItem("")
+        self.bankComBox_4.addItem("")
+        self.zoneLabel_5 = QtWidgets.QLabel(self.page_3)
+        self.zoneLabel_5.setGeometry(QtCore.QRect(40, 39, 81, 21))
+        self.zoneLabel_5.setObjectName("zoneLabel_5")
+        self.zoneComBox_5 = QtWidgets.QComboBox(self.page_3)
+        self.zoneComBox_5.setGeometry(QtCore.QRect(130, 39, 71, 22))
+        self.zoneComBox_5.setAcceptDrops(True)
+        self.zoneComBox_5.setStyleSheet("\n"
+                                        ".QComboBox{\n"
+                                        "    border: 2px solid #4CAF50;\n"
+                                        " }\n"
+                                        "\n"
+                                        "\n"
+                                        "\n"
+                                        "QComboBox::down-arrow {\n"
+                                        "    position: relative;\n"
+                                        "     height: 15px;\n"
+                                        "     width: 15px;\n"
+                                        "    border: 12px;\n"
+                                        " \n"
+                                        "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
+                                        "}\n"
+                                        "QComboBox::drop-down {\n"
+                                        "    border: 0px; \n"
+                                        "}\n"
+                                        "")
+        self.zoneComBox_5.setObjectName("zoneComBox_5")
+        self.zoneComBox_5.addItem("")
+        self.zoneComBox_5.addItem("")
+        self.zoneComBox_5.addItem("")
+        self.zoneComBox_5.addItem("")
+        self.label_24 = QtWidgets.QLabel(self.page_3)
+        self.label_24.setGeometry(QtCore.QRect(40, 91, 71, 16))
+        self.label_24.setObjectName("label_24")
+        self.stackedWidget.addWidget(self.page_3)
+        self.page_2 = QtWidgets.QWidget()
+        self.page_2.setObjectName("page_2")
         self.stackedWidget.addWidget(self.page_2)
+        self.frame_5 = QtWidgets.QFrame(self.centralwidget)
+        self.frame_5.setGeometry(QtCore.QRect(-1, 9, 801, 701))
+        self.frame_5.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_5.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_5.setObjectName("frame_5")
+        self.frame_5.raise_()
+        self.frame.raise_()
+        self.stackedWidget.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 789, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
         self.stackedWidget.setCurrentIndex(0)
@@ -1002,10 +700,10 @@ class Ui_MainWindow(object):
         self.stackedWidget.setCurrentIndex(1)
 
     def showQuotaionTab(self):
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(2)
 
     def showBillTab(self):
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(3)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -1065,6 +763,13 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Rate"))
         item = self.tableWidget.horizontalHeaderItem(3)
         item.setText(_translate("MainWindow", "Price"))
+        self.zoneLabel_2.setText(_translate(
+            "MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Select Zone:</span></p></body></html>"))
+        self.zoneComBox_2.setCurrentText(_translate("MainWindow", "LHR"))
+        self.zoneComBox_2.setItemText(0, _translate("MainWindow", "LHR"))
+        self.zoneComBox_2.setItemText(1, _translate("MainWindow", "GUJ"))
+        self.zoneComBox_2.setItemText(2, _translate("MainWindow", "FSD"))
+        self.zoneComBox_2.setItemText(3, _translate("MainWindow", "KPK"))
         self.label_11.setText(_translate(
             "MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Enter Complaint No.</span></p></body></html>"))
         self.tableWidget_2.setSortingEnabled(False)
@@ -1074,12 +779,6 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Bank Name"))
         item = self.tableWidget_2.horizontalHeaderItem(2)
         item.setText(_translate("MainWindow", "Bank Address"))
-        item = self.tableWidget_2.horizontalHeaderItem(3)
-        item.setText(_translate("MainWindow", "Total Amount"))
-        item = self.tableWidget_2.horizontalHeaderItem(4)
-        item.setText(_translate("MainWindow", "Date"))
-        item = self.tableWidget_2.horizontalHeaderItem(5)
-        item.setText(_translate("MainWindow", "Invoice No"))
         self.bankComBox_3.setItemText(
             0, _translate("MainWindow", "BANK AL-HABIB"))
         self.bankComBox_3.setItemText(
@@ -1088,70 +787,27 @@ class Ui_MainWindow(object):
             2, _translate("MainWindow", "MEHRAN BANK"))
         self.bankComBox_3.setItemText(
             3, _translate("MainWindow", "DUBAI ISLAMIC BANK"))
-        self.zoneComBox_2.setCurrentText(_translate("MainWindow", "LHR"))
-        self.zoneComBox_2.setItemText(0, _translate("MainWindow", "LHR"))
-        self.zoneComBox_2.setItemText(1, _translate("MainWindow", "GUJ"))
-        self.zoneComBox_2.setItemText(2, _translate("MainWindow", "FSD"))
-        self.zoneComBox_2.setItemText(3, _translate("MainWindow", "KPK"))
-        self.pushButton_14.setText(_translate("MainWindow", "Add Bill"))
-        self.label_38.setText(_translate(
+        self.label_22.setText(_translate(
+            "MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Select Bank:</span></p></body></html>"))
+        self.label_23.setText(_translate(
             "MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Enter Complaint No.</span></p></body></html>"))
-        self.tableWidget_10.setSortingEnabled(False)
-        item = self.tableWidget_10.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "Complain No"))
-        item = self.tableWidget_10.horizontalHeaderItem(1)
-        item.setText(_translate("MainWindow", "Bank Name"))
-        item = self.tableWidget_10.horizontalHeaderItem(2)
-        item.setText(_translate("MainWindow", "Bank Address"))
-        item = self.tableWidget_10.horizontalHeaderItem(3)
-        item.setText(_translate("MainWindow", "Total Amount"))
-        item = self.tableWidget_10.horizontalHeaderItem(4)
-        item.setText(_translate("MainWindow", "Date"))
-        item = self.tableWidget_10.horizontalHeaderItem(5)
-        item.setText(_translate("MainWindow", "Invoice No"))
-        self.bankComBox_10.setItemText(
+        self.bankComBox_4.setItemText(
             0, _translate("MainWindow", "BANK AL-HABIB"))
-        self.bankComBox_10.setItemText(
+        self.bankComBox_4.setItemText(
             1, _translate("MainWindow", "BANK AL-FALAH"))
-        self.bankComBox_10.setItemText(
+        self.bankComBox_4.setItemText(
             2, _translate("MainWindow", "MEHRAN BANK"))
-        self.bankComBox_10.setItemText(
+        self.bankComBox_4.setItemText(
             3, _translate("MainWindow", "DUBAI ISLAMIC BANK"))
-        self.zoneComBox_11.setCurrentText(_translate("MainWindow", "LHR"))
-        self.zoneComBox_11.setItemText(0, _translate("MainWindow", "LHR"))
-        self.zoneComBox_11.setItemText(1, _translate("MainWindow", "GUJ"))
-        self.zoneComBox_11.setItemText(2, _translate("MainWindow", "FSD"))
-        self.zoneComBox_11.setItemText(3, _translate("MainWindow", "KPK"))
+        self.zoneLabel_5.setText(_translate(
+            "MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Select Zone:</span></p></body></html>"))
+        self.zoneComBox_5.setCurrentText(_translate("MainWindow", "LHR"))
+        self.zoneComBox_5.setItemText(0, _translate("MainWindow", "LHR"))
+        self.zoneComBox_5.setItemText(1, _translate("MainWindow", "GUJ"))
+        self.zoneComBox_5.setItemText(2, _translate("MainWindow", "FSD"))
+        self.zoneComBox_5.setItemText(3, _translate("MainWindow", "KPK"))
         self.label_24.setText(_translate(
-            "MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Enter Complaint No.</span></p></body></html>"))
-        self.tableWidget_9.setSortingEnabled(False)
-        item = self.tableWidget_9.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "Complain No"))
-        item = self.tableWidget_9.horizontalHeaderItem(1)
-        item.setText(_translate("MainWindow", "Bank Name"))
-        item = self.tableWidget_9.horizontalHeaderItem(2)
-        item.setText(_translate("MainWindow", "Bank Address"))
-        item = self.tableWidget_9.horizontalHeaderItem(3)
-        item.setText(_translate("MainWindow", "Total Amount"))
-        item = self.tableWidget_9.horizontalHeaderItem(4)
-        item.setText(_translate("MainWindow", "Date"))
-        item = self.tableWidget_9.horizontalHeaderItem(5)
-        item.setText(_translate("MainWindow", "Invoice No"))
-        self.bankComBox_9.setItemText(
-            0, _translate("MainWindow", "BANK AL-HABIB"))
-        self.bankComBox_9.setItemText(
-            1, _translate("MainWindow", "BANK AL-FALAH"))
-        self.bankComBox_9.setItemText(
-            2, _translate("MainWindow", "MEHRAN BANK"))
-        self.bankComBox_9.setItemText(
-            3, _translate("MainWindow", "DUBAI ISLAMIC BANK"))
-        self.zoneComBox_10.setCurrentText(_translate("MainWindow", "LHR"))
-        self.zoneComBox_10.setItemText(0, _translate("MainWindow", "LHR"))
-        self.zoneComBox_10.setItemText(1, _translate("MainWindow", "GUJ"))
-        self.zoneComBox_10.setItemText(2, _translate("MainWindow", "FSD"))
-        self.zoneComBox_10.setItemText(3, _translate("MainWindow", "KPK"))
-        self.pushButton_17.setText(_translate("MainWindow", "Delete"))
-        self.pushButton_18.setText(_translate("MainWindow", "Update"))
+            "MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Select Bank:</span></p></body></html>"))
 
 
 if __name__ == "__main__":
