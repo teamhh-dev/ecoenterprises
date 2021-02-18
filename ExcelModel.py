@@ -113,8 +113,8 @@ class ExcelModel():
                 horizontal='center', vertical='center', wrap_text=True)
 
             #  Increasing the size of height of row
-            if (len(str(self.activeWorkSheet.cell(row=firstRow, column=2).value))) > 36:
+            if (len(str(self.activeWorkSheet.cell(row=rowNo, column=2).value))) > 36:
 
-                self.activeWorkSheet.row_dimensions[firstRow].height = 31.50
-
-            firstRow = firstRow + 1
+                self.activeWorkSheet.row_dimensions[rowNo].height = 31.50
+            # fixed
+            rowNo = rowNo + 1

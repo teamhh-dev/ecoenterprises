@@ -40,8 +40,8 @@ myList = [
 ]
 
 
-bill = Bill(ComplaintInfo("temp", str(datetime.datetime.now().strftime("%d/%b/%Y")),
-                          "sample  Branch,sample Zone", "sample", 1), Services(myList))
+bill = Bill(ComplaintInfo("12", str(datetime.datetime.now().strftime("%d/%b/%Y")),
+                          "sample  Branch,sample Zone", "sample", 2), Services(myList))
 
 eM = ExcelModel()
 
