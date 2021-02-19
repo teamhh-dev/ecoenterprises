@@ -53,32 +53,34 @@ class ExcelModel():
         # print(services.getServicesList())
         # return
         self.firstRow = 16
-        self.service_len = len(services(getServicesList()))-2
-        # self.service_len = len(services.getServicesList())-2
-        self.activeWorkSheet.insert_rows(17, self.service_len)
+        self.service_len = len(services.getServicesList())-2
+        if not self.service_len == 0:
+            self.activeWorkSheet.insert_rows(17, self.service_len)
         row = list(self.activeWorkSheet.rows)[15]
         i = 0
         j = self.firstRow
 
     # Adding service rows to active worksheet
-        while j <= self.firstRow + self.service_len:
+        if not self.service_len == 0:
+            while j <= self.firstRow + self.service_len:
 
-            for cell in row:
+                for cell in row:
 
-                list(self.activeWorkSheet.rows)[
-                    j][i].border = copy(cell.border)
-                list(self.activeWorkSheet.rows)[
-                    j][i].font = copy(cell.font)
-                list(self.activeWorkSheet.rows)[
-                    j][i].number_format = copy(cell.number_format)
-                i = i+1
-            i = 0
-            j = j+1
+                    list(self.activeWorkSheet.rows)[
+                        j][i].border = copy(cell.border)
+                    list(self.activeWorkSheet.rows)[
+                        j][i].font = copy(cell.font)
+                    list(self.activeWorkSheet.rows)[
+                        j][i].number_format = copy(cell.number_format)
+                    i = i+1
+                i = 0
+                j = j+1
 
     # Adding services to worksheet
+
+        services.getServicesList().reverse()
         self.sr_number = 1
-        # for service in services.getServicesList():
-        for service in services:
+        for service in services.getServicesList():
 
             self.activeWorkSheet['A'+str(self.firstRow)] = self.sr_number
             self.activeWorkSheet['B' +
@@ -88,7 +90,7 @@ class ExcelModel():
             self.activeWorkSheet['H'+str(self.firstRow)] = service['amount']
             self.firstRow = self.firstRow + 1
             self.sr_number = self.sr_number + 1
-
+    # yahan maslah hai hai jab rows do hoti hain tab formula sahih calculate nahi hota
     # Updating the formulas
         self.activeWorkSheet["H"+str(j+1)] = "=SUM(H16:H"+str(j)+")"
         self.activeWorkSheet["H" + str(j+2)] = "=H" + str(j+1)+"*0.16"
@@ -101,7 +103,7 @@ class ExcelModel():
     # Perform formatting cells
     def formattingCells(self, rowNo: int):
 
-        while rowNo <= (self.firstRow+self.service_len)-2:
+        while rowNo <= (self.firstRow+self.service_len)-2 or rowNo == 16 or rowNo == 17:
 
             self.activeWorkSheet.merge_cells('B'+str(rowNo)+':'+'D'+str(rowNo))
             self.activeWorkSheet.cell(row=rowNo, column=1).alignment = Alignment(

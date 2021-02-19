@@ -4,7 +4,7 @@ from Services import *
 from Bill import *
 from ExcelModel import *
 import datetime
-
+from WordModel import *
 # if __name__ == "__main__":
 #     app = QApplication(sys.argv)
 #     window = HomePageView()
@@ -24,25 +24,28 @@ myList = [
         'qty': '45rft',
         'rate': 2000,
         'amount': 23445.78
-    },
-    {
-        'description': "Coil brazing on new Heir AC outdoor installation",
-        'qty': '45rft',
-        'rate': 2000,
-        'amount': 234.89
-    },
-    {
-        'description': "Gas charging",
-        'qty': '45rft',
-        'rate': 2000,
-        'amount': 1233
     }
+    # {
+    #     'description': "Coil brazing on new Heir AC outdoor installation",
+    #     'qty': '45rft',
+    #     'rate': 2000,
+    #     'amount': 234.89
+    # },
+    # {
+    #     'description': "Gas charging",
+    #     'qty': '45rft',
+    #     'rate': 2000,
+    #     'amount': 1233
+    # }
 ]
 
 
-bill = Bill(ComplaintInfo("12", str(datetime.datetime.now().strftime("%d/%b/%Y")),
-                          "sample  Branch,sample Zone", "sample", 2), Services(myList))
+bill = Bill(ComplaintInfo("test", str(datetime.datetime.now().strftime("%d/%b/%Y")),
+                          "sample  Branch,sample Zone", "LHR", 2), Services(myList))
 
-eM = ExcelModel()
+# eM = ExcelModel()
 
-eM.addBill(bill)
+# eM.addBill(bill)
+
+wM = WordModel()
+wM.addBill(bill)
