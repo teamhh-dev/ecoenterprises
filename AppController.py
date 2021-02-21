@@ -1,11 +1,11 @@
-from PyQt5.QtCore import QtFatalMsg, QDateTime
+import sys
+
+from PyQt5.QtCore import QDateTime, Qt, QtFatalMsg
+from PyQt5.QtWidgets import QMessageBox, QTableWidgetItem, QTableWidgetSelectionRange
+
 from AppView import *
 from ExcelModel import *
 from WordModel import *
-from PyQt5.QtWidgets import QTableWidgetItem
-from PyQt5.QtWidgets import QMessageBox
-
-import sys
 
 
 class AppController:
@@ -31,6 +31,7 @@ class AppController:
         self.ui.addServiceBtn.clicked.connect(self.addService)
         self.ui.saveBtn.setDisabled(True)
         self.ui.finalizeBtn.clicked.connect(self.finalize)
+        self.ui.deleteServiceBtn.clicked.connect(self.deleteService)
         self.ui.saveBtn.clicked.connect(self.saveBill)
 
     def showAddQuotaionTab(self):
@@ -49,8 +50,7 @@ class AppController:
         self.ui.stackedWidget.setCurrentIndex(4)
 
     def addService(self):
-        print("Add Service")
-        qty = self.ui.spinBox.value()
+        qty = self.ui.qtySpinBox.value()
         description = self.ui.descriptionBox.text()+" "+self.ui.detailsBox.text()
         rate = float(self.ui.rateBox.text())
         amount = rate*qty
@@ -105,6 +105,23 @@ class AppController:
             msg.setWindowTitle("Invalid Information")
             msg.setStandardButtons(QMessageBox.Ok)
             msg.exec_()
+
+    def deleteService(self):
+        self.ui.servicesTbl.removeRow(self.ui.servicesTbl.currentRow())
+
+
+#  yar yeh dekho update ni ho rah text table me
+
+    # def updateItems(self):
+    #     self.ui.servicesTbl.setItem(self.ui.servicesTbl.currentRow(), self.ui.servicesTbl.currentColumn(), self.putText())
+
+    # def putItem(self, text, flags):
+    #     tableWidgetItem = QTableWidgetItem(self.ui.servicesTbl.currentItem().text())
+    #     tableWidgetItem.text = self.ui.servicesTbl.cellPressed.connect(self.updateText)
+    #     return tableWidgetItem
+
+    # def updateText(self):
+    #     self.ui.servicesTbl.
 
     def saveBill(self):
         if(self.validate()):
