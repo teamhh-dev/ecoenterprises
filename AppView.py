@@ -30,57 +30,58 @@ class Ui_MainWindow(object):
         self.addQuotationBtn = QtWidgets.QPushButton(self.frame)
         self.addQuotationBtn.setGeometry(QtCore.QRect(20, 140, 161, 41))
         self.addQuotationBtn.setStyleSheet("QPushButton {\n"
-"color: rgb(255, 255, 255);\n"
-"border-radius: 20px;\n"
-"font-size:15px;\n"
-"background-color:rgb(85, 170, 127);\n"
-"}")
+                                           "color: rgb(255, 255, 255);\n"
+                                           "border-radius: 20px;\n"
+                                           "font-size:15px;\n"
+                                           "background-color:rgb(85, 170, 127);\n"
+                                           "}")
         self.addQuotationBtn.setFlat(False)
         self.addQuotationBtn.setObjectName("addQuotationBtn")
         self.addToBillBtn = QtWidgets.QPushButton(self.frame)
         self.addToBillBtn.setGeometry(QtCore.QRect(20, 200, 161, 41))
         self.addToBillBtn.setStyleSheet(".QPushButton {\n"
-"    font: 9pt \"MS Shell Dlg 2\";\n"
-"color: rgb(255, 255, 255);\n"
-"border-radius: 20px;\n"
-"font-size:15px;\n"
-"background-color:rgb(85, 170, 127);\n"
-"}")
+                                        "    font: 9pt \"MS Shell Dlg 2\";\n"
+                                        "color: rgb(255, 255, 255);\n"
+                                        "border-radius: 20px;\n"
+                                        "font-size:15px;\n"
+                                        "background-color:rgb(85, 170, 127);\n"
+                                        "}")
         self.addToBillBtn.setFlat(False)
         self.addToBillBtn.setObjectName("addToBillBtn")
         self.approvalsBtn = QtWidgets.QPushButton(self.frame)
         self.approvalsBtn.setGeometry(QtCore.QRect(30, 470, 141, 41))
         self.approvalsBtn.setStyleSheet(".QPushButton {\n"
-"color: rgb(255, 255, 255);\n"
-"border-radius: 20px;\n"
-"font-size:15px;\n"
-"background-color:rgb(85, 170, 127);\n"
-"}")
+                                        "color: rgb(255, 255, 255);\n"
+                                        "border-radius: 20px;\n"
+                                        "font-size:15px;\n"
+                                        "background-color:rgb(85, 170, 127);\n"
+                                        "}")
         self.approvalsBtn.setFlat(False)
         self.approvalsBtn.setObjectName("approvalsBtn")
         self.billsBtn = QtWidgets.QPushButton(self.frame)
         self.billsBtn.setGeometry(QtCore.QRect(30, 410, 141, 41))
         self.billsBtn.setStyleSheet(".QPushButton {\n"
-"color: rgb(255, 255, 255);\n"
-"border-radius: 20px;\n"
-"font-size:15px;\n"
-"background-color:rgb(85, 170, 127);\n"
-"}")
+                                    "color: rgb(255, 255, 255);\n"
+                                    "border-radius: 20px;\n"
+                                    "font-size:15px;\n"
+                                    "background-color:rgb(85, 170, 127);\n"
+                                    "}")
         self.billsBtn.setFlat(False)
         self.billsBtn.setObjectName("billsBtn")
         self.bookmarkLbl = QtWidgets.QLabel(self.frame)
         self.bookmarkLbl.setGeometry(QtCore.QRect(-3, 0, 91, 121))
-        self.bookmarkLbl.setStyleSheet("image:url(\"E:/ECO ENTERPRISES/eco enterprises/AppData/final.png\");")
+        self.bookmarkLbl.setStyleSheet(
+            "image:url(\"E:/ECO ENTERPRISES/eco enterprises/AppData/final.png\");")
         self.bookmarkLbl.setText("")
         self.bookmarkLbl.setObjectName("bookmarkLbl")
         self.addLetterBtn = QtWidgets.QPushButton(self.frame)
         self.addLetterBtn.setGeometry(QtCore.QRect(20, 260, 161, 41))
         self.addLetterBtn.setStyleSheet(".QPushButton {\n"
-"color: rgb(255, 255, 255);\n"
-"border-radius: 20px;\n"
-"font-size:15px;\n"
-"background-color:rgb(85, 170, 127);\n"
-"}")
+                                        "color: rgb(255, 255, 255);\n"
+                                        "border-radius: 20px;\n"
+                                        "font-size:15px;\n"
+                                        "background-color:rgb(85, 170, 127);\n"
+                                        "}")
         self.addLetterBtn.setFlat(False)
         self.addLetterBtn.setObjectName("addLetterBtn")
         self.stackedWidget = QtWidgets.QStackedWidget(self.centralwidget)
@@ -94,7 +95,7 @@ class Ui_MainWindow(object):
         self.addQuoationFrame.setCursor(QtGui.QCursor(QtCore.Qt.IBeamCursor))
         self.addQuoationFrame.setFocusPolicy(QtCore.Qt.NoFocus)
         self.addQuoationFrame.setStyleSheet("box-shadow: 0 8px 6px -6px black;\n"
-"")
+                                            "")
         self.addQuoationFrame.setFrameShape(QtWidgets.QFrame.Panel)
         self.addQuoationFrame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.addQuoationFrame.setLineWidth(2)
@@ -107,24 +108,24 @@ class Ui_MainWindow(object):
         self.zoneComBox.setGeometry(QtCore.QRect(110, 20, 71, 22))
         self.zoneComBox.setAcceptDrops(True)
         self.zoneComBox.setStyleSheet("\n"
-".QComboBox{\n"
-"    border: 2px solid #4CAF50;\n"
-" }\n"
-"\n"
-"\n"
-"\n"
-"QComboBox::down-arrow {\n"
-"    position: relative;\n"
-"     height: 15px;\n"
-"     width: 15px;\n"
-"    border: 12px;\n"
-" \n"
-"    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
-"}\n"
-"QComboBox::drop-down {\n"
-"    border: 0px; \n"
-"}\n"
-"")
+                                      ".QComboBox{\n"
+                                      "    border: 2px solid #4CAF50;\n"
+                                      " }\n"
+                                      "\n"
+                                      "\n"
+                                      "\n"
+                                      "QComboBox::down-arrow {\n"
+                                      "    position: relative;\n"
+                                      "     height: 15px;\n"
+                                      "     width: 15px;\n"
+                                      "    border: 12px;\n"
+                                      " \n"
+                                      "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
+                                      "}\n"
+                                      "QComboBox::drop-down {\n"
+                                      "    border: 0px; \n"
+                                      "}\n"
+                                      "")
         self.zoneComBox.setObjectName("zoneComBox")
         self.zoneComBox.addItem("")
         self.zoneComBox.addItem("")
@@ -136,10 +137,10 @@ class Ui_MainWindow(object):
         self.branchAddressBox = QtWidgets.QLineEdit(self.addQuoationFrame)
         self.branchAddressBox.setGeometry(QtCore.QRect(140, 100, 381, 21))
         self.branchAddressBox.setStyleSheet("border-bottom:1px solid #eee;\n"
-"border:0;\n"
-"/*box-shadow:0 0 15px 4px rgba(0,0,0,0.06);*/\n"
-"border-radius:5px;\n"
-"height:10px;")
+                                            "border:0;\n"
+                                            "/*box-shadow:0 0 15px 4px rgba(0,0,0,0.06);*/\n"
+                                            "border-radius:5px;\n"
+                                            "height:10px;")
         self.branchAddressBox.setText("")
         self.branchAddressBox.setReadOnly(False)
         self.branchAddressBox.setObjectName("branchAddressBox")
@@ -150,24 +151,24 @@ class Ui_MainWindow(object):
         self.bankComBox.setGeometry(QtCore.QRect(320, 20, 201, 22))
         self.bankComBox.setAcceptDrops(True)
         self.bankComBox.setStyleSheet("\n"
-".QComboBox{\n"
-"    border: 2px solid #4CAF50;\n"
-" }\n"
-"\n"
-"\n"
-"QComboBox::down-arrow {\n"
-"    position: relative;\n"
-"     height: 15px;\n"
-"     width: 15px;\n"
-"    border: 12px;\n"
-" \n"
-"    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
-"}\n"
-"QComboBox::drop-down {\n"
-"    border: 0px; \n"
-"}\n"
-"\n"
-"")
+                                      ".QComboBox{\n"
+                                      "    border: 2px solid #4CAF50;\n"
+                                      " }\n"
+                                      "\n"
+                                      "\n"
+                                      "QComboBox::down-arrow {\n"
+                                      "    position: relative;\n"
+                                      "     height: 15px;\n"
+                                      "     width: 15px;\n"
+                                      "    border: 12px;\n"
+                                      " \n"
+                                      "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
+                                      "}\n"
+                                      "QComboBox::drop-down {\n"
+                                      "    border: 0px; \n"
+                                      "}\n"
+                                      "\n"
+                                      "")
         self.bankComBox.setInsertPolicy(QtWidgets.QComboBox.InsertAfterCurrent)
         self.bankComBox.setObjectName("bankComBox")
         self.bankComBox.addItem("")
@@ -180,47 +181,48 @@ class Ui_MainWindow(object):
         self.complaintNoBox = QtWidgets.QLineEdit(self.addQuoationFrame)
         self.complaintNoBox.setGeometry(QtCore.QRect(150, 60, 91, 20))
         self.complaintNoBox.setStyleSheet("border-bottom:1px solid #eee;\n"
-"border:0;\n"
-"/*box-shadow:0 0 15px 4px rgba(0,0,0,0.06);*/\n"
-"border-radius:5px;\n"
-"height:10px;")
+                                          "border:0;\n"
+                                          "/*box-shadow:0 0 15px 4px rgba(0,0,0,0.06);*/\n"
+                                          "border-radius:5px;\n"
+                                          "height:10px;")
         self.complaintNoBox.setObjectName("complaintNoBox")
         self.complaintDateBox = QtWidgets.QDateEdit(self.addQuoationFrame)
         self.complaintDateBox.setGeometry(QtCore.QRect(389, 60, 131, 22))
         self.complaintDateBox.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.complaintDateBox.setAutoFillBackground(False)
         self.complaintDateBox.setStyleSheet("\n"
-"QDateEdit{\n"
-"qproperty-alignment: AlignCenter;\n"
-"}\n"
-"QDateEdit::up-button {subcontrol-origin:border;\n"
-"    subcontrol-position:right;\n"
-"    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_plus_16px_3.png\");\n"
-"    width: 22px;\n"
-"    height: 20px;       \n"
-"}\n"
-"QDateEdit::down-button{subcontrol-origin:border;\n"
-"    subcontrol-position:left;\n"
-"image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_minus_16px_1.png\");\n"
-"    width: 22px;\n"
-"    height: 20px;\n"
-"}\n"
-"QDateEdit::up-button:pressed{subcontrol-origin:border;\n"
-"    subcontrol-position:right;\n"
-"    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_plus_16px_2.png\");\n"
-"    width: 22px;\n"
-"    height: 20px;       \n"
-"}\n"
-"  \n"
-"QDateEdit::down-button:pressed{\n"
-"    subcontrol-position:left;\n"
-"    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_minus_16px_2.png\");\n"
-"    width: 22px;\n"
-"    height: 20px;\n"
-"}")
+                                            "QDateEdit{\n"
+                                            "qproperty-alignment: AlignCenter;\n"
+                                            "}\n"
+                                            "QDateEdit::up-button {subcontrol-origin:border;\n"
+                                            "    subcontrol-position:right;\n"
+                                            "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_plus_16px_3.png\");\n"
+                                            "    width: 22px;\n"
+                                            "    height: 20px;       \n"
+                                            "}\n"
+                                            "QDateEdit::down-button{subcontrol-origin:border;\n"
+                                            "    subcontrol-position:left;\n"
+                                            "image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_minus_16px_1.png\");\n"
+                                            "    width: 22px;\n"
+                                            "    height: 20px;\n"
+                                            "}\n"
+                                            "QDateEdit::up-button:pressed{subcontrol-origin:border;\n"
+                                            "    subcontrol-position:right;\n"
+                                            "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_plus_16px_2.png\");\n"
+                                            "    width: 22px;\n"
+                                            "    height: 20px;       \n"
+                                            "}\n"
+                                            "  \n"
+                                            "QDateEdit::down-button:pressed{\n"
+                                            "    subcontrol-position:left;\n"
+                                            "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_minus_16px_2.png\");\n"
+                                            "    width: 22px;\n"
+                                            "    height: 20px;\n"
+                                            "}")
         self.complaintDateBox.setWrapping(False)
         self.complaintDateBox.setReadOnly(False)
-        self.complaintDateBox.setDateTime(QtCore.QDateTime(QtCore.QDate(2021, 3, 13), QtCore.QTime(0, 0, 0)))
+        self.complaintDateBox.setDateTime(QtCore.QDateTime(
+            QtCore.QDate(2021, 3, 13), QtCore.QTime(0, 0, 0)))
         self.complaintDateBox.setDate(QtCore.QDate(2021, 3, 13))
         self.complaintDateBox.setObjectName("complaintDateBox")
         self.complaintDateLbl = QtWidgets.QLabel(self.addQuoationFrame)
@@ -232,24 +234,24 @@ class Ui_MainWindow(object):
         self.visitTypeComBox = QtWidgets.QComboBox(self.addQuoationFrame)
         self.visitTypeComBox.setGeometry(QtCore.QRect(310, 140, 71, 22))
         self.visitTypeComBox.setStyleSheet("\n"
-".QComboBox{\n"
-"    border: 2px solid #4CAF50;\n"
-" }\n"
-"\n"
-"\n"
-"\n"
-"QComboBox::down-arrow {\n"
-"    position: relative;\n"
-"     height: 10px;\n"
-"     width: 10px;\n"
-"    border: 10px;\n"
-" \n"
-"    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
-"}\n"
-"QComboBox::drop-down {\n"
-"    border: 0px; \n"
-"}\n"
-"")
+                                           ".QComboBox{\n"
+                                           "    border: 2px solid #4CAF50;\n"
+                                           " }\n"
+                                           "\n"
+                                           "\n"
+                                           "\n"
+                                           "QComboBox::down-arrow {\n"
+                                           "    position: relative;\n"
+                                           "     height: 10px;\n"
+                                           "     width: 10px;\n"
+                                           "    border: 10px;\n"
+                                           " \n"
+                                           "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
+                                           "}\n"
+                                           "QComboBox::drop-down {\n"
+                                           "    border: 0px; \n"
+                                           "}\n"
+                                           "")
         self.visitTypeComBox.setObjectName("visitTypeComBox")
         self.visitTypeComBox.addItem("")
         self.visitTypeComBox.addItem("")
@@ -257,24 +259,24 @@ class Ui_MainWindow(object):
         self.chargesQtyBox.setGeometry(QtCore.QRect(390, 140, 41, 21))
         self.chargesQtyBox.setAutoFillBackground(False)
         self.chargesQtyBox.setStyleSheet("border-bottom:1px solid #eee;\n"
-"border:0;\n"
-"/*box-shadow:0 0 15px 4px rgba(0,0,0,0.06);*/\n"
-"border-radius:5px;\n"
-"height:10px;")
+                                         "border:0;\n"
+                                         "/*box-shadow:0 0 15px 4px rgba(0,0,0,0.06);*/\n"
+                                         "border-radius:5px;\n"
+                                         "height:10px;")
         self.chargesQtyBox.setText("")
         self.chargesQtyBox.setObjectName("chargesQtyBox")
         self.conveyenceChargesBox = QtWidgets.QLineEdit(self.addQuoationFrame)
         self.conveyenceChargesBox.setGeometry(QtCore.QRect(442, 140, 81, 21))
         self.conveyenceChargesBox.setStyleSheet("border-bottom:1px solid #eee;\n"
-"border:0;\n"
-"/*box-shadow:0 0 15px 4px rgba(0,0,0,0.06);*/\n"
-"border-radius:5px;\n"
-"height:10px;")
+                                                "border:0;\n"
+                                                "/*box-shadow:0 0 15px 4px rgba(0,0,0,0.06);*/\n"
+                                                "border-radius:5px;\n"
+                                                "height:10px;")
         self.conveyenceChargesBox.setObjectName("conveyenceChargesBox")
         self.servicesLbl = QtWidgets.QLabel(self.addQuoationFrame)
         self.servicesLbl.setGeometry(QtCore.QRect(20, 160, 81, 31))
         self.servicesLbl.setStyleSheet("border: 2px solid #4CAF50; \n"
-"")
+                                       "")
         self.servicesLbl.setObjectName("servicesLbl")
         self.descriptionLbl = QtWidgets.QLabel(self.addQuoationFrame)
         self.descriptionLbl.setGeometry(QtCore.QRect(20, 210, 121, 16))
@@ -282,18 +284,18 @@ class Ui_MainWindow(object):
         self.descriptionBox = QtWidgets.QLineEdit(self.addQuoationFrame)
         self.descriptionBox.setGeometry(QtCore.QRect(140, 210, 231, 20))
         self.descriptionBox.setStyleSheet("border-bottom:1px solid #eee;\n"
-"border:0;\n"
-"/*box-shadow:0 0 15px 4px rgba(0,0,0,0.06);*/\n"
-"border-radius:5px;\n"
-"height:10px;")
+                                          "border:0;\n"
+                                          "/*box-shadow:0 0 15px 4px rgba(0,0,0,0.06);*/\n"
+                                          "border-radius:5px;\n"
+                                          "height:10px;")
         self.descriptionBox.setObjectName("descriptionBox")
         self.detailsBox = QtWidgets.QLineEdit(self.addQuoationFrame)
         self.detailsBox.setGeometry(QtCore.QRect(84, 250, 151, 20))
         self.detailsBox.setStyleSheet("border-bottom:1px solid #eee;\n"
-"border:0;\n"
-"/*box-shadow:0 0 15px 4px rgba(0,0,0,0.06);*/\n"
-"border-radius:5px;\n"
-"height:10px;")
+                                      "border:0;\n"
+                                      "/*box-shadow:0 0 15px 4px rgba(0,0,0,0.06);*/\n"
+                                      "border-radius:5px;\n"
+                                      "height:10px;")
         self.detailsBox.setObjectName("detailsBox")
         self.detailsLbl = QtWidgets.QLabel(self.addQuoationFrame)
         self.detailsLbl.setGeometry(QtCore.QRect(24, 250, 47, 16))
@@ -304,139 +306,142 @@ class Ui_MainWindow(object):
         self.spinBox = QtWidgets.QSpinBox(self.addQuoationFrame)
         self.spinBox.setGeometry(QtCore.QRect(450, 211, 71, 21))
         self.spinBox.setStyleSheet("QSpinBox{\n"
-"qproperty-alignment: AlignCenter;}\n"
-"QSpinBox::up-arrow {\n"
-"image:url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_plus_16px.png\");\n"
-"}\n"
-"\n"
-"\n"
-"QSpinBox::up-button { \n"
-"subcontrol-origin:border;\n"
-"  subcontrol-position:right;   \n"
-"  width: 22px;\n"
-"  height: 20px;\n"
-"border:0;\n"
-" }\n"
-"\n"
-"\n"
-" \n"
-"QSpinBox::down-arrow { \n"
-"image:url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_minus_16px.png\");}\n"
-"\n"
-"\n"
-"\n"
-" \n"
-" QSpinBox::down-button { \n"
-"border:0px;\n"
-"subcontrol-origin:border;\n"
-"  subcontrol-position:left;\n"
-"  width: 22px;\n"
-"  height: 20px; \n"
-"\n"
-"}\n"
-"QSpinBox::up-button:pressed{subcontrol-origin:border;\n"
-"    subcontrol-position:right;\n"
-"    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_plus_16px_2.png\");\n"
-"    width: 22px;\n"
-"    height: 20px;       \n"
-"}\n"
-"  \n"
-"QSpinBox::down-button:pressed\n"
-"{\n"
-"    subcontrol-position:left;\n"
-"    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_minus_16px_2.png\");\n"
-"    width: 22px;\n"
-"    height: 20px;\n"
-"}\n"
-"")
+                                   "qproperty-alignment: AlignCenter;}\n"
+                                   "QSpinBox::up-arrow {\n"
+                                   "image:url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_plus_16px.png\");\n"
+                                   "}\n"
+                                   "\n"
+                                   "\n"
+                                   "QSpinBox::up-button { \n"
+                                   "subcontrol-origin:border;\n"
+                                   "  subcontrol-position:right;   \n"
+                                   "  width: 22px;\n"
+                                   "  height: 20px;\n"
+                                   "border:0;\n"
+                                   " }\n"
+                                   "\n"
+                                   "\n"
+                                   " \n"
+                                   "QSpinBox::down-arrow { \n"
+                                   "image:url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_minus_16px.png\");}\n"
+                                   "\n"
+                                   "\n"
+                                   "\n"
+                                   " \n"
+                                   " QSpinBox::down-button { \n"
+                                   "border:0px;\n"
+                                   "subcontrol-origin:border;\n"
+                                   "  subcontrol-position:left;\n"
+                                   "  width: 22px;\n"
+                                   "  height: 20px; \n"
+                                   "\n"
+                                   "}\n"
+                                   "QSpinBox::up-button:pressed{subcontrol-origin:border;\n"
+                                   "    subcontrol-position:right;\n"
+                                   "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_plus_16px_2.png\");\n"
+                                   "    width: 22px;\n"
+                                   "    height: 20px;       \n"
+                                   "}\n"
+                                   "  \n"
+                                   "QSpinBox::down-button:pressed\n"
+                                   "{\n"
+                                   "    subcontrol-position:left;\n"
+                                   "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_minus_16px_2.png\");\n"
+                                   "    width: 22px;\n"
+                                   "    height: 20px;\n"
+                                   "}\n"
+                                   "")
         self.spinBox.setButtonSymbols(QtWidgets.QAbstractSpinBox.PlusMinus)
         self.spinBox.setProperty("value", 1)
         self.spinBox.setObjectName("spinBox")
         self.addServiceBtn = QtWidgets.QPushButton(self.addQuoationFrame)
         self.addServiceBtn.setGeometry(QtCore.QRect(424, 250, 101, 23))
         self.addServiceBtn.setStyleSheet(".QPushButton {\n"
-"  background-color: white;\n"
-"  color: black;\n"
-"  border: 2px solid rgb(85, 170, 127); /* Green */\n"
-"}\n"
-"/*\n"
-".QPushButton {\n"
-"  transition-duration: 0.4s;\n"
-"}\n"
-"*/\n"
-".QPushButton:hover {\n"
-"  background-color: rgb(85, 170, 127); /* Green */\n"
-"  color: white;\n"
-"}")
+                                         "  background-color: white;\n"
+                                         "  color: black;\n"
+                                         "  border: 2px solid rgb(85, 170, 127); /* Green */\n"
+                                         "}\n"
+                                         "/*\n"
+                                         ".QPushButton {\n"
+                                         "  transition-duration: 0.4s;\n"
+                                         "}\n"
+                                         "*/\n"
+                                         ".QPushButton:hover {\n"
+                                         "  background-color: rgb(85, 170, 127); /* Green */\n"
+                                         "  color: white;\n"
+                                         "}")
         self.addServiceBtn.setObjectName("addServiceBtn")
         self.finalizeBtn = QtWidgets.QPushButton(self.addQuoationFrame)
         self.finalizeBtn.setGeometry(QtCore.QRect(350, 530, 81, 31))
         self.finalizeBtn.setStyleSheet(".QPushButton {\n"
-"  background-color: white;\n"
-"  color: black;\n"
-"  border: 2px solid rgb(85, 170, 127); /* Green */\n"
-"}\n"
-"/*\n"
-".QPushButton {\n"
-"  transition-duration: 0.4s;\n"
-"}\n"
-"*/\n"
-".QPushButton:hover {\n"
-"  background-color: rgb(85, 170, 127); /* Green */\n"
-"  color: white;\n"
-"}")
+                                       "  background-color: white;\n"
+                                       "  color: black;\n"
+                                       "  border: 2px solid rgb(85, 170, 127); /* Green */\n"
+                                       "}\n"
+                                       "/*\n"
+                                       ".QPushButton {\n"
+                                       "  transition-duration: 0.4s;\n"
+                                       "}\n"
+                                       "*/\n"
+                                       ".QPushButton:hover {\n"
+                                       "  background-color: rgb(85, 170, 127); /* Green */\n"
+                                       "  color: white;\n"
+                                       "}")
         self.finalizeBtn.setObjectName("finalizeBtn")
         self.saveBtn = QtWidgets.QPushButton(self.addQuoationFrame)
         self.saveBtn.setGeometry(QtCore.QRect(450, 530, 71, 31))
         self.saveBtn.setStyleSheet(".QPushButton {\n"
-"  background-color: white;\n"
-"  color: black;\n"
-"  border: 2px solid rgb(85, 170, 127); /* Green */\n"
-"}\n"
-"/*\n"
-".QPushButton {\n"
-"  transition-duration: 0.4s;\n"
-"}\n"
-"*/\n"
-".QPushButton:hover {\n"
-"  background-color: rgb(85, 170, 127); /* Green */\n"
-"  color: white;\n"
-"}")
+                                   "  background-color: white;\n"
+                                   "  color: black;\n"
+                                   "  border: 2px solid rgb(85, 170, 127); /* Green */\n"
+                                   "}\n"
+                                   "/*\n"
+                                   ".QPushButton {\n"
+                                   "  transition-duration: 0.4s;\n"
+                                   "}\n"
+                                   "*/\n"
+                                   ".QPushButton:hover {\n"
+                                   "  background-color: rgb(85, 170, 127); /* Green */\n"
+                                   "  color: white;\n"
+                                   "}")
         self.saveBtn.setObjectName("saveBtn")
         self.servicesTbl = QtWidgets.QTableWidget(self.addQuoationFrame)
         self.servicesTbl.setEnabled(True)
         self.servicesTbl.setGeometry(QtCore.QRect(30, 290, 501, 221))
         self.servicesTbl.setStyleSheet("\n"
-"QHeaderView::section\n"
-"\n"
-"{\n"
-" Font-size:14px; \n"
-" Font-family: \"Microsoft YaHei\"; \n"
-" Color: #FFFFFF; \n"
-" \n"
-" Background:rgb(85, 170, 127); \n"
-"Border:1px; \n"
-" Text-align:left;\n"
-" \n"
-" \n"
-" Min-height: 34px;\n"
-" max-height:34px; \n"
-"\n"
-"\n"
-" Margin:0px;\n"
-" Padding: 0px;\n"
-"\n"
-"}\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"")
+                                       "QHeaderView::section\n"
+                                       "\n"
+                                       "{\n"
+                                       " Font-size:14px; \n"
+                                       " Font-family: \"Microsoft YaHei\"; \n"
+                                       " Color: #FFFFFF; \n"
+                                       " \n"
+                                       " Background:rgb(85, 170, 127); \n"
+                                       "Border:1px; \n"
+                                       " Text-align:left;\n"
+                                       " \n"
+                                       " \n"
+                                       " Min-height: 34px;\n"
+                                       " max-height:34px; \n"
+                                       "\n"
+                                       "\n"
+                                       " Margin:0px;\n"
+                                       " Padding: 0px;\n"
+                                       "\n"
+                                       "}\n"
+                                       "\n"
+                                       "\n"
+                                       "\n"
+                                       "\n"
+                                       "\n"
+                                       "")
         self.servicesTbl.setLineWidth(1)
-        self.servicesTbl.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
-        self.servicesTbl.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
-        self.servicesTbl.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.servicesTbl.setSizeAdjustPolicy(
+            QtWidgets.QAbstractScrollArea.AdjustToContents)
+        self.servicesTbl.setSelectionMode(
+            QtWidgets.QAbstractItemView.SingleSelection)
+        self.servicesTbl.setSelectionBehavior(
+            QtWidgets.QAbstractItemView.SelectRows)
         self.servicesTbl.setTextElideMode(QtCore.Qt.ElideRight)
         self.servicesTbl.setShowGrid(True)
         self.servicesTbl.setGridStyle(QtCore.Qt.SolidLine)
@@ -464,10 +469,10 @@ class Ui_MainWindow(object):
         self.rateBox = QtWidgets.QLineEdit(self.addQuoationFrame)
         self.rateBox.setGeometry(QtCore.QRect(299, 250, 91, 20))
         self.rateBox.setStyleSheet("border-bottom:1px solid #eee;\n"
-"border:0;\n"
-"/*box-shadow:0 0 15px 4px rgba(0,0,0,0.06);*/\n"
-"border-radius:5px;\n"
-"height:10px;")
+                                   "border:0;\n"
+                                   "/*box-shadow:0 0 15px 4px rgba(0,0,0,0.06);*/\n"
+                                   "border-radius:5px;\n"
+                                   "height:10px;")
         self.rateBox.setObjectName("rateBox")
         self.stackedWidget.addWidget(self.addQuoationPg)
         self.page_4 = QtWidgets.QWidget()
@@ -480,42 +485,46 @@ class Ui_MainWindow(object):
         self.frame_6.setMidLineWidth(2)
         self.frame_6.setObjectName("frame_6")
         self.complaintNoAddToBillLbl = QtWidgets.QLabel(self.frame_6)
-        self.complaintNoAddToBillLbl.setGeometry(QtCore.QRect(330, 30, 121, 20))
+        self.complaintNoAddToBillLbl.setGeometry(
+            QtCore.QRect(330, 30, 121, 20))
         self.complaintNoAddToBillLbl.setObjectName("complaintNoAddToBillLbl")
         self.quotationsTbl = QtWidgets.QTableWidget(self.frame_6)
         self.quotationsTbl.setEnabled(True)
         self.quotationsTbl.setGeometry(QtCore.QRect(20, 64, 531, 461))
         self.quotationsTbl.setStyleSheet("\n"
-"QHeaderView::section\n"
-"\n"
-"{\n"
-" Font-size:14px; \n"
-" Font-family: \"Microsoft YaHei\"; \n"
-" Color: #FFFFFF; \n"
-" \n"
-" Background:rgb(85, 170, 127); \n"
-"Border:1px; \n"
-" Text-align:left;\n"
-" \n"
-" \n"
-" Min-height: 34px;\n"
-" max-height:34px; \n"
-"\n"
-"\n"
-" Margin:0px;\n"
-" Padding: 0px;\n"
-"\n"
-"}\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"")
+                                         "QHeaderView::section\n"
+                                         "\n"
+                                         "{\n"
+                                         " Font-size:14px; \n"
+                                         " Font-family: \"Microsoft YaHei\"; \n"
+                                         " Color: #FFFFFF; \n"
+                                         " \n"
+                                         " Background:rgb(85, 170, 127); \n"
+                                         "Border:1px; \n"
+                                         " Text-align:left;\n"
+                                         " \n"
+                                         " \n"
+                                         " Min-height: 34px;\n"
+                                         " max-height:34px; \n"
+                                         "\n"
+                                         "\n"
+                                         " Margin:0px;\n"
+                                         " Padding: 0px;\n"
+                                         "\n"
+                                         "}\n"
+                                         "\n"
+                                         "\n"
+                                         "\n"
+                                         "\n"
+                                         "\n"
+                                         "")
         self.quotationsTbl.setLineWidth(1)
-        self.quotationsTbl.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
-        self.quotationsTbl.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
-        self.quotationsTbl.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.quotationsTbl.setSizeAdjustPolicy(
+            QtWidgets.QAbstractScrollArea.AdjustToContents)
+        self.quotationsTbl.setSelectionMode(
+            QtWidgets.QAbstractItemView.SingleSelection)
+        self.quotationsTbl.setSelectionBehavior(
+            QtWidgets.QAbstractItemView.SelectRows)
         self.quotationsTbl.setTextElideMode(QtCore.Qt.ElideRight)
         self.quotationsTbl.setShowGrid(True)
         self.quotationsTbl.setGridStyle(QtCore.Qt.SolidLine)
@@ -564,34 +573,35 @@ class Ui_MainWindow(object):
         self.complaintNoAddToBillBox = QtWidgets.QLineEdit(self.frame_6)
         self.complaintNoAddToBillBox.setGeometry(QtCore.QRect(460, 30, 91, 20))
         self.complaintNoAddToBillBox.setStyleSheet("border-bottom:1px solid #eee;\n"
-"border:0;\n"
-"box-shadow:0 0 15px 4px rgba(0,0,0,0.06);\n"
-"border-radius:5px;\n"
-"height:10px;")
+                                                   "border:0;\n"
+                                                   "box-shadow:0 0 15px 4px rgba(0,0,0,0.06);\n"
+                                                   "border-radius:5px;\n"
+                                                   "height:10px;")
         self.complaintNoAddToBillBox.setObjectName("complaintNoAddToBillBox")
         self.bankAddToBillComBox = QtWidgets.QComboBox(self.frame_6)
         self.bankAddToBillComBox.setGeometry(QtCore.QRect(120, 30, 201, 22))
         self.bankAddToBillComBox.setAcceptDrops(True)
         self.bankAddToBillComBox.setStyleSheet("\n"
-".QComboBox{\n"
-"    border: 2px solid #4CAF50;\n"
-" }\n"
-"\n"
-"\n"
-"QComboBox::down-arrow {\n"
-"    position: relative;\n"
-"     height: 15px;\n"
-"     width: 15px;\n"
-"    border: 12px;\n"
-" \n"
-"    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
-"}\n"
-"QComboBox::drop-down {\n"
-"    border: 0px; \n"
-"}\n"
-"\n"
-"")
-        self.bankAddToBillComBox.setInsertPolicy(QtWidgets.QComboBox.InsertAfterCurrent)
+                                               ".QComboBox{\n"
+                                               "    border: 2px solid #4CAF50;\n"
+                                               " }\n"
+                                               "\n"
+                                               "\n"
+                                               "QComboBox::down-arrow {\n"
+                                               "    position: relative;\n"
+                                               "     height: 15px;\n"
+                                               "     width: 15px;\n"
+                                               "    border: 12px;\n"
+                                               " \n"
+                                               "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
+                                               "}\n"
+                                               "QComboBox::drop-down {\n"
+                                               "    border: 0px; \n"
+                                               "}\n"
+                                               "\n"
+                                               "")
+        self.bankAddToBillComBox.setInsertPolicy(
+            QtWidgets.QComboBox.InsertAfterCurrent)
         self.bankAddToBillComBox.setObjectName("bankAddToBillComBox")
         self.bankAddToBillComBox.addItem("")
         self.bankAddToBillComBox.addItem("")
@@ -601,24 +611,24 @@ class Ui_MainWindow(object):
         self.zoneAddToBillComBox.setGeometry(QtCore.QRect(30, 30, 71, 22))
         self.zoneAddToBillComBox.setAcceptDrops(True)
         self.zoneAddToBillComBox.setStyleSheet("\n"
-".QComboBox{\n"
-"    border: 2px solid #4CAF50;\n"
-" }\n"
-"\n"
-"\n"
-"\n"
-"QComboBox::down-arrow {\n"
-"    position: relative;\n"
-"     height: 15px;\n"
-"     width: 15px;\n"
-"    border: 12px;\n"
-" \n"
-"    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
-"}\n"
-"QComboBox::drop-down {\n"
-"    border: 0px; \n"
-"}\n"
-"")
+                                               ".QComboBox{\n"
+                                               "    border: 2px solid #4CAF50;\n"
+                                               " }\n"
+                                               "\n"
+                                               "\n"
+                                               "\n"
+                                               "QComboBox::down-arrow {\n"
+                                               "    position: relative;\n"
+                                               "     height: 15px;\n"
+                                               "     width: 15px;\n"
+                                               "    border: 12px;\n"
+                                               " \n"
+                                               "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
+                                               "}\n"
+                                               "QComboBox::drop-down {\n"
+                                               "    border: 0px; \n"
+                                               "}\n"
+                                               "")
         self.zoneAddToBillComBox.setObjectName("zoneAddToBillComBox")
         self.zoneAddToBillComBox.addItem("")
         self.zoneAddToBillComBox.addItem("")
@@ -627,56 +637,56 @@ class Ui_MainWindow(object):
         self.addBillBtn = QtWidgets.QPushButton(self.frame_6)
         self.addBillBtn.setGeometry(QtCore.QRect(467, 536, 70, 31))
         self.addBillBtn.setStyleSheet(".QPushButton {\n"
-"  background-color: white;\n"
-"  color: black;\n"
-"  border: 2px solid rgb(85, 170, 127); /* Green */\n"
-"font: 10pt \"MS Shell Dlg 2\";\n"
-"}\n"
-"\n"
-".QPushButton {\n"
-"  transition-duration: 0.4s;\n"
-"}\n"
-"\n"
-".QPushButton:hover {\n"
-"  background-color:rgb(85, 170, 127); /* Green */\n"
-"  color: white;\n"
-"}")
+                                      "  background-color: white;\n"
+                                      "  color: black;\n"
+                                      "  border: 2px solid rgb(85, 170, 127); /* Green */\n"
+                                      "font: 10pt \"MS Shell Dlg 2\";\n"
+                                      "}\n"
+                                      "\n"
+                                      ".QPushButton {\n"
+                                      "  transition-duration: 0.4s;\n"
+                                      "}\n"
+                                      "\n"
+                                      ".QPushButton:hover {\n"
+                                      "  background-color:rgb(85, 170, 127); /* Green */\n"
+                                      "  color: white;\n"
+                                      "}")
         self.addBillBtn.setObjectName("addBillBtn")
         self.updateBtn = QtWidgets.QPushButton(self.frame_6)
         self.updateBtn.setGeometry(QtCore.QRect(40, 536, 71, 31))
         self.updateBtn.setStyleSheet(".QPushButton {\n"
-"  background-color: white;\n"
-"  color: black;\n"
-"  border: 2px solid rgb(85, 170, 127); /* Green */\n"
-"font: 10pt \"MS Shell Dlg 2\";\n"
-"}\n"
-"\n"
-".QPushButton {\n"
-"  transition-duration: 0.4s;\n"
-"}\n"
-"\n"
-".QPushButton:hover {\n"
-"  background-color:rgb(85, 170, 127); /* Green */\n"
-"  color: white;\n"
-"}")
+                                     "  background-color: white;\n"
+                                     "  color: black;\n"
+                                     "  border: 2px solid rgb(85, 170, 127); /* Green */\n"
+                                     "font: 10pt \"MS Shell Dlg 2\";\n"
+                                     "}\n"
+                                     "\n"
+                                     ".QPushButton {\n"
+                                     "  transition-duration: 0.4s;\n"
+                                     "}\n"
+                                     "\n"
+                                     ".QPushButton:hover {\n"
+                                     "  background-color:rgb(85, 170, 127); /* Green */\n"
+                                     "  color: white;\n"
+                                     "}")
         self.updateBtn.setObjectName("updateBtn")
         self.deleteBtn = QtWidgets.QPushButton(self.frame_6)
         self.deleteBtn.setGeometry(QtCore.QRect(130, 536, 71, 31))
         self.deleteBtn.setStyleSheet(".QPushButton {\n"
-"  background-color: white;\n"
-"  color: black;\n"
-"  border: 2px solid rgb(85, 170, 127); /* Green */\n"
-"font: 10pt \"MS Shell Dlg 2\";\n"
-"}\n"
-"\n"
-".QPushButton {\n"
-"  transition-duration: 0.4s;\n"
-"}\n"
-"\n"
-".QPushButton:hover {\n"
-"  background-color:rgb(85, 170, 127); /* Green */\n"
-"  color: white;\n"
-"}")
+                                     "  background-color: white;\n"
+                                     "  color: black;\n"
+                                     "  border: 2px solid rgb(85, 170, 127); /* Green */\n"
+                                     "font: 10pt \"MS Shell Dlg 2\";\n"
+                                     "}\n"
+                                     "\n"
+                                     ".QPushButton {\n"
+                                     "  transition-duration: 0.4s;\n"
+                                     "}\n"
+                                     "\n"
+                                     ".QPushButton:hover {\n"
+                                     "  background-color:rgb(85, 170, 127); /* Green */\n"
+                                     "  color: white;\n"
+                                     "}")
         self.deleteBtn.setObjectName("deleteBtn")
         self.stackedWidget.addWidget(self.page_4)
         self.page_5 = QtWidgets.QWidget()
@@ -689,39 +699,41 @@ class Ui_MainWindow(object):
         self.frame_12.setMidLineWidth(2)
         self.frame_12.setObjectName("frame_12")
         self.complaintNoAddLetterLbl = QtWidgets.QLabel(self.frame_12)
-        self.complaintNoAddLetterLbl.setGeometry(QtCore.QRect(330, 30, 121, 20))
+        self.complaintNoAddLetterLbl.setGeometry(
+            QtCore.QRect(330, 30, 121, 20))
         self.complaintNoAddLetterLbl.setObjectName("complaintNoAddLetterLbl")
         self.complaintNoAddLetterBox = QtWidgets.QLineEdit(self.frame_12)
         self.complaintNoAddLetterBox.setGeometry(QtCore.QRect(460, 30, 91, 20))
         self.complaintNoAddLetterBox.setStyleSheet("border-bottom:1px solid #eee;\n"
-"border:0;\n"
-"box-shadow:0 0 15px 4px rgba(0,0,0,0.06);\n"
-"border-radius:5px;\n"
-"height:10px;")
+                                                   "border:0;\n"
+                                                   "box-shadow:0 0 15px 4px rgba(0,0,0,0.06);\n"
+                                                   "border-radius:5px;\n"
+                                                   "height:10px;")
         self.complaintNoAddLetterBox.setObjectName("complaintNoAddLetterBox")
         self.bankAddLetterComBox = QtWidgets.QComboBox(self.frame_12)
         self.bankAddLetterComBox.setGeometry(QtCore.QRect(120, 30, 201, 22))
         self.bankAddLetterComBox.setAcceptDrops(True)
         self.bankAddLetterComBox.setStyleSheet("\n"
-".QComboBox{\n"
-"    border: 2px solid #4CAF50;\n"
-" }\n"
-"\n"
-"\n"
-"QComboBox::down-arrow {\n"
-"    position: relative;\n"
-"     height: 15px;\n"
-"     width: 15px;\n"
-"    border: 12px;\n"
-" \n"
-"    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
-"}\n"
-"QComboBox::drop-down {\n"
-"    border: 0px; \n"
-"}\n"
-"\n"
-"")
-        self.bankAddLetterComBox.setInsertPolicy(QtWidgets.QComboBox.InsertAfterCurrent)
+                                               ".QComboBox{\n"
+                                               "    border: 2px solid #4CAF50;\n"
+                                               " }\n"
+                                               "\n"
+                                               "\n"
+                                               "QComboBox::down-arrow {\n"
+                                               "    position: relative;\n"
+                                               "     height: 15px;\n"
+                                               "     width: 15px;\n"
+                                               "    border: 12px;\n"
+                                               " \n"
+                                               "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
+                                               "}\n"
+                                               "QComboBox::drop-down {\n"
+                                               "    border: 0px; \n"
+                                               "}\n"
+                                               "\n"
+                                               "")
+        self.bankAddLetterComBox.setInsertPolicy(
+            QtWidgets.QComboBox.InsertAfterCurrent)
         self.bankAddLetterComBox.setObjectName("bankAddLetterComBox")
         self.bankAddLetterComBox.addItem("")
         self.bankAddLetterComBox.addItem("")
@@ -731,24 +743,24 @@ class Ui_MainWindow(object):
         self.zoneAddLetterComBox.setGeometry(QtCore.QRect(30, 30, 71, 22))
         self.zoneAddLetterComBox.setAcceptDrops(True)
         self.zoneAddLetterComBox.setStyleSheet("\n"
-".QComboBox{\n"
-"    border: 2px solid #4CAF50;\n"
-" }\n"
-"\n"
-"\n"
-"\n"
-"QComboBox::down-arrow {\n"
-"    position: relative;\n"
-"     height: 15px;\n"
-"     width: 15px;\n"
-"    border: 12px;\n"
-" \n"
-"    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
-"}\n"
-"QComboBox::drop-down {\n"
-"    border: 0px; \n"
-"}\n"
-"")
+                                               ".QComboBox{\n"
+                                               "    border: 2px solid #4CAF50;\n"
+                                               " }\n"
+                                               "\n"
+                                               "\n"
+                                               "\n"
+                                               "QComboBox::down-arrow {\n"
+                                               "    position: relative;\n"
+                                               "     height: 15px;\n"
+                                               "     width: 15px;\n"
+                                               "    border: 12px;\n"
+                                               " \n"
+                                               "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
+                                               "}\n"
+                                               "QComboBox::drop-down {\n"
+                                               "    border: 0px; \n"
+                                               "}\n"
+                                               "")
         self.zoneAddLetterComBox.setObjectName("zoneAddLetterComBox")
         self.zoneAddLetterComBox.addItem("")
         self.zoneAddLetterComBox.addItem("")
@@ -757,10 +769,10 @@ class Ui_MainWindow(object):
         self.subjectLineBox = QtWidgets.QLineEdit(self.frame_12)
         self.subjectLineBox.setGeometry(QtCore.QRect(90, 70, 251, 20))
         self.subjectLineBox.setStyleSheet("border-bottom:1px solid #eee;\n"
-"border:0;\n"
-"box-shadow:0 0 15px 4px rgba(0,0,0,0.06);\n"
-"border-radius:5px;\n"
-"height:10px;")
+                                          "border:0;\n"
+                                          "box-shadow:0 0 15px 4px rgba(0,0,0,0.06);\n"
+                                          "border-radius:5px;\n"
+                                          "height:10px;")
         self.subjectLineBox.setObjectName("subjectLineBox")
         self.subjectLbl = QtWidgets.QLabel(self.frame_12)
         self.subjectLbl.setGeometry(QtCore.QRect(30, 70, 51, 20))
@@ -771,20 +783,20 @@ class Ui_MainWindow(object):
         self.saveLetterBtn = QtWidgets.QPushButton(self.frame_12)
         self.saveLetterBtn.setGeometry(QtCore.QRect(400, 520, 131, 31))
         self.saveLetterBtn.setStyleSheet(".QPushButton {\n"
-"  background-color: white;\n"
-"  color: black;\n"
-"  border: 2px solid rgb(85, 170, 127); /* Green */\n"
-"font: 10pt \"MS Shell Dlg 2\";\n"
-"}\n"
-"\n"
-".QPushButton {\n"
-"  transition-duration: 0.4s;\n"
-"}\n"
-"\n"
-".QPushButton:hover {\n"
-"  background-color:rgb(85, 170, 127); /* Green */\n"
-"  color: white;\n"
-"}")
+                                         "  background-color: white;\n"
+                                         "  color: black;\n"
+                                         "  border: 2px solid rgb(85, 170, 127); /* Green */\n"
+                                         "font: 10pt \"MS Shell Dlg 2\";\n"
+                                         "}\n"
+                                         "\n"
+                                         ".QPushButton {\n"
+                                         "  transition-duration: 0.4s;\n"
+                                         "}\n"
+                                         "\n"
+                                         ".QPushButton:hover {\n"
+                                         "  background-color:rgb(85, 170, 127); /* Green */\n"
+                                         "  color: white;\n"
+                                         "}")
         self.saveLetterBtn.setObjectName("saveLetterBtn")
         self.stackedWidget.addWidget(self.page_5)
         self.page_3 = QtWidgets.QWidget()
@@ -803,36 +815,39 @@ class Ui_MainWindow(object):
         self.billsTbl.setEnabled(True)
         self.billsTbl.setGeometry(QtCore.QRect(20, 70, 531, 491))
         self.billsTbl.setStyleSheet("\n"
-"QHeaderView::section\n"
-"\n"
-"{\n"
-" Font-size:14px; \n"
-" Font-family: \"Microsoft YaHei\"; \n"
-" Color: #FFFFFF; \n"
-" \n"
-" Background:rgb(85, 170, 127); \n"
-"Border:1px; \n"
-" Text-align:left;\n"
-" \n"
-" \n"
-" Min-height: 34px;\n"
-" max-height:34px; \n"
-"\n"
-"\n"
-" Margin:0px;\n"
-" Padding: 0px;\n"
-"\n"
-"}\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"")
+                                    "QHeaderView::section\n"
+                                    "\n"
+                                    "{\n"
+                                    " Font-size:14px; \n"
+                                    " Font-family: \"Microsoft YaHei\"; \n"
+                                    " Color: #FFFFFF; \n"
+                                    " \n"
+                                    " Background:rgb(85, 170, 127); \n"
+                                    "Border:1px; \n"
+                                    " Text-align:left;\n"
+                                    " \n"
+                                    " \n"
+                                    " Min-height: 34px;\n"
+                                    " max-height:34px; \n"
+                                    "\n"
+                                    "\n"
+                                    " Margin:0px;\n"
+                                    " Padding: 0px;\n"
+                                    "\n"
+                                    "}\n"
+                                    "\n"
+                                    "\n"
+                                    "\n"
+                                    "\n"
+                                    "\n"
+                                    "")
         self.billsTbl.setLineWidth(1)
-        self.billsTbl.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
-        self.billsTbl.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
-        self.billsTbl.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.billsTbl.setSizeAdjustPolicy(
+            QtWidgets.QAbstractScrollArea.AdjustToContents)
+        self.billsTbl.setSelectionMode(
+            QtWidgets.QAbstractItemView.SingleSelection)
+        self.billsTbl.setSelectionBehavior(
+            QtWidgets.QAbstractItemView.SelectRows)
         self.billsTbl.setTextElideMode(QtCore.Qt.ElideRight)
         self.billsTbl.setShowGrid(True)
         self.billsTbl.setGridStyle(QtCore.Qt.SolidLine)
@@ -881,34 +896,35 @@ class Ui_MainWindow(object):
         self.complaintNoBillsBox = QtWidgets.QLineEdit(self.frame_8)
         self.complaintNoBillsBox.setGeometry(QtCore.QRect(460, 30, 91, 20))
         self.complaintNoBillsBox.setStyleSheet("border-bottom:1px solid #eee;\n"
-"border:0;\n"
-"box-shadow:0 0 15px 4px rgba(0,0,0,0.06);\n"
-"border-radius:5px;\n"
-"height:10px;")
+                                               "border:0;\n"
+                                               "box-shadow:0 0 15px 4px rgba(0,0,0,0.06);\n"
+                                               "border-radius:5px;\n"
+                                               "height:10px;")
         self.complaintNoBillsBox.setObjectName("complaintNoBillsBox")
         self.bankBillsComBox = QtWidgets.QComboBox(self.frame_8)
         self.bankBillsComBox.setGeometry(QtCore.QRect(120, 30, 201, 22))
         self.bankBillsComBox.setAcceptDrops(True)
         self.bankBillsComBox.setStyleSheet("\n"
-".QComboBox{\n"
-"    border: 2px solid #4CAF50;\n"
-" }\n"
-"\n"
-"\n"
-"QComboBox::down-arrow {\n"
-"    position: relative;\n"
-"     height: 15px;\n"
-"     width: 15px;\n"
-"    border: 12px;\n"
-" \n"
-"    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
-"}\n"
-"QComboBox::drop-down {\n"
-"    border: 0px; \n"
-"}\n"
-"\n"
-"")
-        self.bankBillsComBox.setInsertPolicy(QtWidgets.QComboBox.InsertAfterCurrent)
+                                           ".QComboBox{\n"
+                                           "    border: 2px solid #4CAF50;\n"
+                                           " }\n"
+                                           "\n"
+                                           "\n"
+                                           "QComboBox::down-arrow {\n"
+                                           "    position: relative;\n"
+                                           "     height: 15px;\n"
+                                           "     width: 15px;\n"
+                                           "    border: 12px;\n"
+                                           " \n"
+                                           "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
+                                           "}\n"
+                                           "QComboBox::drop-down {\n"
+                                           "    border: 0px; \n"
+                                           "}\n"
+                                           "\n"
+                                           "")
+        self.bankBillsComBox.setInsertPolicy(
+            QtWidgets.QComboBox.InsertAfterCurrent)
         self.bankBillsComBox.setObjectName("bankBillsComBox")
         self.bankBillsComBox.addItem("")
         self.bankBillsComBox.addItem("")
@@ -918,24 +934,24 @@ class Ui_MainWindow(object):
         self.zoneBillsComBox.setGeometry(QtCore.QRect(30, 30, 71, 22))
         self.zoneBillsComBox.setAcceptDrops(True)
         self.zoneBillsComBox.setStyleSheet("\n"
-".QComboBox{\n"
-"    border: 2px solid #4CAF50;\n"
-" }\n"
-"\n"
-"\n"
-"\n"
-"QComboBox::down-arrow {\n"
-"    position: relative;\n"
-"     height: 15px;\n"
-"     width: 15px;\n"
-"    border: 12px;\n"
-" \n"
-"    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
-"}\n"
-"QComboBox::drop-down {\n"
-"    border: 0px; \n"
-"}\n"
-"")
+                                           ".QComboBox{\n"
+                                           "    border: 2px solid #4CAF50;\n"
+                                           " }\n"
+                                           "\n"
+                                           "\n"
+                                           "\n"
+                                           "QComboBox::down-arrow {\n"
+                                           "    position: relative;\n"
+                                           "     height: 15px;\n"
+                                           "     width: 15px;\n"
+                                           "    border: 12px;\n"
+                                           " \n"
+                                           "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
+                                           "}\n"
+                                           "QComboBox::drop-down {\n"
+                                           "    border: 0px; \n"
+                                           "}\n"
+                                           "")
         self.zoneBillsComBox.setObjectName("zoneBillsComBox")
         self.zoneBillsComBox.addItem("")
         self.zoneBillsComBox.addItem("")
@@ -952,38 +968,39 @@ class Ui_MainWindow(object):
         self.frame_7.setMidLineWidth(2)
         self.frame_7.setObjectName("frame_7")
         self.complaintNoApprovalsLbl = QtWidgets.QLabel(self.frame_7)
-        self.complaintNoApprovalsLbl.setGeometry(QtCore.QRect(300, 30, 121, 20))
+        self.complaintNoApprovalsLbl.setGeometry(
+            QtCore.QRect(300, 30, 121, 20))
         self.complaintNoApprovalsLbl.setObjectName("complaintNoApprovalsLbl")
         self.ComplainNoApprovalsBox = QtWidgets.QLineEdit(self.frame_7)
         self.ComplainNoApprovalsBox.setGeometry(QtCore.QRect(420, 30, 91, 20))
         self.ComplainNoApprovalsBox.setStyleSheet("border-bottom:1px solid #eee;\n"
-"border:0;\n"
-"box-shadow:0 0 15px 4px rgba(0,0,0,0.06);\n"
-"border-radius:5px;\n"
-"height:10px;")
+                                                  "border:0;\n"
+                                                  "box-shadow:0 0 15px 4px rgba(0,0,0,0.06);\n"
+                                                  "border-radius:5px;\n"
+                                                  "height:10px;")
         self.ComplainNoApprovalsBox.setObjectName("ComplainNoApprovalsBox")
         self.printBtn = QtWidgets.QPushButton(self.frame_7)
         self.printBtn.setGeometry(QtCore.QRect(471, 525, 71, 31))
         self.printBtn.setStyleSheet(".QPushButton {\n"
-"  background-color: white;\n"
-"  color: black;\n"
-"  border: 2px solid rgb(85, 170, 127); /* Green */\n"
-"font: 10pt \"MS Shell Dlg 2\";\n"
-"}\n"
-"\n"
-".QPushButton {\n"
-"  transition-duration: 0.4s;\n"
-"}\n"
-"\n"
-".QPushButton:hover {\n"
-"  background-color:rgb(85, 170, 127); /* Green */\n"
-"  color: white;\n"
-"}")
+                                    "  background-color: white;\n"
+                                    "  color: black;\n"
+                                    "  border: 2px solid rgb(85, 170, 127); /* Green */\n"
+                                    "font: 10pt \"MS Shell Dlg 2\";\n"
+                                    "}\n"
+                                    "\n"
+                                    ".QPushButton {\n"
+                                    "  transition-duration: 0.4s;\n"
+                                    "}\n"
+                                    "\n"
+                                    ".QPushButton:hover {\n"
+                                    "  background-color:rgb(85, 170, 127); /* Green */\n"
+                                    "  color: white;\n"
+                                    "}")
         self.printBtn.setObjectName("printBtn")
         self.emailsLbl = QtWidgets.QLabel(self.frame_7)
         self.emailsLbl.setGeometry(QtCore.QRect(20, 20, 81, 31))
         self.emailsLbl.setStyleSheet("border: 2px solid #4CAF50; \n"
-"")
+                                     "")
         self.emailsLbl.setObjectName("emailsLbl")
         self.approvalsList = QtWidgets.QListWidget(self.frame_7)
         self.approvalsList.setGeometry(QtCore.QRect(20, 70, 521, 441))
@@ -1006,9 +1023,11 @@ class Ui_MainWindow(object):
         self.menuExit_2.setObjectName("menuExit_2")
         MainWindow.setMenuBar(self.menubar)
         self.actionCreate_Files_and_Folders = QtWidgets.QAction(MainWindow)
-        self.actionCreate_Files_and_Folders.setObjectName("actionCreate_Files_and_Folders")
+        self.actionCreate_Files_and_Folders.setObjectName(
+            "actionCreate_Files_and_Folders")
         self.actionPrint_Bills_and_Summary = QtWidgets.QAction(MainWindow)
-        self.actionPrint_Bills_and_Summary.setObjectName("actionPrint_Bills_and_Summary")
+        self.actionPrint_Bills_and_Summary.setObjectName(
+            "actionPrint_Bills_and_Summary")
         self.menuGenerate.addAction(self.actionCreate_Files_and_Folders)
         self.menuExit.addAction(self.actionPrint_Bills_and_Summary)
         self.menubar.addAction(self.menuGenerate.menuAction())
@@ -1022,35 +1041,53 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.addQuotationBtn.setText(_translate("MainWindow", "Add A Quotation"))
+        self.addQuotationBtn.setText(
+            _translate("MainWindow", "Add A Quotation"))
         self.addToBillBtn.setText(_translate("MainWindow", "Add A Bill"))
         self.approvalsBtn.setText(_translate("MainWindow", "Approvals"))
         self.billsBtn.setText(_translate("MainWindow", "Bills"))
-        self.addLetterBtn.setText(_translate("MainWindow", "Add A Letter/ Report"))
-        self.zoneLbl.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Select Zone:</span></p></body></html>"))
+        self.addLetterBtn.setText(_translate(
+            "MainWindow", "Add A Letter/ Report"))
+        self.zoneLbl.setText(_translate(
+            "MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Select Zone:</span></p></body></html>"))
         self.zoneComBox.setCurrentText(_translate("MainWindow", "LHR"))
         self.zoneComBox.setItemText(0, _translate("MainWindow", "LHR"))
         self.zoneComBox.setItemText(1, _translate("MainWindow", "GUJ"))
         self.zoneComBox.setItemText(2, _translate("MainWindow", "FSD"))
         self.zoneComBox.setItemText(3, _translate("MainWindow", "KPK"))
-        self.branchLbl.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Select Branch:</span></p></body></html>"))
-        self.branchAddressBox.setPlaceholderText(_translate("MainWindow", "Enter Bank Branch Address"))
-        self.bankLbl.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Select Bank:</span></p></body></html>"))
-        self.bankComBox.setItemText(0, _translate("MainWindow", "BANK AL-HABIB"))
-        self.bankComBox.setItemText(1, _translate("MainWindow", "BANK AL-FALAH"))
+        self.branchLbl.setText(_translate(
+            "MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Select Branch:</span></p></body></html>"))
+        self.branchAddressBox.setPlaceholderText(
+            _translate("MainWindow", "Enter Bank Branch Address"))
+        self.bankLbl.setText(_translate(
+            "MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Select Bank:</span></p></body></html>"))
+        self.bankComBox.setItemText(
+            0, _translate("MainWindow", "BANK AL-HABIB"))
+        self.bankComBox.setItemText(
+            1, _translate("MainWindow", "BANK AL-FALAH"))
         self.bankComBox.setItemText(2, _translate("MainWindow", "MEHRAN BANK"))
-        self.bankComBox.setItemText(3, _translate("MainWindow", "DUBAI ISLAMIC BANK"))
-        self.complaintNoLbl.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Enter Complaint No.</span></p></body></html>"))
+        self.bankComBox.setItemText(3, _translate(
+            "MainWindow", "DUBAI ISLAMIC BANK"))
+        self.complaintNoLbl.setText(_translate(
+            "MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Enter Complaint No.</span></p></body></html>"))
         self.complaintNoBox.setText(_translate("MainWindow", "1"))
-        self.complaintDateBox.setDisplayFormat(_translate("MainWindow", "d/M/yyyy"))
-        self.complaintDateLbl.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Date of Complaint:</span></p></body></html>"))
-        self.chargersLbl.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Visit / Conveynce Charges:</span></p></body></html>"))
+        self.complaintDateBox.setDisplayFormat(
+            _translate("MainWindow", "d/M/yyyy"))
+        self.complaintDateLbl.setText(_translate(
+            "MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Date of Complaint:</span></p></body></html>"))
+        self.chargersLbl.setText(_translate(
+            "MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Visit / Conveynce Charges:</span></p></body></html>"))
         self.visitTypeComBox.setItemText(0, _translate("MainWindow", "Visit"))
-        self.visitTypeComBox.setItemText(1, _translate("MainWindow", "Conveynce"))
-        self.servicesLbl.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">Services:</span></p></body></html>"))
-        self.descriptionLbl.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Service Description:</span></p></body></html>"))
-        self.detailsLbl.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Details:</span></p></body></html>"))
-        self.qtyLbl.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Quantity:</span></p></body></html>"))
+        self.visitTypeComBox.setItemText(
+            1, _translate("MainWindow", "Conveynce"))
+        self.servicesLbl.setText(_translate(
+            "MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">Services:</span></p></body></html>"))
+        self.descriptionLbl.setText(_translate(
+            "MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Service Description:</span></p></body></html>"))
+        self.detailsLbl.setText(_translate(
+            "MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Details:</span></p></body></html>"))
+        self.qtyLbl.setText(_translate(
+            "MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Quantity:</span></p></body></html>"))
         self.addServiceBtn.setText(_translate("MainWindow", "Add A Service"))
         self.finalizeBtn.setText(_translate("MainWindow", "Finalize"))
         self.saveBtn.setText(_translate("MainWindow", "Save"))
@@ -1063,8 +1100,10 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Rate"))
         item = self.servicesTbl.horizontalHeaderItem(3)
         item.setText(_translate("MainWindow", "Price"))
-        self.rateLbl.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Rate:</span></p></body></html>"))
-        self.complaintNoAddToBillLbl.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Enter Complaint No.</span></p></body></html>"))
+        self.rateLbl.setText(_translate(
+            "MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Rate:</span></p></body></html>"))
+        self.complaintNoAddToBillLbl.setText(_translate(
+            "MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Enter Complaint No.</span></p></body></html>"))
         self.quotationsTbl.setSortingEnabled(False)
         item = self.quotationsTbl.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "Complain No"))
@@ -1078,31 +1117,52 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Date"))
         item = self.quotationsTbl.horizontalHeaderItem(5)
         item.setText(_translate("MainWindow", "Invoice No"))
-        self.bankAddToBillComBox.setItemText(0, _translate("MainWindow", "BANK AL-HABIB"))
-        self.bankAddToBillComBox.setItemText(1, _translate("MainWindow", "BANK AL-FALAH"))
-        self.bankAddToBillComBox.setItemText(2, _translate("MainWindow", "MEHRAN BANK"))
-        self.bankAddToBillComBox.setItemText(3, _translate("MainWindow", "DUBAI ISLAMIC BANK"))
-        self.zoneAddToBillComBox.setCurrentText(_translate("MainWindow", "LHR"))
-        self.zoneAddToBillComBox.setItemText(0, _translate("MainWindow", "LHR"))
-        self.zoneAddToBillComBox.setItemText(1, _translate("MainWindow", "GUJ"))
-        self.zoneAddToBillComBox.setItemText(2, _translate("MainWindow", "FSD"))
-        self.zoneAddToBillComBox.setItemText(3, _translate("MainWindow", "KPK"))
+        self.bankAddToBillComBox.setItemText(
+            0, _translate("MainWindow", "BANK AL-HABIB"))
+        self.bankAddToBillComBox.setItemText(
+            1, _translate("MainWindow", "BANK AL-FALAH"))
+        self.bankAddToBillComBox.setItemText(
+            2, _translate("MainWindow", "MEHRAN BANK"))
+        self.bankAddToBillComBox.setItemText(
+            3, _translate("MainWindow", "DUBAI ISLAMIC BANK"))
+        self.zoneAddToBillComBox.setCurrentText(
+            _translate("MainWindow", "LHR"))
+        self.zoneAddToBillComBox.setItemText(
+            0, _translate("MainWindow", "LHR"))
+        self.zoneAddToBillComBox.setItemText(
+            1, _translate("MainWindow", "GUJ"))
+        self.zoneAddToBillComBox.setItemText(
+            2, _translate("MainWindow", "FSD"))
+        self.zoneAddToBillComBox.setItemText(
+            3, _translate("MainWindow", "KPK"))
         self.addBillBtn.setText(_translate("MainWindow", "Add Bill"))
         self.updateBtn.setText(_translate("MainWindow", "Update"))
         self.deleteBtn.setText(_translate("MainWindow", "Delete"))
-        self.complaintNoAddLetterLbl.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Enter Complaint No.</span></p></body></html>"))
-        self.bankAddLetterComBox.setItemText(0, _translate("MainWindow", "BANK AL-HABIB"))
-        self.bankAddLetterComBox.setItemText(1, _translate("MainWindow", "BANK AL-FALAH"))
-        self.bankAddLetterComBox.setItemText(2, _translate("MainWindow", "MEHRAN BANK"))
-        self.bankAddLetterComBox.setItemText(3, _translate("MainWindow", "DUBAI ISLAMIC BANK"))
-        self.zoneAddLetterComBox.setCurrentText(_translate("MainWindow", "LHR"))
-        self.zoneAddLetterComBox.setItemText(0, _translate("MainWindow", "LHR"))
-        self.zoneAddLetterComBox.setItemText(1, _translate("MainWindow", "GUJ"))
-        self.zoneAddLetterComBox.setItemText(2, _translate("MainWindow", "FSD"))
-        self.zoneAddLetterComBox.setItemText(3, _translate("MainWindow", "KPK"))
-        self.subjectLbl.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Subject:</span></p></body></html>"))
+        self.complaintNoAddLetterLbl.setText(_translate(
+            "MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Enter Complaint No.</span></p></body></html>"))
+        self.bankAddLetterComBox.setItemText(
+            0, _translate("MainWindow", "BANK AL-HABIB"))
+        self.bankAddLetterComBox.setItemText(
+            1, _translate("MainWindow", "BANK AL-FALAH"))
+        self.bankAddLetterComBox.setItemText(
+            2, _translate("MainWindow", "MEHRAN BANK"))
+        self.bankAddLetterComBox.setItemText(
+            3, _translate("MainWindow", "DUBAI ISLAMIC BANK"))
+        self.zoneAddLetterComBox.setCurrentText(
+            _translate("MainWindow", "LHR"))
+        self.zoneAddLetterComBox.setItemText(
+            0, _translate("MainWindow", "LHR"))
+        self.zoneAddLetterComBox.setItemText(
+            1, _translate("MainWindow", "GUJ"))
+        self.zoneAddLetterComBox.setItemText(
+            2, _translate("MainWindow", "FSD"))
+        self.zoneAddLetterComBox.setItemText(
+            3, _translate("MainWindow", "KPK"))
+        self.subjectLbl.setText(_translate(
+            "MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Subject:</span></p></body></html>"))
         self.saveLetterBtn.setText(_translate("MainWindow", "Save"))
-        self.complaintNoBillsLbl.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Enter Complaint No.</span></p></body></html>"))
+        self.complaintNoBillsLbl.setText(_translate(
+            "MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Enter Complaint No.</span></p></body></html>"))
         self.billsTbl.setSortingEnabled(False)
         item = self.billsTbl.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "Complain No"))
@@ -1116,23 +1176,31 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Date"))
         item = self.billsTbl.horizontalHeaderItem(5)
         item.setText(_translate("MainWindow", "Invoice No"))
-        self.bankBillsComBox.setItemText(0, _translate("MainWindow", "BANK AL-HABIB"))
-        self.bankBillsComBox.setItemText(1, _translate("MainWindow", "BANK AL-FALAH"))
-        self.bankBillsComBox.setItemText(2, _translate("MainWindow", "MEHRAN BANK"))
-        self.bankBillsComBox.setItemText(3, _translate("MainWindow", "DUBAI ISLAMIC BANK"))
+        self.bankBillsComBox.setItemText(
+            0, _translate("MainWindow", "BANK AL-HABIB"))
+        self.bankBillsComBox.setItemText(
+            1, _translate("MainWindow", "BANK AL-FALAH"))
+        self.bankBillsComBox.setItemText(
+            2, _translate("MainWindow", "MEHRAN BANK"))
+        self.bankBillsComBox.setItemText(
+            3, _translate("MainWindow", "DUBAI ISLAMIC BANK"))
         self.zoneBillsComBox.setCurrentText(_translate("MainWindow", "LHR"))
         self.zoneBillsComBox.setItemText(0, _translate("MainWindow", "LHR"))
         self.zoneBillsComBox.setItemText(1, _translate("MainWindow", "GUJ"))
         self.zoneBillsComBox.setItemText(2, _translate("MainWindow", "FSD"))
         self.zoneBillsComBox.setItemText(3, _translate("MainWindow", "KPK"))
-        self.complaintNoApprovalsLbl.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Enter Complaint No.</span></p></body></html>"))
+        self.complaintNoApprovalsLbl.setText(_translate(
+            "MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Enter Complaint No.</span></p></body></html>"))
         self.printBtn.setText(_translate("MainWindow", "Print"))
-        self.emailsLbl.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">E-mails:</span></p></body></html>"))
+        self.emailsLbl.setText(_translate(
+            "MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">E-mails:</span></p></body></html>"))
         self.menuGenerate.setTitle(_translate("MainWindow", "Generate"))
         self.menuExit.setTitle(_translate("MainWindow", "Finalize"))
         self.menuExit_2.setTitle(_translate("MainWindow", "Exit"))
-        self.actionCreate_Files_and_Folders.setText(_translate("MainWindow", "Create Files and Folders"))
-        self.actionPrint_Bills_and_Summary.setText(_translate("MainWindow", "Print Bills and Summary"))
+        self.actionCreate_Files_and_Folders.setText(
+            _translate("MainWindow", "Create Files and Folders"))
+        self.actionPrint_Bills_and_Summary.setText(
+            _translate("MainWindow", "Print Bills and Summary"))
 
 
 if __name__ == "__main__":

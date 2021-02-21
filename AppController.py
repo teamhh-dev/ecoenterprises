@@ -25,8 +25,9 @@ class AppController:
     def initHandlers(self):
         self.ui.addQuotationBtn.clicked.connect(self.showAddQuotaionTab)
         self.ui.addToBillBtn.clicked.connect(self.showAddBillTab)
-        self.ui.pushButton_8.clicked.connect(self.showQuotaionTab)
+        self.ui.approvalsBtn.clicked.connect(self.showApprovalsTab)
         self.ui.billsBtn.clicked.connect(self.showBillTab)
+        self.ui.addLetterBtn.clicked.connect(self.showAddLetterTab)
         self.ui.addServiceBtn.clicked.connect(self.addService)
         self.ui.saveBtn.setDisabled(True)
         self.ui.finalizeBtn.clicked.connect(self.finalize)
@@ -38,11 +39,14 @@ class AppController:
     def showAddBillTab(self):
         self.ui.stackedWidget.setCurrentIndex(1)
 
-    def showQuotaionTab(self):
-        self.ui.stackedWidget.setCurrentIndex(3)
+    def showAddLetterTab(self):
+        self.ui.stackedWidget.setCurrentIndex(2)
 
     def showBillTab(self):
-        self.ui.stackedWidget.setCurrentIndex(2)
+        self.ui.stackedWidget.setCurrentIndex(3)
+
+    def showApprovalsTab(self):
+        self.ui.stackedWidget.setCurrentIndex(4)
 
     def addService(self):
         print("Add Service")
