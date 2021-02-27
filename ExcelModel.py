@@ -50,18 +50,18 @@ class ExcelModel():
 
     # adding services rows to active worksheet , format them and then adding data in them
     def saveBillServices(self, services: Services):
-        # print(services.getServicesList())
-        # return
+
         self.firstRow = 16
+
         self.service_len = len(services.getServicesList())-2
-        if not self.service_len == 0:
+        if not self.service_len == 0 and not self.service_len == -1:
             self.activeWorkSheet.insert_rows(17, self.service_len)
         row = list(self.activeWorkSheet.rows)[15]
         i = 0
         j = self.firstRow
 
     # Adding service rows to active worksheet
-        if not self.service_len == 0:
+        if not self.service_len == 0 and not self.service_len == -1:
             while j <= self.firstRow + self.service_len:
 
                 for cell in row:
@@ -90,21 +90,21 @@ class ExcelModel():
             self.activeWorkSheet['H'+str(self.firstRow)] = service['amount']
             self.firstRow = self.firstRow + 1
             self.sr_number = self.sr_number + 1
-    # yahan maslah hai hai jab rows do hoti hain tab formula sahih calculate nahi hota
     # Updating the formulas
-        self.activeWorkSheet["H"+str(j+1)] = "=SUM(H16:H"+str(j)+")"
-        self.activeWorkSheet["H" + str(j+2)] = "=H" + str(j+1)+"*0.16"
-        self.activeWorkSheet["H" +
-                             str(j+5)] = "=SUM(H" + str(j+1)+":H"+str(j+4)+")"
+        if not self.service_len == 0 and not self.service_len == -1:
+            self.activeWorkSheet["H"+str(j+1)] = "=SUM(H16:H"+str(j)+")"
+            self.activeWorkSheet["H" + str(j+2)] = "=H" + str(j+1)+"*0.16"
+            self.activeWorkSheet["H" +
+                                 str(j+5)] = "=SUM(H" + str(j+1)+":H"+str(j+4)+")"
 
     # Calling the formatting cells function
         self.formattingCells(16)
 
     # Perform formatting cells
     def formattingCells(self, rowNo: int):
-
-        while rowNo <= (self.firstRow+self.service_len)-2 or rowNo == 16 or rowNo == 17:
-
+        self.firstRow = 16
+        while rowNo <= (self.firstRow+self.service_len+1) or rowNo == 16 or rowNo == 17:
+            print(rowNo)
             self.activeWorkSheet.merge_cells('B'+str(rowNo)+':'+'D'+str(rowNo))
             self.activeWorkSheet.cell(row=rowNo, column=1).alignment = Alignment(
                 horizontal='center', vertical='center', wrap_text=True)

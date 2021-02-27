@@ -71,7 +71,8 @@ class Ui_MainWindow(object):
         self.bookmarkLbl = QtWidgets.QLabel(self.frame)
         self.bookmarkLbl.setGeometry(QtCore.QRect(-3, 0, 91, 121))
         self.bookmarkLbl.setStyleSheet(
-            "image:url(\"E:/ECO ENTERPRISES/eco enterprises/AppData/final.png\");")
+            # "image:url(\"E:/ECO ENTERPRISES/eco enterprises/AppData/final.png\");")
+            "image:url(\"./AppData/Images/ribbon.png\");")
         self.bookmarkLbl.setText("")
         self.bookmarkLbl.setObjectName("bookmarkLbl")
         self.addLetterBtn = QtWidgets.QPushButton(self.frame)
@@ -303,57 +304,57 @@ class Ui_MainWindow(object):
         self.qtyLbl = QtWidgets.QLabel(self.addQuoationFrame)
         self.qtyLbl.setGeometry(QtCore.QRect(390, 210, 61, 16))
         self.qtyLbl.setObjectName("qtyLbl")
-        self.spinBox = QtWidgets.QSpinBox(self.addQuoationFrame)
-        self.spinBox.setGeometry(QtCore.QRect(450, 211, 71, 21))
-        self.spinBox.setStyleSheet("QSpinBox{\n"
-                                   "qproperty-alignment: AlignCenter;}\n"
-                                   "QSpinBox::up-arrow {\n"
-                                   "image:url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_plus_16px.png\");\n"
-                                   "}\n"
-                                   "\n"
-                                   "\n"
-                                   "QSpinBox::up-button { \n"
-                                   "subcontrol-origin:border;\n"
-                                   "  subcontrol-position:right;   \n"
-                                   "  width: 22px;\n"
-                                   "  height: 20px;\n"
-                                   "border:0;\n"
-                                   " }\n"
-                                   "\n"
-                                   "\n"
-                                   " \n"
-                                   "QSpinBox::down-arrow { \n"
-                                   "image:url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_minus_16px.png\");}\n"
-                                   "\n"
-                                   "\n"
-                                   "\n"
-                                   " \n"
-                                   " QSpinBox::down-button { \n"
-                                   "border:0px;\n"
-                                   "subcontrol-origin:border;\n"
-                                   "  subcontrol-position:left;\n"
-                                   "  width: 22px;\n"
-                                   "  height: 20px; \n"
-                                   "\n"
-                                   "}\n"
-                                   "QSpinBox::up-button:pressed{subcontrol-origin:border;\n"
-                                   "    subcontrol-position:right;\n"
-                                   "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_plus_16px_2.png\");\n"
-                                   "    width: 22px;\n"
-                                   "    height: 20px;       \n"
-                                   "}\n"
-                                   "  \n"
-                                   "QSpinBox::down-button:pressed\n"
-                                   "{\n"
-                                   "    subcontrol-position:left;\n"
-                                   "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_minus_16px_2.png\");\n"
-                                   "    width: 22px;\n"
-                                   "    height: 20px;\n"
-                                   "}\n"
-                                   "")
-        self.spinBox.setButtonSymbols(QtWidgets.QAbstractSpinBox.PlusMinus)
-        self.spinBox.setProperty("value", 1)
-        self.spinBox.setObjectName("spinBox")
+        self.qtySpinBox = QtWidgets.QSpinBox(self.addQuoationFrame)
+        self.qtySpinBox.setGeometry(QtCore.QRect(450, 211, 71, 21))
+        self.qtySpinBox.setStyleSheet("QSpinBox{\n"
+                                      "qproperty-alignment: AlignCenter;}\n"
+                                      "QSpinBox::up-arrow {\n"
+                                      "image:url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_plus_16px.png\");\n"
+                                      "}\n"
+                                      "\n"
+                                      "\n"
+                                      "QSpinBox::up-button { \n"
+                                      "subcontrol-origin:border;\n"
+                                      "  subcontrol-position:right;   \n"
+                                      "  width: 22px;\n"
+                                      "  height: 20px;\n"
+                                      "border:0;\n"
+                                      " }\n"
+                                      "\n"
+                                      "\n"
+                                      " \n"
+                                      "QSpinBox::down-arrow { \n"
+                                      "image:url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_minus_16px.png\");}\n"
+                                      "\n"
+                                      "\n"
+                                      "\n"
+                                      " \n"
+                                      " QSpinBox::down-button { \n"
+                                      "border:0px;\n"
+                                      "subcontrol-origin:border;\n"
+                                      "  subcontrol-position:left;\n"
+                                      "  width: 22px;\n"
+                                      "  height: 20px; \n"
+                                      "\n"
+                                      "}\n"
+                                      "QSpinBox::up-button:pressed{subcontrol-origin:border;\n"
+                                      "    subcontrol-position:right;\n"
+                                      "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_plus_16px_2.png\");\n"
+                                      "    width: 22px;\n"
+                                      "    height: 20px;       \n"
+                                      "}\n"
+                                      "  \n"
+                                      "QSpinBox::down-button:pressed\n"
+                                      "{\n"
+                                      "    subcontrol-position:left;\n"
+                                      "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_minus_16px_2.png\");\n"
+                                      "    width: 22px;\n"
+                                      "    height: 20px;\n"
+                                      "}\n"
+                                      "")
+        self.qtySpinBox.setButtonSymbols(QtWidgets.QAbstractSpinBox.PlusMinus)
+        self.qtySpinBox.setProperty("value", 1)
+        self.qtySpinBox.setObjectName("qtySpinBox")
         self.addServiceBtn = QtWidgets.QPushButton(self.addQuoationFrame)
         self.addServiceBtn.setGeometry(QtCore.QRect(424, 250, 101, 23))
         self.addServiceBtn.setStyleSheet(".QPushButton {\n"
@@ -441,7 +442,7 @@ class Ui_MainWindow(object):
         self.servicesTbl.setSelectionMode(
             QtWidgets.QAbstractItemView.SingleSelection)
         self.servicesTbl.setSelectionBehavior(
-            QtWidgets.QAbstractItemView.SelectRows)
+            QtWidgets.QAbstractItemView.SelectItems)
         self.servicesTbl.setTextElideMode(QtCore.Qt.ElideRight)
         self.servicesTbl.setShowGrid(True)
         self.servicesTbl.setGridStyle(QtCore.Qt.SolidLine)
@@ -456,7 +457,6 @@ class Ui_MainWindow(object):
         self.servicesTbl.setHorizontalHeaderItem(2, item)
         item = QtWidgets.QTableWidgetItem()
         self.servicesTbl.setHorizontalHeaderItem(3, item)
-        self.servicesTbl.horizontalHeader().setCascadingSectionResizes(True)
         self.servicesTbl.horizontalHeader().setDefaultSectionSize(124)
         self.servicesTbl.horizontalHeader().setHighlightSections(False)
         self.servicesTbl.horizontalHeader().setSortIndicatorShown(True)
@@ -474,6 +474,23 @@ class Ui_MainWindow(object):
                                    "border-radius:5px;\n"
                                    "height:10px;")
         self.rateBox.setObjectName("rateBox")
+        self.deleteServiceBtn = QtWidgets.QPushButton(self.addQuoationFrame)
+        self.deleteServiceBtn.setGeometry(QtCore.QRect(30, 530, 81, 31))
+        self.deleteServiceBtn.setStyleSheet(".QPushButton {\n"
+                                            "  background-color: white;\n"
+                                            "  color: black;\n"
+                                            "  border: 2px solid rgb(85, 170, 127); /* Green */\n"
+                                            "}\n"
+                                            "/*\n"
+                                            ".QPushButton {\n"
+                                            "  transition-duration: 0.4s;\n"
+                                            "}\n"
+                                            "*/\n"
+                                            ".QPushButton:hover {\n"
+                                            "  background-color: rgb(85, 170, 127); /* Green */\n"
+                                            "  color: white;\n"
+                                            "}")
+        self.deleteServiceBtn.setObjectName("deleteServiceBtn")
         self.stackedWidget.addWidget(self.addQuoationPg)
         self.page_4 = QtWidgets.QWidget()
         self.page_4.setObjectName("page_4")
@@ -670,24 +687,24 @@ class Ui_MainWindow(object):
                                      "  color: white;\n"
                                      "}")
         self.updateBtn.setObjectName("updateBtn")
-        self.deleteBtn = QtWidgets.QPushButton(self.frame_6)
-        self.deleteBtn.setGeometry(QtCore.QRect(130, 536, 71, 31))
-        self.deleteBtn.setStyleSheet(".QPushButton {\n"
-                                     "  background-color: white;\n"
-                                     "  color: black;\n"
-                                     "  border: 2px solid rgb(85, 170, 127); /* Green */\n"
-                                     "font: 10pt \"MS Shell Dlg 2\";\n"
-                                     "}\n"
-                                     "\n"
-                                     ".QPushButton {\n"
-                                     "  transition-duration: 0.4s;\n"
-                                     "}\n"
-                                     "\n"
-                                     ".QPushButton:hover {\n"
-                                     "  background-color:rgb(85, 170, 127); /* Green */\n"
-                                     "  color: white;\n"
-                                     "}")
-        self.deleteBtn.setObjectName("deleteBtn")
+        self.deleteQuotationBtn = QtWidgets.QPushButton(self.frame_6)
+        self.deleteQuotationBtn.setGeometry(QtCore.QRect(130, 536, 71, 31))
+        self.deleteQuotationBtn.setStyleSheet(".QPushButton {\n"
+                                              "  background-color: white;\n"
+                                              "  color: black;\n"
+                                              "  border: 2px solid rgb(85, 170, 127); /* Green */\n"
+                                              "font: 10pt \"MS Shell Dlg 2\";\n"
+                                              "}\n"
+                                              "\n"
+                                              ".QPushButton {\n"
+                                              "  transition-duration: 0.4s;\n"
+                                              "}\n"
+                                              "\n"
+                                              ".QPushButton:hover {\n"
+                                              "  background-color:rgb(85, 170, 127); /* Green */\n"
+                                              "  color: white;\n"
+                                              "}")
+        self.deleteQuotationBtn.setObjectName("deleteQuotationBtn")
         self.stackedWidget.addWidget(self.page_4)
         self.page_5 = QtWidgets.QWidget()
         self.page_5.setObjectName("page_5")
@@ -1035,7 +1052,8 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuExit_2.menuAction())
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(4)
+        self.stackedWidget.setCurrentIndex(0)
+        self.addLetterBtn.clicked.connect(self.stackedWidget.show)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -1102,6 +1120,7 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Price"))
         self.rateLbl.setText(_translate(
             "MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Rate:</span></p></body></html>"))
+        self.deleteServiceBtn.setText(_translate("MainWindow", "Delete"))
         self.complaintNoAddToBillLbl.setText(_translate(
             "MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Enter Complaint No.</span></p></body></html>"))
         self.quotationsTbl.setSortingEnabled(False)
@@ -1137,7 +1156,7 @@ class Ui_MainWindow(object):
             3, _translate("MainWindow", "KPK"))
         self.addBillBtn.setText(_translate("MainWindow", "Add Bill"))
         self.updateBtn.setText(_translate("MainWindow", "Update"))
-        self.deleteBtn.setText(_translate("MainWindow", "Delete"))
+        self.deleteQuotationBtn.setText(_translate("MainWindow", "Delete"))
         self.complaintNoAddLetterLbl.setText(_translate(
             "MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Enter Complaint No.</span></p></body></html>"))
         self.bankAddLetterComBox.setItemText(

@@ -8,7 +8,7 @@ from mailmerge import MailMerge
 
 class WordModel:
     def __init__(self):
-        self.templateFile = "User Data/quatation.docx"
+        self.templateFile = "User Data/quotation.docx"
         self.document = MailMerge(self.templateFile)
         self.toFileName = "User Data/Feburary/"
 
@@ -24,29 +24,22 @@ class WordModel:
             date=complainInfo.getDate(), branch_address=complainInfo.getAddress(), inv_id=str(complainInfo.getComplainNo()))
 
     def saveBillServices(self, services: Services):
-        services_list = []
-        dictionary = {'sr_num': 1, 'qty': '10', 'amount': '1000',
-                      'description': 'pcb kit repair aeroflex isulation', 'rate': '200'}
+
         for service in services.getServicesList():
 
+            service['qty'] = str(service['qty'])
             service['rate'] = str(service['rate'])
             service['amount'] = str(service['amount'])
-        # for service in services.getServicesList():
 
-        #     service['rate'] = str(service['rate'])
-        #     service['amount'] = str(service['amount'])
-
-        #     dictionary['qty'] = service['qty']
-        #     dictionary['rate'] = service['rate']
-        #     dictionary['description'] = service['descriptio']
-        #     dictionary['qty'] = service['qty']
-        print(services.getServicesList())
         self.document.merge_rows(
             'description', list(services.getServicesList()))
 
     def saveToFile(self, fileName: str):
         print(fileName)
         self.document.write(fileName+".docx")
+        self.templateFile = "User Data/quotation.docx"
+        self.document = MailMerge(self.templateFile)
+        self.toFileName = "User Data/Feburary/"
 
 # template = "Invoice.docx"
 
