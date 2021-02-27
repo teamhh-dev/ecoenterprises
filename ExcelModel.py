@@ -50,7 +50,8 @@ class ExcelModel():
 
     # adding services rows to active worksheet , format them and then adding data in them
     def saveBillServices(self, services: Services):
-
+        print(services.getServicesList())
+        return
         self.firstRow = 16
         self.service_len = len(services.getServicesList())-2
         self.activeWorkSheet.insert_rows(17, self.service_len)
