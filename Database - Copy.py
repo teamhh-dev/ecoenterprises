@@ -6,7 +6,7 @@ class Database:
         self.appDatabase = mysql.connector.connect(
             host="localhost",
             user="root",
-            password=""
+            password="twitter_"
         )
         self.appCursor = self.appDatabase.cursor()
         self.initDatabase()

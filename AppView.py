@@ -95,8 +95,6 @@ class Ui_MainWindow(object):
         self.addQuoationFrame.setGeometry(QtCore.QRect(0, 11, 561, 581))
         self.addQuoationFrame.setCursor(QtGui.QCursor(QtCore.Qt.IBeamCursor))
         self.addQuoationFrame.setFocusPolicy(QtCore.Qt.NoFocus)
-        self.addQuoationFrame.setStyleSheet("box-shadow: 0 8px 6px -6px black;\n"
-                                            "")
         self.addQuoationFrame.setFrameShape(QtWidgets.QFrame.Panel)
         self.addQuoationFrame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.addQuoationFrame.setLineWidth(2)
@@ -115,14 +113,8 @@ class Ui_MainWindow(object):
                                       "\n"
                                       "\n"
                                       "\n"
-                                      "QComboBox::down-arrow {\n"
-                                      "    position: relative;\n"
-                                      "     height: 15px;\n"
-                                      "     width: 15px;\n"
-                                      "    border: 12px;\n"
-                                      " \n"
-                                      "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
-                                      "}\n"
+                                      "QComboBox::down-arrow {position: relative;height: 15px;width: 15px;border: 15px;image: url(\"./AppData/Images/expand.png\")}"
+
                                       "QComboBox::drop-down {\n"
                                       "    border: 0px; \n"
                                       "}\n"
@@ -139,7 +131,7 @@ class Ui_MainWindow(object):
         self.branchAddressBox.setGeometry(QtCore.QRect(140, 100, 381, 21))
         self.branchAddressBox.setStyleSheet("border-bottom:1px solid #eee;\n"
                                             "border:0;\n"
-                                            "/*box-shadow:0 0 15px 4px rgba(0,0,0,0.06);*/\n"
+
                                             "border-radius:5px;\n"
                                             "height:10px;")
         self.branchAddressBox.setText("")
@@ -157,14 +149,7 @@ class Ui_MainWindow(object):
                                       " }\n"
                                       "\n"
                                       "\n"
-                                      "QComboBox::down-arrow {\n"
-                                      "    position: relative;\n"
-                                      "     height: 15px;\n"
-                                      "     width: 15px;\n"
-                                      "    border: 12px;\n"
-                                      " \n"
-                                      "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
-                                      "}\n"
+                                      "QComboBox::down-arrow {position: relative;height: 15px;width: 15px;border: 15px;image: url(\"./AppData/Images/expand.png\")}"
                                       "QComboBox::drop-down {\n"
                                       "    border: 0px; \n"
                                       "}\n"
@@ -183,7 +168,7 @@ class Ui_MainWindow(object):
         self.complaintNoBox.setGeometry(QtCore.QRect(150, 60, 91, 20))
         self.complaintNoBox.setStyleSheet("border-bottom:1px solid #eee;\n"
                                           "border:0;\n"
-                                          "/*box-shadow:0 0 15px 4px rgba(0,0,0,0.06);*/\n"
+
                                           "border-radius:5px;\n"
                                           "height:10px;")
         self.complaintNoBox.setObjectName("complaintNoBox")
@@ -197,26 +182,26 @@ class Ui_MainWindow(object):
                                             "}\n"
                                             "QDateEdit::up-button {subcontrol-origin:border;\n"
                                             "    subcontrol-position:right;\n"
-                                            "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_plus_16px_3.png\");\n"
+                                            "    image: url(\"./AppData/Images/add.png\");\n"
                                             "    width: 22px;\n"
                                             "    height: 20px;       \n"
                                             "}\n"
                                             "QDateEdit::down-button{subcontrol-origin:border;\n"
                                             "    subcontrol-position:left;\n"
-                                            "image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_minus_16px_1.png\");\n"
+                                            "image: url(\"./AppData/Images/minus.png\");\n"
                                             "    width: 22px;\n"
                                             "    height: 20px;\n"
                                             "}\n"
                                             "QDateEdit::up-button:pressed{subcontrol-origin:border;\n"
                                             "    subcontrol-position:right;\n"
-                                            "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_plus_16px_2.png\");\n"
+                                            "    image: url(\"./AppData/Images/add.png\");\n"
                                             "    width: 22px;\n"
                                             "    height: 20px;       \n"
                                             "}\n"
                                             "  \n"
                                             "QDateEdit::down-button:pressed{\n"
                                             "    subcontrol-position:left;\n"
-                                            "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_minus_16px_2.png\");\n"
+                                            "    image: url(\"./AppData/Images/minus.png\");\n"
                                             "    width: 22px;\n"
                                             "    height: 20px;\n"
                                             "}")
@@ -241,14 +226,8 @@ class Ui_MainWindow(object):
                                            "\n"
                                            "\n"
                                            "\n"
-                                           "QComboBox::down-arrow {\n"
-                                           "    position: relative;\n"
-                                           "     height: 10px;\n"
-                                           "     width: 10px;\n"
-                                           "    border: 10px;\n"
-                                           " \n"
-                                           "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
-                                           "}\n"
+                                           "QComboBox::down-arrow {position: relative;height: 15px;width: 15px;border: 15px;image: url(\"./AppData/Images/expand.png\")}"
+
                                            "QComboBox::drop-down {\n"
                                            "    border: 0px; \n"
                                            "}\n"
@@ -261,7 +240,7 @@ class Ui_MainWindow(object):
         self.chargesQtyBox.setAutoFillBackground(False)
         self.chargesQtyBox.setStyleSheet("border-bottom:1px solid #eee;\n"
                                          "border:0;\n"
-                                         "/*box-shadow:0 0 15px 4px rgba(0,0,0,0.06);*/\n"
+
                                          "border-radius:5px;\n"
                                          "height:10px;")
         self.chargesQtyBox.setText("")
@@ -270,7 +249,7 @@ class Ui_MainWindow(object):
         self.conveyenceChargesBox.setGeometry(QtCore.QRect(442, 140, 81, 21))
         self.conveyenceChargesBox.setStyleSheet("border-bottom:1px solid #eee;\n"
                                                 "border:0;\n"
-                                                "/*box-shadow:0 0 15px 4px rgba(0,0,0,0.06);*/\n"
+
                                                 "border-radius:5px;\n"
                                                 "height:10px;")
         self.conveyenceChargesBox.setObjectName("conveyenceChargesBox")
@@ -286,7 +265,7 @@ class Ui_MainWindow(object):
         self.descriptionBox.setGeometry(QtCore.QRect(140, 210, 231, 20))
         self.descriptionBox.setStyleSheet("border-bottom:1px solid #eee;\n"
                                           "border:0;\n"
-                                          "/*box-shadow:0 0 15px 4px rgba(0,0,0,0.06);*/\n"
+
                                           "border-radius:5px;\n"
                                           "height:10px;")
         self.descriptionBox.setObjectName("descriptionBox")
@@ -294,7 +273,7 @@ class Ui_MainWindow(object):
         self.detailsBox.setGeometry(QtCore.QRect(84, 250, 151, 20))
         self.detailsBox.setStyleSheet("border-bottom:1px solid #eee;\n"
                                       "border:0;\n"
-                                      "/*box-shadow:0 0 15px 4px rgba(0,0,0,0.06);*/\n"
+
                                       "border-radius:5px;\n"
                                       "height:10px;")
         self.detailsBox.setObjectName("detailsBox")
@@ -309,7 +288,7 @@ class Ui_MainWindow(object):
         self.qtySpinBox.setStyleSheet("QSpinBox{\n"
                                       "qproperty-alignment: AlignCenter;}\n"
                                       "QSpinBox::up-arrow {\n"
-                                      "image:url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_plus_16px.png\");\n"
+                                      "image:url(\"./AppData/Images/plus.png\");\n"
                                       "}\n"
                                       "\n"
                                       "\n"
@@ -324,7 +303,7 @@ class Ui_MainWindow(object):
                                       "\n"
                                       " \n"
                                       "QSpinBox::down-arrow { \n"
-                                      "image:url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_minus_16px.png\");}\n"
+                                      "image:url(\"./AppData/Images/subtract.png\");}\n"
                                       "\n"
                                       "\n"
                                       "\n"
@@ -339,7 +318,7 @@ class Ui_MainWindow(object):
                                       "}\n"
                                       "QSpinBox::up-button:pressed{subcontrol-origin:border;\n"
                                       "    subcontrol-position:right;\n"
-                                      "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_plus_16px_2.png\");\n"
+                                      "    image: url(\"./AppData/Images/add.png\");\n"
                                       "    width: 22px;\n"
                                       "    height: 20px;       \n"
                                       "}\n"
@@ -347,7 +326,7 @@ class Ui_MainWindow(object):
                                       "QSpinBox::down-button:pressed\n"
                                       "{\n"
                                       "    subcontrol-position:left;\n"
-                                      "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_minus_16px_2.png\");\n"
+                                      "    image: url(\"./AppData/Images/minus.png\");\n"
                                       "    width: 22px;\n"
                                       "    height: 20px;\n"
                                       "}\n"
@@ -364,7 +343,6 @@ class Ui_MainWindow(object):
                                          "}\n"
                                          "/*\n"
                                          ".QPushButton {\n"
-                                         "  transition-duration: 0.4s;\n"
                                          "}\n"
                                          "*/\n"
                                          ".QPushButton:hover {\n"
@@ -381,7 +359,6 @@ class Ui_MainWindow(object):
                                        "}\n"
                                        "/*\n"
                                        ".QPushButton {\n"
-                                       "  transition-duration: 0.4s;\n"
                                        "}\n"
                                        "*/\n"
                                        ".QPushButton:hover {\n"
@@ -398,7 +375,6 @@ class Ui_MainWindow(object):
                                    "}\n"
                                    "/*\n"
                                    ".QPushButton {\n"
-                                   "  transition-duration: 0.4s;\n"
                                    "}\n"
                                    "*/\n"
                                    ".QPushButton:hover {\n"
@@ -470,7 +446,7 @@ class Ui_MainWindow(object):
         self.rateBox.setGeometry(QtCore.QRect(299, 250, 91, 20))
         self.rateBox.setStyleSheet("border-bottom:1px solid #eee;\n"
                                    "border:0;\n"
-                                   "/*box-shadow:0 0 15px 4px rgba(0,0,0,0.06);*/\n"
+
                                    "border-radius:5px;\n"
                                    "height:10px;")
         self.rateBox.setObjectName("rateBox")
@@ -483,7 +459,6 @@ class Ui_MainWindow(object):
                                             "}\n"
                                             "/*\n"
                                             ".QPushButton {\n"
-                                            "  transition-duration: 0.4s;\n"
                                             "}\n"
                                             "*/\n"
                                             ".QPushButton:hover {\n"
@@ -591,7 +566,7 @@ class Ui_MainWindow(object):
         self.complaintNoAddToBillBox.setGeometry(QtCore.QRect(460, 30, 91, 20))
         self.complaintNoAddToBillBox.setStyleSheet("border-bottom:1px solid #eee;\n"
                                                    "border:0;\n"
-                                                   "box-shadow:0 0 15px 4px rgba(0,0,0,0.06);\n"
+
                                                    "border-radius:5px;\n"
                                                    "height:10px;")
         self.complaintNoAddToBillBox.setObjectName("complaintNoAddToBillBox")
@@ -604,14 +579,8 @@ class Ui_MainWindow(object):
                                                " }\n"
                                                "\n"
                                                "\n"
-                                               "QComboBox::down-arrow {\n"
-                                               "    position: relative;\n"
-                                               "     height: 15px;\n"
-                                               "     width: 15px;\n"
-                                               "    border: 12px;\n"
-                                               " \n"
-                                               "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
-                                               "}\n"
+                                               "QComboBox::down-arrow {position: relative;height: 15px;width: 15px;border: 15px;image: url(\"./AppData/Images/expand.png\")}"
+
                                                "QComboBox::drop-down {\n"
                                                "    border: 0px; \n"
                                                "}\n"
@@ -634,14 +603,8 @@ class Ui_MainWindow(object):
                                                "\n"
                                                "\n"
                                                "\n"
-                                               "QComboBox::down-arrow {\n"
-                                               "    position: relative;\n"
-                                               "     height: 15px;\n"
-                                               "     width: 15px;\n"
-                                               "    border: 12px;\n"
-                                               " \n"
-                                               "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
-                                               "}\n"
+                                               "QComboBox::down-arrow {position: relative;height: 15px;width: 15px;border: 15px;image: url(\"./AppData/Images/expand.png\")}"
+
                                                "QComboBox::drop-down {\n"
                                                "    border: 0px; \n"
                                                "}\n"
@@ -661,7 +624,6 @@ class Ui_MainWindow(object):
                                       "}\n"
                                       "\n"
                                       ".QPushButton {\n"
-                                      "  transition-duration: 0.4s;\n"
                                       "}\n"
                                       "\n"
                                       ".QPushButton:hover {\n"
@@ -679,7 +641,6 @@ class Ui_MainWindow(object):
                                      "}\n"
                                      "\n"
                                      ".QPushButton {\n"
-                                     "  transition-duration: 0.4s;\n"
                                      "}\n"
                                      "\n"
                                      ".QPushButton:hover {\n"
@@ -697,7 +658,6 @@ class Ui_MainWindow(object):
                                               "}\n"
                                               "\n"
                                               ".QPushButton {\n"
-                                              "  transition-duration: 0.4s;\n"
                                               "}\n"
                                               "\n"
                                               ".QPushButton:hover {\n"
@@ -723,7 +683,6 @@ class Ui_MainWindow(object):
         self.complaintNoAddLetterBox.setGeometry(QtCore.QRect(460, 30, 91, 20))
         self.complaintNoAddLetterBox.setStyleSheet("border-bottom:1px solid #eee;\n"
                                                    "border:0;\n"
-                                                   "box-shadow:0 0 15px 4px rgba(0,0,0,0.06);\n"
                                                    "border-radius:5px;\n"
                                                    "height:10px;")
         self.complaintNoAddLetterBox.setObjectName("complaintNoAddLetterBox")
@@ -736,14 +695,8 @@ class Ui_MainWindow(object):
                                                " }\n"
                                                "\n"
                                                "\n"
-                                               "QComboBox::down-arrow {\n"
-                                               "    position: relative;\n"
-                                               "     height: 15px;\n"
-                                               "     width: 15px;\n"
-                                               "    border: 12px;\n"
-                                               " \n"
-                                               "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
-                                               "}\n"
+                                               "QComboBox::down-arrow {position: relative;height: 15px;width: 15px;border: 15px;image: url(\"./AppData/Images/expand.png\")}"
+
                                                "QComboBox::drop-down {\n"
                                                "    border: 0px; \n"
                                                "}\n"
@@ -766,14 +719,8 @@ class Ui_MainWindow(object):
                                                "\n"
                                                "\n"
                                                "\n"
-                                               "QComboBox::down-arrow {\n"
-                                               "    position: relative;\n"
-                                               "     height: 15px;\n"
-                                               "     width: 15px;\n"
-                                               "    border: 12px;\n"
-                                               " \n"
-                                               "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
-                                               "}\n"
+                                               "QComboBox::down-arrow {position: relative;height: 15px;width: 15px;border: 15px;image: url(\"./AppData/Images/expand.png\")}"
+
                                                "QComboBox::drop-down {\n"
                                                "    border: 0px; \n"
                                                "}\n"
@@ -787,7 +734,6 @@ class Ui_MainWindow(object):
         self.subjectLineBox.setGeometry(QtCore.QRect(90, 70, 251, 20))
         self.subjectLineBox.setStyleSheet("border-bottom:1px solid #eee;\n"
                                           "border:0;\n"
-                                          "box-shadow:0 0 15px 4px rgba(0,0,0,0.06);\n"
                                           "border-radius:5px;\n"
                                           "height:10px;")
         self.subjectLineBox.setObjectName("subjectLineBox")
@@ -807,7 +753,6 @@ class Ui_MainWindow(object):
                                          "}\n"
                                          "\n"
                                          ".QPushButton {\n"
-                                         "  transition-duration: 0.4s;\n"
                                          "}\n"
                                          "\n"
                                          ".QPushButton:hover {\n"
@@ -914,7 +859,6 @@ class Ui_MainWindow(object):
         self.complaintNoBillsBox.setGeometry(QtCore.QRect(460, 30, 91, 20))
         self.complaintNoBillsBox.setStyleSheet("border-bottom:1px solid #eee;\n"
                                                "border:0;\n"
-                                               "box-shadow:0 0 15px 4px rgba(0,0,0,0.06);\n"
                                                "border-radius:5px;\n"
                                                "height:10px;")
         self.complaintNoBillsBox.setObjectName("complaintNoBillsBox")
@@ -927,14 +871,8 @@ class Ui_MainWindow(object):
                                            " }\n"
                                            "\n"
                                            "\n"
-                                           "QComboBox::down-arrow {\n"
-                                           "    position: relative;\n"
-                                           "     height: 15px;\n"
-                                           "     width: 15px;\n"
-                                           "    border: 12px;\n"
-                                           " \n"
-                                           "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
-                                           "}\n"
+                                           "QComboBox::down-arrow {position: relative;height: 15px;width: 15px;border: 15px;image: url(\"./AppData/Images/expand.png\")}"
+
                                            "QComboBox::drop-down {\n"
                                            "    border: 0px; \n"
                                            "}\n"
@@ -957,14 +895,8 @@ class Ui_MainWindow(object):
                                            "\n"
                                            "\n"
                                            "\n"
-                                           "QComboBox::down-arrow {\n"
-                                           "    position: relative;\n"
-                                           "     height: 15px;\n"
-                                           "     width: 15px;\n"
-                                           "    border: 12px;\n"
-                                           " \n"
-                                           "    image: url(\"C:/Users/haseeb/AppData/Local/Temp/icons8_expand_arrow_32px.png\")\n"
-                                           "}\n"
+                                           "QComboBox::down-arrow {position: relative;height: 15px;width: 15px;border: 15px;image: url(\"./AppData/Images/expand.png\")}"
+
                                            "QComboBox::drop-down {\n"
                                            "    border: 0px; \n"
                                            "}\n"
@@ -992,7 +924,6 @@ class Ui_MainWindow(object):
         self.ComplainNoApprovalsBox.setGeometry(QtCore.QRect(420, 30, 91, 20))
         self.ComplainNoApprovalsBox.setStyleSheet("border-bottom:1px solid #eee;\n"
                                                   "border:0;\n"
-                                                  "box-shadow:0 0 15px 4px rgba(0,0,0,0.06);\n"
                                                   "border-radius:5px;\n"
                                                   "height:10px;")
         self.ComplainNoApprovalsBox.setObjectName("ComplainNoApprovalsBox")
@@ -1006,7 +937,6 @@ class Ui_MainWindow(object):
                                     "}\n"
                                     "\n"
                                     ".QPushButton {\n"
-                                    "  transition-duration: 0.4s;\n"
                                     "}\n"
                                     "\n"
                                     ".QPushButton:hover {\n"

@@ -41,7 +41,7 @@ class AppController:
         self.ui.deleteServiceBtn.clicked.connect(self.deleteService)
         self.ui.saveBtn.clicked.connect(self.saveBill)
         self.ui.descriptionBox.setCompleter(completer)
-        # self.ui.descriptionBox.textChanged
+        self.ui.descriptionBox.editingFinished.connect(self.textChanged)
 
     def showAddQuotaionTab(self):
         self.ui.stackedWidget.setCurrentIndex(0)
@@ -57,6 +57,10 @@ class AppController:
 
     def showApprovalsTab(self):
         self.ui.stackedWidget.setCurrentIndex(4)
+
+    def textChanged(self):
+        self.ui.rateBox.setText(str(self.dao.getServiceRate(
+            self.ui.descriptionBox.text())))
 
     def addService(self):
 
