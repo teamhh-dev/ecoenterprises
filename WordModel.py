@@ -21,7 +21,7 @@ class WordModel:
 
     def saveBillComlaintInfo(self, complainInfo: ComplaintInfo):
         self.document.merge(
-            date=complainInfo.getDate(), branch_address=complainInfo.getAddress(), inv_id=str(complainInfo.getComplainNo()))
+            date=complainInfo.getDate(), bank_name=complainInfo.getBankName(), branch_address=complainInfo.getAddress(), inv_id=str(complainInfo.getComplainNo()))
 
     def saveBillServices(self, services: Services):
 

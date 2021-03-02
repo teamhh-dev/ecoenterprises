@@ -1,8 +1,9 @@
 
 
 class ComplaintInfo:
-    def __init__(self, invoiceId: str, date: str, address: str, zone: str, complaintNo: int) -> None:
+    def __init__(self, invoiceId: str, date: str, bankName: str, address: str, zone: str, complaintNo: int) -> None:
         self.invoiceId = invoiceId
+        self.bankName = bankName
         self.address = address
         self.zone = zone
         self.date = date
@@ -24,6 +25,9 @@ class ComplaintInfo:
     def getComplainNo(self):
         return self.complaintNo
 
+    def getBankName(self):
+        return self.bankName
+
     def setInvoiceId(self, invoiceId: str):
 
         self.invoiceId = invoiceId
@@ -40,3 +44,6 @@ class ComplaintInfo:
 
     def setComplainNo(self, complaintNo: int):
         self.complaintNo = complaintNo
+
+    def setBankName(self, bankName: str):
+        self.bankName = bankName

@@ -46,6 +46,7 @@ class ExcelModel():
         self.activeWorkSheet['D2'] = complainInfo.getInvoiceId()
         self.activeWorkSheet['A7'] = complainInfo.getDate()
         self.activeWorkSheet['H7'] = complainInfo.getComplainNo()
+        self.activeWorkSheet['A8'] = complainInfo.getBankName()
         self.activeWorkSheet['A9'] = complainInfo.getAddress()
 
     # adding services rows to active worksheet , format them and then adding data in them

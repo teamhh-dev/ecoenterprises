@@ -66,6 +66,7 @@ class AppController:
 
         qty = self.ui.qtySpinBox.value()
         description = self.ui.descriptionBox.text()+" "+self.ui.detailsBox.text()
+        # rate null ko handle krna hai
         rate = float(self.ui.rateBox.text())
         amount = rate*qty
         self.ui.servicesTbl.insertRow(0)
@@ -117,7 +118,7 @@ class AppController:
             1], date.getDate()[2]).strftime("%d/%b/%Y")
 
         complaintInfo = ComplaintInfo(
-            invoiceId, formattedDate, branchAddress.upper()+","+zone+" ZONE", zone, int(comaplaintNo))
+            invoiceId, formattedDate, bankAddress, branchAddress.upper()+","+zone+" ZONE", zone, int(comaplaintNo))
         self.bill.setComplainInfo(complaintInfo)
         validation = self.validate()
         if(validation['status']):
@@ -170,7 +171,8 @@ class AppController:
 
             self.wordModel.addBill(
                 Bill(deepcopy(self.bill.getComplainInfo()), deepcopy(self.bill.getServices())))
-
+            self.dao.insertData(
+                Bill(deepcopy(self.bill.getComplainInfo()), deepcopy(self.bill.getServices())))
             self.ui.servicesTbl.clearContents()
             self.bill.getServices().getServicesList().clear()
             self.ui.servicesTbl.setRowCount(0)

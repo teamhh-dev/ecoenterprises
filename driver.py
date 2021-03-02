@@ -5,6 +5,7 @@ from Bill import *
 from ExcelModel import *
 import datetime
 from WordModel import *
+from Database import *
 # if __name__ == "__main__":
 #     app = QApplication(sys.argv)
 #     window = HomePageView()
@@ -15,13 +16,13 @@ from WordModel import *
 myList = [
     {
         'description': "PCB kit Repair with aeroflex installation outdoor",
-        'qty': '45rft',
+        'qty': 45,
         'rate': 2000,
         'amount': 20000
     },
     {
         'description': "Gas charging",
-        'qty': '45rft',
+        'qty': 45,
         'rate': 2000,
         'amount': 23445.78
     }
@@ -40,12 +41,15 @@ myList = [
 ]
 
 
-bill = Bill(ComplaintInfo("test", str(datetime.datetime.now().strftime("%d/%b/%Y")),
-                          "sample  Branch,sample Zone", "LHR", 2), Services(myList))
+bill = Bill(ComplaintInfo("test", str(datetime.datetime.now().strftime("%d/%b/%Y")), "BKL",
+                          "sample  Branch,sample Zone", "LHR", 8), Services(myList))
 
 # eM = ExcelModel()
 
 # eM.addBill(bill)
 
-wM = WordModel()
-wM.addBill(bill)
+# wM = WordModel()
+# wM.addBill(bill)
+
+db = Database()
+db.insertData(bill)
