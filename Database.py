@@ -45,6 +45,10 @@ class Database:
             return row[0]
         return 0
 
+    def getConveyenceCharges(self) -> str:
+        # yahan database sy data uthaya jae ga
+        return "780"
+
     def insertData(self, bill: Bill):
         self.addComplaint(bill.getComplainInfo())
         self.addQuotation(bill)

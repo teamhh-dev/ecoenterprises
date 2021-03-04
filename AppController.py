@@ -1,9 +1,10 @@
 from copy import deepcopy
 import sys
 from warnings import catch_warnings
-
+import PyQt5
+import datetime
 from PyQt5.QtCore import QDateTime, Qt, QtFatalMsg
-from PyQt5.QtWidgets import QMessageBox, QTableWidgetItem, QTableWidgetSelectionRange, QCompleter
+from PyQt5.QtWidgets import QMessageBox, QTableWidgetItem, QTableWidgetSelectionRange, QCompleter, QDialog, QPushButton, QComboBox
 from PyQt5.QtGui import QIcon
 
 from AppView import *
@@ -42,6 +43,11 @@ class AppController:
         self.ui.saveBtn.clicked.connect(self.saveBill)
         self.ui.descriptionBox.setCompleter(completer)
         self.ui.descriptionBox.editingFinished.connect(self.textChanged)
+        self.ui.conveyenceChargesBox.setText(self.dao.getConveyenceCharges())
+        self.ui.visitTypeComBox.currentIndexChanged.connect(
+            self.visitTypeChangeAction)
+        self.ui.actionCreate_Files_and_Folders.triggered.connect(
+            self.openFilesAndFoldersDialog)
 
     def showAddQuotaionTab(self):
         self.ui.stackedWidget.setCurrentIndex(0)
@@ -62,9 +68,59 @@ class AppController:
         self.ui.rateBox.setText(str(self.dao.getServiceRate(
             self.ui.descriptionBox.text())))
 
+    def visitTypeChangeAction(self):
+        if self.ui.visitTypeComBox.currentText() == "Visit":
+            self.ui.conveyenceChargesBox.setText("780")
+        else:
+            self.ui.conveyenceChargesBox.setText("0")
+
+    def openFilesAndFoldersDialog(self):
+        months = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+                  'August', 'September', 'October', 'November', 'December']
+        folderNameDialog = QDialog()
+        folderNameDialog.setGeometry(500, 500, 300, 120)
+        monthComBox = QComboBox(folderNameDialog)
+        monthComBox.addItems(
+            months)
+
+        monthComBox.move(60, 50)
+        okButton = QPushButton("create", folderNameDialog)
+        okButton.clicked.connect(
+            lambda: self.generateFilesAndFolders(folderNameDialog, monthComBox.currentText()))
+
+        okButton.move(150, 50)
+
+        folderNameDialog.setWindowTitle("Select Month...")
+        folderNameDialog.setWindowModality(Qt.ApplicationModal)
+        folderNameDialog.exec_()
+
+    def generateFilesAndFolders(self, dialogBox: QDialog, month: str):
+        # print(month)
+        zones = ["LHR", "GUJ", "KPK", "FSD"]
+
+        dialogBox.close()
+        year = datetime.datetime.now().strftime("%Y")
+        # print(year)
+        current_directory = os.getcwd()
+        parentDirectory = "User Data"
+        mainFolderName = month.upper()+"_"+year
+
+        print(mainFolderName)
+        mainFolderPath = os.path.join(
+            current_directory, parentDirectory, mainFolderName)
+        os.mkdir(mainFolderPath)
+        for zone in zones:
+            subFolderName = "PDF "+month.upper()[0:3] + " "+zone
+            print(subFolderName)
+            subFolderPath = os.path.join(mainFolderPath, subFolderName)
+            os.mkdir(subFolderPath)
+        # mainFolderName = month.upper()[0:3]+year
+
     def addService(self):
 
         qty = self.ui.qtySpinBox.value()
+        if self.ui.descriptionBox.text() == "" or self.ui.rateBox.text() == "":
+            return
         description = self.ui.descriptionBox.text()+" "+self.ui.detailsBox.text()
         # rate null ko handle krna hai
         rate = float(self.ui.rateBox.text())
@@ -85,7 +141,7 @@ class AppController:
     def validate(self) -> dict:
         flag = True
         messages = []
-        if(self.ui.complaintNoBox.text() == ""):
+        if(self.ui.complaintNoBox.text() == "" or not self.ui.complaintNoBox.text().isnumeric()):
             flag = False
             messages.append("Invalid complaint number")
         if(self.ui.branchAddressBox.text() == ""):

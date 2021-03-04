@@ -245,6 +245,8 @@ class Ui_MainWindow(object):
                                          "height:10px;")
         self.chargesQtyBox.setText("")
         self.chargesQtyBox.setObjectName("chargesQtyBox")
+        self.chargesQtyBox.setPlaceholderText("Qty")
+
         self.conveyenceChargesBox = QtWidgets.QLineEdit(self.addQuoationFrame)
         self.conveyenceChargesBox.setGeometry(QtCore.QRect(442, 140, 81, 21))
         self.conveyenceChargesBox.setStyleSheet("border-bottom:1px solid #eee;\n"
@@ -253,6 +255,8 @@ class Ui_MainWindow(object):
                                                 "border-radius:5px;\n"
                                                 "height:10px;")
         self.conveyenceChargesBox.setObjectName("conveyenceChargesBox")
+        self.conveyenceChargesBox.setPlaceholderText("Amount")
+
         self.servicesLbl = QtWidgets.QLabel(self.addQuoationFrame)
         self.servicesLbl.setGeometry(QtCore.QRect(20, 160, 81, 31))
         self.servicesLbl.setStyleSheet("border: 2px solid #4CAF50; \n"
