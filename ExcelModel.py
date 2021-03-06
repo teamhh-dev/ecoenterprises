@@ -20,8 +20,14 @@ class ExcelModel():
 
     #  Selecting Excel file in which data has to stored
     def selectExcelFile(self, zone: str):
+        year = datetime.datetime.now().strftime("%Y")
+        month = datetime.datetime.now().strftime("%m")
+        excelFileName = "Monthly Report "+zone.upper()+" " + \
+            "01-"+"{:0>2d}".format(int(month))+"-"+year+".xlsx"
+        # self.fileName = 'User Data/Feburary/'+zone+'.xlsx'
+        monthFullName = datetime.datetime.now().strftime("%B")
+        self.fileName = 'User Data/'+monthFullName.upper()+"_"+year + "/"+excelFileName
 
-        self.fileName = 'User Data/Feburary/'+zone+'.xlsx'
         self.workbook = load_workbook(filename=self.fileName)
         self.worksheet = self.workbook['template']
 
@@ -38,6 +44,7 @@ class ExcelModel():
         self.createWorksheet(bill.getComplainInfo().getInvoiceId())
         self.saveBillComlaintInfo(bill.getComplainInfo())
         self.saveBillServices(bill.getServices())
+
         self.workbook.save(filename=self.fileName)
 
     # Adding essential information about complaint in the worksheet

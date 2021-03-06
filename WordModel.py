@@ -4,20 +4,22 @@ from datetime import date
 import os
 from Bill import *
 from mailmerge import MailMerge
+import datetime
 
 
 class WordModel:
     def __init__(self):
-        self.templateFile = "User Data/quotation.docx"
+        self.templateFile = "AppData/Templates/Word.docx"
         self.document = MailMerge(self.templateFile)
-        self.toFileName = "User Data/Feburary/"
+        self.toFileName = "User Data/"
 
     def addBill(self, bill: Bill):
         self.saveBillComlaintInfo(bill.getComplainInfo())
         self.saveBillServices(bill.getServices())
-
+        year = datetime.datetime.now().strftime("%Y")
+        month = datetime.datetime.now().strftime("%B")
         self.saveToFile(
-            self.toFileName+bill.getComplainInfo().getZone()+"/"+bill.getComplainInfo().getInvoiceId())
+            self.toFileName+month+"_"+year+"/"+"PDF "+month.upper()[0:3]+" "+bill.getComplainInfo().getZone()+"/"+bill.getComplainInfo().getInvoiceId())
 
     def saveBillComlaintInfo(self, complainInfo: ComplaintInfo):
         self.document.merge(
@@ -36,10 +38,11 @@ class WordModel:
 
     def saveToFile(self, fileName: str):
         print(fileName)
+
         self.document.write(fileName+".docx")
         self.templateFile = "User Data/quotation.docx"
         self.document = MailMerge(self.templateFile)
-        self.toFileName = "User Data/Feburary/"
+        self.toFileName = "User Data/"
 
 # template = "Invoice.docx"
 

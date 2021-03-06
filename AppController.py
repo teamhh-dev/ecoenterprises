@@ -3,6 +3,8 @@ import sys
 from warnings import catch_warnings
 import PyQt5
 import datetime
+import shutil
+
 from PyQt5.QtCore import QDateTime, Qt, QtFatalMsg
 from PyQt5.QtWidgets import QMessageBox, QTableWidgetItem, QTableWidgetSelectionRange, QCompleter, QDialog, QPushButton, QComboBox
 from PyQt5.QtGui import QIcon
@@ -86,7 +88,7 @@ class AppController:
         monthComBox.move(60, 50)
         okButton = QPushButton("create", folderNameDialog)
         okButton.clicked.connect(
-            lambda: self.generateFilesAndFolders(folderNameDialog, monthComBox.currentText()))
+            lambda: self.generateFilesAndFolders(folderNameDialog, monthComBox.currentText(), months.index(monthComBox.currentText())+1))
 
         okButton.move(150, 50)
 
@@ -94,7 +96,7 @@ class AppController:
         folderNameDialog.setWindowModality(Qt.ApplicationModal)
         folderNameDialog.exec_()
 
-    def generateFilesAndFolders(self, dialogBox: QDialog, month: str):
+    def generateFilesAndFolders(self, dialogBox: QDialog, month: str, monthNo: str):
         # print(month)
         zones = ["LHR", "GUJ", "KPK", "FSD"]
 
@@ -114,6 +116,12 @@ class AppController:
             print(subFolderName)
             subFolderPath = os.path.join(mainFolderPath, subFolderName)
             os.mkdir(subFolderPath)
+            excelFileName = "Monthly Report "+zone+" " + \
+                "01-"+"{:0>2d}".format(monthNo)+"-"+year
+            source = "./AppData/Templates/Excel.xlsx"
+            destination = "./User Data/"+mainFolderName+"/"+excelFileName+".xlsx"
+            print(source, ":", destination)
+            shutil.copy(source, destination)
         # mainFolderName = month.upper()[0:3]+year
 
     def addService(self):
@@ -213,7 +221,6 @@ class AppController:
 
     # def updateText(self):
     #     self.ui.servicesTbl.
-
 
     def saveBill(self):
         validation = self.validate()
