@@ -9,7 +9,8 @@ from PyQt5.QtCore import QDateTime, Qt, QtFatalMsg
 from PyQt5.QtWidgets import QMessageBox, QTableWidgetItem, QTableWidgetSelectionRange, QCompleter, QDialog, QPushButton, QComboBox
 from PyQt5.QtGui import QIcon
 
-from AppView import *
+# from AppView import *
+from GuiView import *
 from ExcelModel import *
 from WordModel import *
 from Database import *
@@ -27,6 +28,10 @@ class AppController:
         self.excelModel = ExcelModel()
         self.wordModel = WordModel()
         self.bill = Bill(None, Services([]))
+        #  yaha mjhy rakhni chyeh k ni btana zaror
+        self.serviceTotalValue = 0
+        self.taxValue = 0
+        self.totalAmountValue = 0
 
         sys.exit(self.app.exec_())
 
@@ -122,10 +127,10 @@ class AppController:
             destination = "./User Data/"+mainFolderName+"/"+excelFileName+".xlsx"
             print(source, ":", destination)
             shutil.copy(source, destination)
+
         # mainFolderName = month.upper()[0:3]+year
 
-    def addService(self):
-
+    def addService(self) -> float:
         qty = self.ui.qtySpinBox.value()
         if self.ui.descriptionBox.text() == "" or self.ui.rateBox.text() == "":
             return
@@ -145,6 +150,9 @@ class AppController:
             'amount': amount
         }
         self.bill.getServices().getServicesList().append(service)
+        # Calculatin service total, tax and total amount
+        self.serviceTotalValue = self.serviceTotalValue + \
+            float(service['amount'])
 
     def validate(self) -> dict:
         flag = True
@@ -157,10 +165,16 @@ class AppController:
             messages.append("Invalid bank address")
         if(self.ui.conveyenceChargesBox.text() == ""):
             flag = False
-            messages.append("Invalid conveyence charges")
+            messages.append("Please enter the Convenyence Charges")
         if(self.ui.chargesQtyBox.text() == ""):
             flag = False
-            messages.append("Invalid charges qunatity")
+            messages.append("Please enter some charges quantity")
+        if(self.ui.descriptionBox.text() == ""):
+            flag = False
+            messages.append("Enter some valid service name")
+        if(self.ui.rateBox.text() == ""):
+            flag = False
+            messages.append("Rate can not be zero ,enter value")
         # if(len(self.bill.getServices().getServicesList()) == 0):
         #     flag = False
 
@@ -187,6 +201,7 @@ class AppController:
         validation = self.validate()
         if(validation['status']):
             self.ui.saveBtn.setDisabled(False)
+            self.showServiceTotalAndTaxAndTotalAmount()
 
         else:
             msg = QMessageBox()
@@ -200,6 +215,23 @@ class AppController:
             msg.setDetailedText(detailedMessage)
             msg.setStandardButtons(QMessageBox.Ok)
             msg.exec_()
+
+    def showServiceTotalAndTaxAndTotalAmount(self):
+        self.calculateTotalAmountAndTax()
+        self.ui.ServiceTotalValueLbl.setText(
+            str(round(self.serviceTotalValue, 2)))
+        self.ui.taxValueLbl.setText(str(round(self.taxValue, 2)))
+        self.ui.totalAmountValueLbl.setText(
+            str(round(self.totalAmountValue, 2)))
+
+    def calculateTotalAmountAndTax(self):
+        self.taxValue = self.serviceTotalValue * 0.16
+        extraCharges = float(self.ui.chargesQtyBox.text()) * \
+            float(self.ui.conveyenceChargesBox.text())
+        self.totalAmountValue = round(
+            self.serviceTotalValue, 2) + round(self.taxValue, 2) + round(extraCharges, 2)
+
+        # print(self.taxValue, self.totalAmountValue)
 
     def deleteService(self):
         removeIndex = len(self.bill.getServices().getServicesList()
