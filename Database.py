@@ -95,6 +95,15 @@ class Database:
         self.appCursor.execute(
             "INSERT INTO `ecodb1`.`bills` (`invoice_id`, `quotation_id`) VALUES (%s,%s)", (bill.getComplainInfo().getInvoiceId(), bill.getComplainInfo().getComplainNo(),))
 
+    def getInvoiceId(self, zone: str) -> int:
+        self.appCursor.execute(
+            "SELECT count(complaint_number) from ecodb1.complaints where bank_zone=upper(%s)", (zone,))
+        invoiceId = 0
+        for row in self.appCursor:
+            invoiceId = row[0]
+
+        return invoiceId+1
+
 
 if __name__ == "__main__":
     db = Database()

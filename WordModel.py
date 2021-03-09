@@ -15,7 +15,9 @@ class WordModel:
 
     def addBill(self, bill: Bill):
         self.saveBillComlaintInfo(bill.getComplainInfo())
-        self.saveBillServices(bill.getServices())
+
+        self.saveBillServices(bill.getServices(), bill.getAdditionalCharges())
+        self.saveAdditionalCharges(bill.getAdditionalCharges())
         year = datetime.datetime.now().strftime("%Y")
         month = datetime.datetime.now().strftime("%B")
         self.saveToFile(
@@ -25,16 +27,31 @@ class WordModel:
         self.document.merge(
             date=complainInfo.getDate(), bank_name=complainInfo.getBankName(), branch_address=complainInfo.getAddress(), inv_id=str(complainInfo.getComplainNo()))
 
-    def saveBillServices(self, services: Services):
-
+    def saveBillServices(self, services: Services, additionalCharges: AdditionalCharges):
+        serviceTotal = 0
+        Tax = 0
+        totalAmount = 0
         for service in services.getServicesList():
-
+            serviceTotal = serviceTotal + service['amount']
             service['qty'] = str(service['qty'])
             service['rate'] = str(service['rate'])
             service['amount'] = str(service['amount'])
 
+        Tax = serviceTotal*0.16
+        chargesAmount = additionalCharges.getPersonQty(
+        ) * additionalCharges.getPerPersonRate()
+        totalAmount = serviceTotal + Tax + chargesAmount
+
         self.document.merge_rows(
             'description', list(services.getServicesList()))
+        self.document.merge(servicestotal=str(serviceTotal),
+                            tax=str(Tax), totalamount=str(totalAmount))
+
+    def saveAdditionalCharges(self, additionalCharges: AdditionalCharges):
+        chargesAmount = additionalCharges.getPersonQty(
+        ) * additionalCharges.getPerPersonRate()
+        self.document.merge(type=additionalCharges.getType() + " Charges", chargesqty=str(additionalCharges.getPersonQty()),
+                            chargesrate=str(additionalCharges.getPerPersonRate()), chargesamount=str(chargesAmount))
 
     def saveToFile(self, fileName: str):
         print(fileName)

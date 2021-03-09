@@ -17,8 +17,11 @@ class ExcelModel():
         self.firstRow = 0
         self.service_len = 0
         self.sr_number = 0
-
+        self.chargesQtyCell = None
+        self.visitTypeCell = None
+        self.visitRatecell = None
     #  Selecting Excel file in which data has to stored
+
     def selectExcelFile(self, zone: str):
         year = datetime.datetime.now().strftime("%Y")
         month = datetime.datetime.now().strftime("%m")
@@ -44,6 +47,7 @@ class ExcelModel():
         self.createWorksheet(bill.getComplainInfo().getInvoiceId())
         self.saveBillComlaintInfo(bill.getComplainInfo())
         self.saveBillServices(bill.getServices())
+        self.saveAdditionalCharges(bill.getAdditionalCharges())
 
         self.workbook.save(filename=self.fileName)
 
@@ -62,14 +66,14 @@ class ExcelModel():
         self.firstRow = 16
 
         self.service_len = len(services.getServicesList())-2
-        if not self.service_len == 0 and not self.service_len == -1:
+        if not self.service_len == 0 and not self.service_len == -1 and not self.service_len == -2:
             self.activeWorkSheet.insert_rows(17, self.service_len)
         row = list(self.activeWorkSheet.rows)[15]
         i = 0
         j = self.firstRow
 
     # Adding service rows to active worksheet
-        if not self.service_len == 0 and not self.service_len == -1:
+        if not self.service_len == 0 and not self.service_len == -1 and not self.service_len == -2:
             while j <= self.firstRow + self.service_len:
 
                 for cell in row:
@@ -99,16 +103,29 @@ class ExcelModel():
             self.firstRow = self.firstRow + 1
             self.sr_number = self.sr_number + 1
     # Updating the formulas
-        if not self.service_len == 0 and not self.service_len == -1:
+        if not self.service_len == 0 and not self.service_len == -1 and not self.service_len == -2:
+            chargesFormula = "=E{rowno}*G{rowno}".format(rowno=j+3)
             self.activeWorkSheet["H"+str(j+1)] = "=SUM(H16:H"+str(j)+")"
             self.activeWorkSheet["H" + str(j+2)] = "=H" + str(j+1)+"*0.16"
             self.activeWorkSheet["H" +
                                  str(j+5)] = "=SUM(H" + str(j+1)+":H"+str(j+4)+")"
-
+            # self.activeWorkSheet["H"+str(j+3)] = "=E" + \
+            #     str(j+3)+"*"+"G"+str(j+3)
+            self.activeWorkSheet["H"+str(j+3)] = chargesFormula
     # Calling the formatting cells function
         self.formattingCells(16)
 
-    # Perform formatting cells
+    def saveAdditionalCharges(self, additionalCharges: AdditionalCharges):
+        print("ok")
+        print(self.chargesQtyCell)
+        # Perform formatting cells
+        self.activeWorkSheet[self.chargesQtyCell] = additionalCharges.getPersonQty(
+        )
+        self.activeWorkSheet[self.visitTypeCell] = additionalCharges.getType(
+        )+" Charges"
+        self.activeWorkSheet[self.visitRatecell] = additionalCharges.getPerPersonRate(
+        )
+
     def formattingCells(self, rowNo: int):
         self.firstRow = 16
         while rowNo <= (self.firstRow+self.service_len+1) or rowNo == 16 or rowNo == 17:
@@ -131,3 +148,6 @@ class ExcelModel():
                 self.activeWorkSheet.row_dimensions[rowNo].height = 31.50
             # fixed
             rowNo = rowNo + 1
+        self.chargesQtyCell = 'E'+str(rowNo+2)
+        self.visitTypeCell = 'B'+str(rowNo+2)
+        self.visitRatecell = 'G'+str(rowNo+2)

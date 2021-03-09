@@ -25,13 +25,14 @@ class AppController:
         self.ui.setupUi(self.MainWindow)
         self.initHandlers()
         self.MainWindow.show()
+        self.ui.stackedWidget.setCurrentIndex(0)
         self.excelModel = ExcelModel()
         self.wordModel = WordModel()
-        self.bill = Bill(None, Services([]))
+        self.bill = Bill(None, Services([]), None)
         #  yaha mjhy rakhni chyeh k ni btana zaror
-        self.serviceTotalValue = 0
-        self.taxValue = 0
-        self.totalAmountValue = 0
+        # self.serviceTotalValue = 0
+        # self.taxValue = 0
+        # self.totalAmountValue = 0
 
         sys.exit(self.app.exec_())
 
@@ -131,13 +132,22 @@ class AppController:
         # mainFolderName = month.upper()[0:3]+year
 
     def addService(self) -> float:
+        # if(self.ui.rftCheckBox.isEnabled()):
+        #     qty = str(self.ui.qtySpinBox.value())+"rft"
+        # else:
         qty = self.ui.qtySpinBox.value()
         if self.ui.descriptionBox.text() == "" or self.ui.rateBox.text() == "":
             return
         description = self.ui.descriptionBox.text()+" "+self.ui.detailsBox.text()
-        # rate null ko handle krna hai
+
         rate = float(self.ui.rateBox.text())
         amount = rate*qty
+        if(self.ui.rftCheckBox.isChecked()):
+
+            qty = str(self.ui.qtySpinBox.value())+"rft"
+        else:
+            qty = self.ui.qtySpinBox.value()
+
         self.ui.servicesTbl.insertRow(0)
         self.ui.servicesTbl.setItem(0, 0, QTableWidgetItem(description))
         self.ui.servicesTbl.setItem(0, 1, QTableWidgetItem(str(qty)))
@@ -151,8 +161,8 @@ class AppController:
         }
         self.bill.getServices().getServicesList().append(service)
         # Calculatin service total, tax and total amount
-        self.serviceTotalValue = self.serviceTotalValue + \
-            float(service['amount'])
+        # self.serviceTotalValue = self.serviceTotalValue + \
+        #     float(service['amount'])
 
     def validate(self) -> dict:
         flag = True
@@ -163,18 +173,18 @@ class AppController:
         if(self.ui.branchAddressBox.text() == ""):
             flag = False
             messages.append("Invalid bank address")
-        if(self.ui.conveyenceChargesBox.text() == ""):
+        if(self.ui.conveyenceChargesBox.text() == "") and not self.ui.conveyenceChargesBox.text().isnumeric():
             flag = False
             messages.append("Please enter the Convenyence Charges")
-        if(self.ui.chargesQtyBox.text() == ""):
+        if(self.ui.chargesQtyBox.text() == "") or not self.ui.chargesQtyBox.text().isnumeric():
             flag = False
             messages.append("Please enter some charges quantity")
-        if(self.ui.descriptionBox.text() == ""):
-            flag = False
-            messages.append("Enter some valid service name")
-        if(self.ui.rateBox.text() == ""):
-            flag = False
-            messages.append("Rate can not be zero ,enter value")
+        # if(self.ui.descriptionBox.text() == ""):
+        #     flag = False
+        #     messages.append("Enter some valid service name")
+        # if not (self.ui.rateBox.text().isdecimal()) and not (self.ui.rateBox.text() == ""):
+        #     flag = False
+        #     messages.append("Rate can not be zero ,enter value")
         # if(len(self.bill.getServices().getServicesList()) == 0):
         #     flag = False
 
@@ -185,7 +195,8 @@ class AppController:
         date = self.ui.complaintDateBox.date()
         bankAddress = self.ui.bankComBox.currentText()
         comaplaintNo = self.ui.complaintNoBox.text()
-        temp = "{:0>3d}".format(int(comaplaintNo))
+        temp = "{:0>3d}".format(int(self.dao.getInvoiceId(zone)))
+
         # yahan temp nahi ana yahan number change hona jo invoice id ka hoga
         invoiceId = zone[0]+"B"+temp+"-" + \
             "{:0>2d}".format(
@@ -198,6 +209,8 @@ class AppController:
         complaintInfo = ComplaintInfo(
             invoiceId, formattedDate, bankAddress, branchAddress.upper()+","+zone+" ZONE", zone, int(comaplaintNo))
         self.bill.setComplainInfo(complaintInfo)
+        self.bill.setAdditionalCharges(AdditionalCharges(
+            self.ui.visitTypeComBox.currentText(), int(self.ui.chargesQtyBox.text()), int(self.ui.conveyenceChargesBox.text())))
         validation = self.validate()
         if(validation['status']):
             self.ui.saveBtn.setDisabled(False)
@@ -217,20 +230,30 @@ class AppController:
             msg.exec_()
 
     def showServiceTotalAndTaxAndTotalAmount(self):
-        self.calculateTotalAmountAndTax()
+        allTotals = self.calculatesServiceTotalAndTaxAndTotalAmount()
+        # if not len(self.bill.getServices().getServicesList()) == 0:
         self.ui.ServiceTotalValueLbl.setText(
-            str(round(self.serviceTotalValue, 2)))
-        self.ui.taxValueLbl.setText(str(round(self.taxValue, 2)))
+            str(round(allTotals['servicetotal'], 2)))
+        self.ui.taxValueLbl.setText(str(round(allTotals['taxvalue'], 2)))
         self.ui.totalAmountValueLbl.setText(
-            str(round(self.totalAmountValue, 2)))
+            str(round(allTotals['totalamount'], 2)))
+        # else:
+        #     self.ui.ServiceTotalValueLbl.setText(
+        #         str(round(allTotals['servicetotal'], 2)))
+        #     self.ui.taxValueLbl.setText(str(round(allTotals['taxvalue'], 2)))
+        #     self.ui.totalAmountValueLbl.setText(
+        #         str(round(allTotals['totalamount'], 2)))
 
-    def calculateTotalAmountAndTax(self):
-        self.taxValue = self.serviceTotalValue * 0.16
+    def calculatesServiceTotalAndTaxAndTotalAmount(self):
+        serviceTotalValue = 0
+        for service in self.bill.getServices().getServicesList():
+            serviceTotalValue = serviceTotalValue + service['amount']
+        taxValue = serviceTotalValue * 0.16
         extraCharges = float(self.ui.chargesQtyBox.text()) * \
             float(self.ui.conveyenceChargesBox.text())
-        self.totalAmountValue = round(
-            self.serviceTotalValue, 2) + round(self.taxValue, 2) + round(extraCharges, 2)
-
+        totalAmountValue = round(
+            serviceTotalValue, 2) + round(taxValue, 2) + round(extraCharges, 2)
+        return {'servicetotal': serviceTotalValue, 'taxvalue': taxValue, 'totalamount': totalAmountValue}
         # print(self.taxValue, self.totalAmountValue)
 
     def deleteService(self):
@@ -240,38 +263,35 @@ class AppController:
         self.bill.getServices().getServicesList().pop(removeIndex)
         self.ui.servicesTbl.removeRow(self.ui.servicesTbl.currentRow())
 
-
-#  yar yeh dekho update ni ho rah text table me
-
-    # def updateItems(self):
-    #     self.ui.servicesTbl.setItem(self.ui.servicesTbl.currentRow(), self.ui.servicesTbl.currentColumn(), self.putText())
-
-    # def putItem(self, text, flags):
-    #     tableWidgetItem = QTableWidgetItem(self.ui.servicesTbl.currentItem().text())
-    #     tableWidgetItem.text = self.ui.servicesTbl.cellPressed.connect(self.updateText)
-    #     return tableWidgetItem
-
-    # def updateText(self):
-    #     self.ui.servicesTbl.
-
     def saveBill(self):
         validation = self.validate()
         if(validation['status']):
             self.ui.saveBtn.setDisabled(True)
             billComplaintInfo = self.bill.getComplainInfo()
             billServices = self.bill.getServices()
+            try:
 
-            self.excelModel.addBill(
-                Bill(deepcopy(self.bill.getComplainInfo()), deepcopy(self.bill.getServices())))
+                self.excelModel.addBill(
+                    Bill(deepcopy(self.bill.getComplainInfo()), deepcopy(self.bill.getServices()), deepcopy(self.bill.getAdditionalCharges())))
 
-            self.wordModel.addBill(
-                Bill(deepcopy(self.bill.getComplainInfo()), deepcopy(self.bill.getServices())))
-            self.dao.insertData(
-                Bill(deepcopy(self.bill.getComplainInfo()), deepcopy(self.bill.getServices())))
-            self.ui.servicesTbl.clearContents()
-            self.bill.getServices().getServicesList().clear()
-            self.ui.servicesTbl.setRowCount(0)
+                self.wordModel.addBill(
+                    Bill(deepcopy(self.bill.getComplainInfo()), deepcopy(self.bill.getServices()), deepcopy(self.bill.getAdditionalCharges())))
+                self.dao.insertData(
+                    Bill(deepcopy(self.bill.getComplainInfo()), deepcopy(self.bill.getServices()), deepcopy(self.bill.getAdditionalCharges())))
+                self.ui.servicesTbl.clearContents()
+                self.bill.getServices().getServicesList().clear()
+                self.ui.servicesTbl.setRowCount(0)
+            except Exception as ex:
+                print(ex)
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Critical)
+                msg.setText(
+                    "Check Current Month Folder Exists OR Correct Comaplaint No")
+                msg.setWindowTitle("Invalid Data")
+                msg.setWindowIcon(QIcon("./AppData/Images/error.ico"))
 
+                msg.setStandardButtons(QMessageBox.Ok)
+                msg.exec_()
         else:
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)

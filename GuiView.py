@@ -97,8 +97,7 @@ class Ui_MainWindow(object):
         self.addQuoationFrame.setGeometry(QtCore.QRect(0, 11, 561, 581))
         self.addQuoationFrame.setCursor(QtGui.QCursor(QtCore.Qt.IBeamCursor))
         self.addQuoationFrame.setFocusPolicy(QtCore.Qt.NoFocus)
-        self.addQuoationFrame.setStyleSheet("\n"
-"")
+        self.addQuoationFrame.setStyleSheet("")
         self.addQuoationFrame.setFrameShape(QtWidgets.QFrame.Panel)
         self.addQuoationFrame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.addQuoationFrame.setLineWidth(2)
@@ -280,7 +279,7 @@ class Ui_MainWindow(object):
         self.descriptionLbl.setGeometry(QtCore.QRect(20, 210, 121, 16))
         self.descriptionLbl.setObjectName("descriptionLbl")
         self.descriptionBox = QtWidgets.QLineEdit(self.addQuoationFrame)
-        self.descriptionBox.setGeometry(QtCore.QRect(140, 210, 231, 20))
+        self.descriptionBox.setGeometry(QtCore.QRect(94, 210, 230, 20))
         self.descriptionBox.setStyleSheet("border-bottom:1px solid #eee;\n"
 "border:0;\n"
 "border-radius:5px;\n"
@@ -297,10 +296,10 @@ class Ui_MainWindow(object):
         self.detailsLbl.setGeometry(QtCore.QRect(24, 250, 47, 16))
         self.detailsLbl.setObjectName("detailsLbl")
         self.qtyLbl = QtWidgets.QLabel(self.addQuoationFrame)
-        self.qtyLbl.setGeometry(QtCore.QRect(390, 210, 61, 16))
+        self.qtyLbl.setGeometry(QtCore.QRect(341, 209, 52, 16))
         self.qtyLbl.setObjectName("qtyLbl")
         self.qtySpinBox = QtWidgets.QSpinBox(self.addQuoationFrame)
-        self.qtySpinBox.setGeometry(QtCore.QRect(450, 211, 71, 21))
+        self.qtySpinBox.setGeometry(QtCore.QRect(410, 209, 71, 20))
         self.qtySpinBox.setStyleSheet("QSpinBox{\n"
 "qproperty-alignment: AlignCenter;}\n"
 "QSpinBox::up-arrow {\n"
@@ -348,6 +347,7 @@ class Ui_MainWindow(object):
 "}\n"
 "")
         self.qtySpinBox.setButtonSymbols(QtWidgets.QAbstractSpinBox.PlusMinus)
+        self.qtySpinBox.setMaximum(1000)
         self.qtySpinBox.setProperty("value", 1)
         self.qtySpinBox.setObjectName("qtySpinBox")
         self.addServiceBtn = QtWidgets.QPushButton(self.addQuoationFrame)
@@ -503,6 +503,9 @@ class Ui_MainWindow(object):
         self.totalAmountValueLbl.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.totalAmountValueLbl.setAlignment(QtCore.Qt.AlignCenter)
         self.totalAmountValueLbl.setObjectName("totalAmountValueLbl")
+        self.rftCheckBox = QtWidgets.QCheckBox(self.addQuoationFrame)
+        self.rftCheckBox.setGeometry(QtCore.QRect(491, 209, 42, 17))
+        self.rftCheckBox.setObjectName("rftCheckBox")
         self.stackedWidget.addWidget(self.addQuoationPg)
         self.page_4 = QtWidgets.QWidget()
         self.page_4.setObjectName("page_4")
@@ -767,21 +770,21 @@ class Ui_MainWindow(object):
         self.zoneAddLetterComBox.addItem("")
         self.zoneAddLetterComBox.addItem("")
         self.subjectLineBox = QtWidgets.QLineEdit(self.frame_12)
-        self.subjectLineBox.setGeometry(QtCore.QRect(90, 70, 251, 20))
+        self.subjectLineBox.setGeometry(QtCore.QRect(90, 160, 251, 20))
         self.subjectLineBox.setStyleSheet("border-bottom:1px solid #eee;\n"
 "border:0;\n"
 "border-radius:5px;\n"
 "height:10px;")
         self.subjectLineBox.setObjectName("subjectLineBox")
         self.subjectLbl = QtWidgets.QLabel(self.frame_12)
-        self.subjectLbl.setGeometry(QtCore.QRect(30, 70, 51, 20))
+        self.subjectLbl.setGeometry(QtCore.QRect(30, 160, 51, 20))
         font = QtGui.QFont()
         font.setFamily("MS Shell Dlg 2")
         font.setPointSize(8)
         self.subjectLbl.setFont(font)
         self.subjectLbl.setObjectName("subjectLbl")
         self.letterTxt = QtWidgets.QTextEdit(self.frame_12)
-        self.letterTxt.setGeometry(QtCore.QRect(40, 120, 491, 391))
+        self.letterTxt.setGeometry(QtCore.QRect(40, 250, 491, 261))
         self.letterTxt.setObjectName("letterTxt")
         self.saveLetterBtn = QtWidgets.QPushButton(self.frame_12)
         self.saveLetterBtn.setGeometry(QtCore.QRect(400, 520, 131, 31))
@@ -798,6 +801,18 @@ class Ui_MainWindow(object):
 "  color: white;\n"
 "}")
         self.saveLetterBtn.setObjectName("saveLetterBtn")
+        self.branchAddressAddLetterBox = QtWidgets.QLineEdit(self.frame_12)
+        self.branchAddressAddLetterBox.setGeometry(QtCore.QRect(150, 90, 381, 21))
+        self.branchAddressAddLetterBox.setStyleSheet("border-bottom:1px solid #eee;\n"
+"border:0;\n"
+"border-radius:5px;\n"
+"height:10px;")
+        self.branchAddressAddLetterBox.setText("")
+        self.branchAddressAddLetterBox.setReadOnly(False)
+        self.branchAddressAddLetterBox.setObjectName("branchAddressAddLetterBox")
+        self.branchAddLetterlbl = QtWidgets.QLabel(self.frame_12)
+        self.branchAddLetterlbl.setGeometry(QtCore.QRect(30, 90, 101, 20))
+        self.branchAddLetterlbl.setObjectName("branchAddLetterlbl")
         self.stackedWidget.addWidget(self.page_5)
         self.page_3 = QtWidgets.QWidget()
         self.page_3.setObjectName("page_3")
@@ -1046,7 +1061,7 @@ class Ui_MainWindow(object):
         self.chargesQtyBox.setPlaceholderText(_translate("MainWindow", "Qty"))
         self.conveyenceChargesBox.setPlaceholderText(_translate("MainWindow", "Charges"))
         self.servicesLbl.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">Services:</span></p></body></html>"))
-        self.descriptionLbl.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Service Description:</span></p></body></html>"))
+        self.descriptionLbl.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Description:</span></p></body></html>"))
         self.detailsLbl.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Details:</span></p></body></html>"))
         self.qtyLbl.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Quantity:</span></p></body></html>"))
         self.addServiceBtn.setText(_translate("MainWindow", "Add A Service"))
@@ -1069,6 +1084,7 @@ class Ui_MainWindow(object):
         self.ServiceTotalValueLbl.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><br/></p></body></html>"))
         self.taxValueLbl.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><br/></p></body></html>"))
         self.totalAmountValueLbl.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><br/></p></body></html>"))
+        self.rftCheckBox.setText(_translate("MainWindow", "RFT"))
         self.complaintNoAddToBillLbl.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Enter Complaint No.</span></p></body></html>"))
         self.quotationsTbl.setSortingEnabled(False)
         item = self.quotationsTbl.horizontalHeaderItem(0)
@@ -1105,6 +1121,8 @@ class Ui_MainWindow(object):
         self.zoneAddLetterComBox.setItemText(3, _translate("MainWindow", "KPK"))
         self.subjectLbl.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Subject:</span></p></body></html>"))
         self.saveLetterBtn.setText(_translate("MainWindow", "Save"))
+        self.branchAddressAddLetterBox.setPlaceholderText(_translate("MainWindow", "Enter Bank Branch Address"))
+        self.branchAddLetterlbl.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Select Branch:</span></p></body></html>"))
         self.complaintNoBillsLbl.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Enter Complaint No.</span></p></body></html>"))
         self.billsTbl.setSortingEnabled(False)
         item = self.billsTbl.horizontalHeaderItem(0)
