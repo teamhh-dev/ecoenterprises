@@ -57,7 +57,7 @@ class WordModel:
         print(fileName)
 
         self.document.write(fileName+".docx")
-        self.templateFile = "User Data/quotation.docx"
+        self.templateFile = "AppData/Templates/Word.docx"
         self.document = MailMerge(self.templateFile)
         self.toFileName = "User Data/"
 
