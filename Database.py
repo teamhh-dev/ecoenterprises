@@ -104,8 +104,70 @@ class Database:
 
         return invoiceId+1
 
+    def fetchTotalRows(self) -> int:
+        self.appCursor.execute(
+            "SELECT count(complaint_number) from ecodb1.complaints")
+        for row in self.appCursor:
+            return row[0]
+
+    def fetchRowsByZone(self, zone: str) -> int:
+        self.appCursor.execute(
+            "SELECT count(complaint_number) from ecodb1.complaints where bank_zone=upper(%s)", (zone,))
+        for row in self.appCursor:
+            return row[0]
+
+    def fetchRowsByBank(self, bank: str) -> int:
+        self.appCursor.execute(
+            "SELECT count(complaint_number) from ecodb1.complaints where bank_name=upper(%s)", (bank,))
+        for row in self.appCursor:
+            return row[0]
+
+    def fetchRowByComplaintNo(self, complaintno: int) -> int:
+        self.appCursor.execute(
+            "SELECT count(complaint_number) from ecodb1.complaints where complaint_number=%s", (complaintno,))
+        for row in self.appCursor:
+            return row[0]
+
+    def fetchAllQuotations(self) -> list:
+        self.appCursor.execute(
+            "SELECT c.complaint_number, c.bank_zone ,c.bank_name, c.branch_address ,q.quotation_date ,q.total_amount from ecodb1.complaints c join ecodb1.quotations q on c.complaint_number = q.complaint_number;")
+        quotationsList = []
+        for row in self.appCursor:
+            quotationsList.append(row)
+
+        return quotationsList
+
+    def fetchQuotationsByZone(self, zone: str) -> list:
+        self.appCursor.execute(
+            "SELECT c.complaint_number, c.bank_zone , c.branch_address ,q.quotation_date ,q.total_amount from ecodb1.complaints c join ecodb1.quotations q on c.complaint_number = q.complaint_number where c.bank_zone=upper(%s)", (zone,))
+        quotationsList = []
+        for row in self.appCursor:
+            quotationsList.append(row)
+
+        return quotationsList
+
+    def fetchQuotationsByBank(self, bank: str) -> list:
+        self.appCursor.execute(
+            "SELECT c.complaint_number, c.bank_zone , c.branch_address ,q.quotation_date ,q.total_amount from ecodb1.complaints c join ecodb1.quotations q on c.complaint_number = q.complaint_number where c.bank_name=upper(%s)", (bank,))
+        quotationsList = []
+        for row in self.appCursor:
+            quotationsList.append(row)
+
+        return quotationsList
+
+    def fetchQuotationByComplaintNo(self, complaintno: int) -> list:
+        self.appCursor.execute(
+            "SELECT c.complaint_number, c.bank_zone , c.branch_address ,q.quotation_date ,q.total_amount from ecodb1.complaints c join ecodb1.quotations q on c.complaint_number = q.complaint_number where c.complaint_number=%s", (complaintno,))
+        quotationsList = []
+        for row in self.appCursor:
+            quotationsList.append(row)
+
+        return quotationsList
+
 
 if __name__ == "__main__":
     db = Database()
-    print(db.getAllServices())
+    print(len(db.fetchQuotationsByBank('Bank al-habib')))
+    print(len(db.fetchAllQuotations()))
+    print(db.fetchTotalRows())
     # db.getdata()

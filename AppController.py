@@ -49,6 +49,12 @@ class AppController:
         self.ui.finalizeBtn.clicked.connect(self.finalize)
         self.ui.deleteServiceBtn.clicked.connect(self.deleteService)
         self.ui.saveBtn.clicked.connect(self.saveBill)
+        self.ui.complaintNoAddToBillBox.returnPressed.connect(lambda: self.showQuotationByComplaintNo(
+            self.ui.complaintNoAddToBillBox.text()))
+        self.ui.zoneAddToBillComBox.currentTextChanged.connect(
+            lambda: self.showQuotationsByZone(self.ui.zoneAddToBillComBox.currentText()))
+        self.ui.bankAddToBillComBox.currentTextChanged.connect(
+            lambda: self.showQuotationsByBank(self.ui.bankAddToBillComBox.currentText()))
         self.ui.descriptionBox.setCompleter(completer)
         self.ui.descriptionBox.editingFinished.connect(self.textChanged)
         self.ui.conveyenceChargesBox.setText(self.dao.getConveyenceCharges())
@@ -56,6 +62,9 @@ class AppController:
             self.visitTypeChangeAction)
         self.ui.actionCreate_Files_and_Folders.triggered.connect(
             self.openFilesAndFoldersDialog)
+        self.showAllQuotations()
+        # # self.showQuotationsByZone(self.ui.zoneAddToBillComBox.currentText())
+        # self.showQuotationByComplaintNo(144)
 
     def showAddQuotaionTab(self):
         self.ui.stackedWidget.setCurrentIndex(0)
@@ -79,8 +88,8 @@ class AppController:
     def visitTypeChangeAction(self):
         if self.ui.visitTypeComBox.currentText() == "Visit":
             self.ui.conveyenceChargesBox.setText("780")
-        else:
-            self.ui.conveyenceChargesBox.setText("0")
+        # else:
+        #     self.ui.conveyenceChargesBox.setText("0")
 
     def openFilesAndFoldersDialog(self):
         months = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
@@ -304,6 +313,54 @@ class AppController:
             msg.setDetailedText(detailedMessage)
             msg.setStandardButtons(QMessageBox.Ok)
             msg.exec_()
+
+    def showAllQuotations(self):
+        row, column = 0, 0
+        for row in range(self.dao.fetchTotalRows()):
+            self.ui.quotationsTbl.insertRow(row)
+            for column in range(self.ui.quotationsTbl.columnCount()):
+                item = self.dao.fetchAllQuotations()[row][column]
+                # print(item)
+                self.ui.quotationsTbl.setItem(
+                    row, column, QTableWidgetItem(str(item)))
+
+    def showQuotationsByZone(self, zone: str):
+        self.ui.quotationsTbl.clearContents()
+        self.ui.quotationsTbl.model().removeRows(0, self.ui.quotationsTbl.rowCount())
+        row, column = 0, 0
+        for row in range(self.dao.fetchRowsByZone(zone)):
+            self.ui.quotationsTbl.insertRow(row)
+            for column in range(self.ui.quotationsTbl.columnCount()):
+                item = self.dao.fetchQuotationsByZone(zone)[row][column]
+                # print(item)
+                self.ui.quotationsTbl.setItem(
+                    row, column, QTableWidgetItem(str(item)))
+
+    def showQuotationsByBank(self, bank: str):
+        self.ui.quotationsTbl.clearContents()
+        self.ui.quotationsTbl.model().removeRows(0, self.ui.quotationsTbl.rowCount())
+        row, column = 0, 0
+        for row in range(self.dao.fetchRowsByBank(bank)):
+            self.ui.quotationsTbl.insertRow(row)
+            for column in range(self.ui.quotationsTbl.columnCount()):
+                item = self.dao.fetchQuotationsByBank(bank)[row][column]
+                # print(item)
+                self.ui.quotationsTbl.setItem(
+                    row, column, QTableWidgetItem(str(item)))
+        # self.ui.bankAddToBillComBox.setCurrentText(bank)
+
+    def showQuotationByComplaintNo(self, complaintno: int):
+        self.ui.quotationsTbl.clearContents()
+        self.ui.quotationsTbl.model().removeRows(0, self.ui.quotationsTbl.rowCount())
+        row, column = 0, 0
+        for row in range(self.dao.fetchRowByComplaintNo(complaintno)):
+            self.ui.quotationsTbl.insertRow(row)
+            for column in range(self.ui.quotationsTbl.columnCount()):
+                item = self.dao.fetchQuotationByComplaintNo(complaintno)[
+                    row][column]
+                # print(item)
+                self.ui.quotationsTbl.setItem(
+                    row, column, QTableWidgetItem(str(item)))
 
 
 if __name__ == "__main__":
