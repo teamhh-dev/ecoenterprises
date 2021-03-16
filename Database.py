@@ -164,10 +164,15 @@ class Database:
 
         return quotationsList
 
+    def deleteQuotation(self, complaintno: int):
+        self.appCursor.execute(
+            "DELETE FROM ecodb1.complaints  WHERE ecodb1.complaints.complaint_number=%s", (complaintno,))
+
 
 if __name__ == "__main__":
     db = Database()
     print(len(db.fetchQuotationsByBank('Bank al-habib')))
     print(len(db.fetchAllQuotations()))
     print(db.fetchTotalRows())
+    print(db.deleteQuotation(1))
     # db.getdata()

@@ -55,6 +55,7 @@ class AppController:
             lambda: self.showQuotationsByZone(self.ui.zoneAddToBillComBox.currentText()))
         self.ui.bankAddToBillComBox.currentTextChanged.connect(
             lambda: self.showQuotationsByBank(self.ui.bankAddToBillComBox.currentText()))
+        self.ui.deleteQuotationBtn.clicked.connect(self.deleteQuotation)
         self.ui.descriptionBox.setCompleter(completer)
         self.ui.descriptionBox.editingFinished.connect(self.textChanged)
         self.ui.conveyenceChargesBox.setText(self.dao.getConveyenceCharges())
@@ -361,6 +362,19 @@ class AppController:
                 # print(item)
                 self.ui.quotationsTbl.setItem(
                     row, column, QTableWidgetItem(str(item)))
+
+    def deleteQuotation(self):
+        cNo = self.ui.quotationsTbl.selectionModel().selectedRows()[0].data()
+        row = self.ui.quotationsTbl.selectionModel().selectedRows()[0].row()
+        print(cNo, row)
+        self.dao.deleteQuotation(int(cNo))
+        self.ui.quotationsTbl.removeRow(row)
+
+        # print(
+        #     type(self.ui.quotationsTbl.selectionModel().selectedRows()[0].data()))
+        # print(
+        #     self.ui.quotationsTbl.selectionModel().selectedRows()[0].data())
+        # print(self.ui.quotationsTbl.selectionModel().selectedRows()[0].row())
 
 
 if __name__ == "__main__":
