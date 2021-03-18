@@ -71,6 +71,7 @@ class Database:
             "INSERT INTO  `ecodb1`.`complaints` (`complaint_number`, `bank_name`, `branch_address`, `bank_zone`, `comaplaint_date`) VALUES (%s,%s,%s,%s,STR_TO_DATE(%s,'%d/%b/%Y'))",
             (complaint.getComplainNo(), complaint.getBankName(),
              complaint.getAddress(), complaint.getZone(), complaint.getDate(),))
+        self.appDatabase.commit()
 
     def addQuotation(self, bill: Bill):
         totalServiceAmount = 0
@@ -81,6 +82,7 @@ class Database:
         self.appCursor.execute(
             "INSERT INTO `ecodb1`.`quotations` (`complaint_number`, `quotation_id`, `reimbursement_charges`, `total_amount`, `tax`, `quotation_date`) VALUES (%s,%s,%s,%s,%s,STR_TO_DATE(%s,'%d/%b/%Y'))",
             (bill.getComplainInfo().getComplainNo(), bill.getComplainInfo().getComplainNo(), 780, totalAmount, totalServiceAmount*0.16, bill.getComplainInfo().getDate(),))
+        self.appDatabase.commit()
 
     def addServices(self, bill: Bill):
         i = 1
@@ -90,10 +92,12 @@ class Database:
             i = i+1
             self.appCursor.execute("INSERT INTO `ecodb1`.`services` (`service_id`, `quotation_id`, `service_description`, `service_rate`, `service_qty`, `service_amount`) VALUES (%s,%s,%s,%s,%s,%s)",
                                    (service_id, bill.getComplainInfo().getComplainNo(), service["description"], service["rate"], service["qty"], service["amount"],))
+        self.appDatabase.commit()
 
     def addBill(self, bill: Bill):
         self.appCursor.execute(
             "INSERT INTO `ecodb1`.`bills` (`invoice_id`, `quotation_id`) VALUES (%s,%s)", (bill.getComplainInfo().getInvoiceId(), bill.getComplainInfo().getComplainNo(),))
+        self.appDatabase.commit()
 
     def getInvoiceId(self, zone: str) -> int:
         self.appCursor.execute(
@@ -130,7 +134,7 @@ class Database:
 
     def fetchAllQuotations(self) -> list:
         self.appCursor.execute(
-            "SELECT c.complaint_number, c.bank_zone ,c.bank_name, c.branch_address ,q.quotation_date ,q.total_amount from ecodb1.complaints c join ecodb1.quotations q on c.complaint_number = q.complaint_number;")
+            "SELECT c.complaint_number, c.bank_zone , c.branch_address ,q.quotation_date ,q.total_amount,c.bank_name from ecodb1.complaints c join ecodb1.quotations q on c.complaint_number = q.complaint_number;")
         quotationsList = []
         for row in self.appCursor:
             quotationsList.append(row)
@@ -139,7 +143,7 @@ class Database:
 
     def fetchQuotationsByZone(self, zone: str) -> list:
         self.appCursor.execute(
-            "SELECT c.complaint_number, c.bank_zone , c.branch_address ,q.quotation_date ,q.total_amount from ecodb1.complaints c join ecodb1.quotations q on c.complaint_number = q.complaint_number where c.bank_zone=upper(%s)", (zone,))
+            "SELECT c.complaint_number, c.bank_zone , c.branch_address ,q.quotation_date ,q.total_amount,c.bank_name from ecodb1.complaints c join ecodb1.quotations q on c.complaint_number = q.complaint_number where c.bank_zone=upper(%s)", (zone,))
         quotationsList = []
         for row in self.appCursor:
             quotationsList.append(row)
@@ -148,7 +152,7 @@ class Database:
 
     def fetchQuotationsByBank(self, bank: str) -> list:
         self.appCursor.execute(
-            "SELECT c.complaint_number, c.bank_zone , c.branch_address ,q.quotation_date ,q.total_amount from ecodb1.complaints c join ecodb1.quotations q on c.complaint_number = q.complaint_number where c.bank_name=upper(%s)", (bank,))
+            "SELECT c.complaint_number, c.bank_zone , c.branch_address ,q.quotation_date ,q.total_amount,c.bank_name from ecodb1.complaints c join ecodb1.quotations q on c.complaint_number = q.complaint_number where c.bank_name=upper(%s)", (bank,))
         quotationsList = []
         for row in self.appCursor:
             quotationsList.append(row)
@@ -157,7 +161,7 @@ class Database:
 
     def fetchQuotationByComplaintNo(self, complaintno: int) -> list:
         self.appCursor.execute(
-            "SELECT c.complaint_number, c.bank_zone , c.branch_address ,q.quotation_date ,q.total_amount from ecodb1.complaints c join ecodb1.quotations q on c.complaint_number = q.complaint_number where c.complaint_number=%s", (complaintno,))
+            "SELECT c.complaint_number, c.bank_zone , c.branch_address ,q.quotation_date ,q.total_amount,c.bank_name from ecodb1.complaints c join ecodb1.quotations q on c.complaint_number = q.complaint_number where c.complaint_number=%s", (complaintno,))
         quotationsList = []
         for row in self.appCursor:
             quotationsList.append(row)
@@ -165,8 +169,18 @@ class Database:
         return quotationsList
 
     def deleteQuotation(self, complaintno: int):
-        self.appCursor.execute(
-            "DELETE FROM ecodb1.complaints  WHERE ecodb1.complaints.complaint_number=%s", (complaintno,))
+        try:
+            self.appCursor.execute(
+                "DELETE FROM ecodb1.complaints WHERE complaint_number=%s", (complaintno,))
+            self.appCursor.execute(
+                "DELETE FROM ecodb1.bills WHERE quotation_id=%s", (complaintno,))
+            self.appCursor.execute(
+                "DELETE FROM ecodb1.quotations WHERE quotation_id=%s", (complaintno,))
+            self.appCursor.execute(
+                "DELETE FROM ecodb1.services WHERE quotation_id=%s", (complaintno,))
+            self.appDatabase.commit()
+        except Exception as e:
+            print(e)
 
 
 if __name__ == "__main__":

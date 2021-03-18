@@ -16,8 +16,8 @@ class LetterModel:
         date = datetime.datetime.today().strftime("%d/%b/%Y")
         self.document.merge(
             date=date, bank_name=letter.getBankName(), branch_address=letter.getAddress(),
-            inv_id=str(letter.getComplainNo()), subject_line=letter.getSubjectLine,
-            body=letter.getLetterContent)
+            inv_id=str(letter.getComplainNo()), subject_line=letter.getSubjectLine(),
+            body=letter.getLetterContent())
 
         self.saveToFile(str(letter.getComplaintNo()))
 

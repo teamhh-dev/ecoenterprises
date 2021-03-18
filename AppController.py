@@ -23,6 +23,7 @@ class AppController:
         self.MainWindow = QtWidgets.QMainWindow()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self.MainWindow)
+        self.MainWindow.setWindowIcon(QIcon("AppData/Images/eco_icon.ico"))
         self.initHandlers()
         self.MainWindow.show()
         self.ui.stackedWidget.setCurrentIndex(0)
@@ -39,6 +40,8 @@ class AppController:
     def initHandlers(self):
         services = self.dao.getAllServices()
         completer = QCompleter(services)
+        self.ui.complaintDateBox.setDate(
+            self.ui.complaintDateBox.date().currentDate())
         self.ui.addQuotationBtn.clicked.connect(self.showAddQuotaionTab)
         self.ui.addToBillBtn.clicked.connect(self.showAddBillTab)
         self.ui.approvalsBtn.clicked.connect(self.showApprovalsTab)
@@ -49,6 +52,8 @@ class AppController:
         self.ui.finalizeBtn.clicked.connect(self.finalize)
         self.ui.deleteServiceBtn.clicked.connect(self.deleteService)
         self.ui.saveBtn.clicked.connect(self.saveBill)
+        self.ui.addToBillBtn.clicked.connect(self.showAllQuotations)
+        # self.ui.
         self.ui.complaintNoAddToBillBox.returnPressed.connect(lambda: self.showQuotationByComplaintNo(
             self.ui.complaintNoAddToBillBox.text()))
         self.ui.zoneAddToBillComBox.currentTextChanged.connect(
@@ -89,8 +94,8 @@ class AppController:
     def visitTypeChangeAction(self):
         if self.ui.visitTypeComBox.currentText() == "Visit":
             self.ui.conveyenceChargesBox.setText("780")
-        # else:
-        #     self.ui.conveyenceChargesBox.setText("0")
+        else:
+            self.ui.conveyenceChargesBox.setText("")
 
     def openFilesAndFoldersDialog(self):
         months = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
@@ -216,15 +221,15 @@ class AppController:
         formattedDate = datetime.datetime(date.getDate()[0], date.getDate()[
             1], date.getDate()[2]).strftime("%d/%b/%Y")
 
-        complaintInfo = ComplaintInfo(
-            invoiceId, formattedDate, bankAddress, branchAddress.upper()+","+zone+" ZONE", zone, int(comaplaintNo))
-        self.bill.setComplainInfo(complaintInfo)
-        self.bill.setAdditionalCharges(AdditionalCharges(
-            self.ui.visitTypeComBox.currentText(), int(self.ui.chargesQtyBox.text()), int(self.ui.conveyenceChargesBox.text())))
         validation = self.validate()
         if(validation['status']):
             self.ui.saveBtn.setDisabled(False)
             self.showServiceTotalAndTaxAndTotalAmount()
+            complaintInfo = ComplaintInfo(
+                invoiceId, formattedDate, bankAddress, branchAddress.upper()+" Branch,"+zone+" ZONE", zone, int(comaplaintNo))
+            self.bill.setComplainInfo(complaintInfo)
+            self.bill.setAdditionalCharges(AdditionalCharges(
+                self.ui.visitTypeComBox.currentText(), int(self.ui.chargesQtyBox.text()), int(self.ui.conveyenceChargesBox.text())))
 
         else:
             msg = QMessageBox()
@@ -291,6 +296,7 @@ class AppController:
                 self.ui.servicesTbl.clearContents()
                 self.bill.getServices().getServicesList().clear()
                 self.ui.servicesTbl.setRowCount(0)
+                self.clearViewContents()
             except Exception as ex:
                 print(ex)
                 msg = QMessageBox()
@@ -316,6 +322,8 @@ class AppController:
             msg.exec_()
 
     def showAllQuotations(self):
+        self.ui.quotationsTbl.clearContents()
+        self.ui.quotationsTbl.model().removeRows(0, self.ui.quotationsTbl.rowCount())
         row, column = 0, 0
         for row in range(self.dao.fetchTotalRows()):
             self.ui.quotationsTbl.insertRow(row)
@@ -369,12 +377,23 @@ class AppController:
         print(cNo, row)
         self.dao.deleteQuotation(int(cNo))
         self.ui.quotationsTbl.removeRow(row)
-
         # print(
         #     type(self.ui.quotationsTbl.selectionModel().selectedRows()[0].data()))
         # print(
         #     self.ui.quotationsTbl.selectionModel().selectedRows()[0].data())
         # print(self.ui.quotationsTbl.selectionModel().selectedRows()[0].row())
+
+    def clearViewContents(self):
+        self.ui.complaintNoBox.setText("")
+        self.ui.chargesQtyBox.setText("")
+        self.ui.descriptionBox.setText("")
+        self.ui.rateBox.setText("")
+        self.ui.qtySpinBox.setValue(1)
+        self.ui.branchAddressBox.setText("")
+        self.ui.rftCheckBox.setChecked(False)
+        self.ui.taxValueLbl.setText("")
+        self.ui.totalAmountValueLbl.setText("")
+        self.ui.ServiceTotalValueLbl.setText("")
 
 
 if __name__ == "__main__":

@@ -5,6 +5,7 @@ import os
 from Bill import *
 from mailmerge import MailMerge
 import datetime
+from docx2pdf import convert
 
 
 class WordModel:
@@ -20,8 +21,14 @@ class WordModel:
         self.saveAdditionalCharges(bill.getAdditionalCharges())
         year = datetime.datetime.now().strftime("%Y")
         month = datetime.datetime.now().strftime("%B")
-        self.saveToFile(
-            self.toFileName+month+"_"+year+"/"+"PDF "+month.upper()[0:3]+" "+bill.getComplainInfo().getZone()+"/"+bill.getComplainInfo().getInvoiceId())
+        saveFilePath = self.toFileName+month+"_"+year+"/"+"PDF "+month.upper()[0:3]+" "+bill.getComplainInfo().getZone()+"/"+str(bill.getComplainInfo().getComplainNo(
+        ))+" "+bill.getComplainInfo().getAddress()
+        # self.saveToFile(
+        #     self.toFileName+month+"_"+year+"/"+"PDF "+month.upper()[0:3]+" "+bill.getComplainInfo().getZone()+"/"+bill.getComplainInfo().getInvoiceId())
+        self.saveToFile(saveFilePath)
+
+    def deleteBill(self):
+        pass
 
     def saveBillComlaintInfo(self, complainInfo: ComplaintInfo):
         self.document.merge(
@@ -60,6 +67,8 @@ class WordModel:
         self.templateFile = "AppData/Templates/Word.docx"
         self.document = MailMerge(self.templateFile)
         self.toFileName = "User Data/"
+        convert(fileName+".docx")
+        os.remove(fileName+".docx")
 
 # template = "Invoice.docx"
 
