@@ -1,3 +1,4 @@
+
 from copy import deepcopy
 import sys
 from warnings import catch_warnings
@@ -6,13 +7,14 @@ import datetime
 import shutil
 
 from PyQt5.QtCore import QDateTime, Qt, QtFatalMsg
-from PyQt5.QtWidgets import QMessageBox, QTableWidgetItem, QTableWidgetSelectionRange, QCompleter, QDialog, QPushButton, QComboBox
+from PyQt5.QtWidgets import QDateEdit, QMessageBox, QTableWidgetItem, QTableWidgetSelectionRange, QCompleter, QDialog, QPushButton, QComboBox
 from PyQt5.QtGui import QIcon
 
 # from AppView import *
 from GuiView import *
 from ExcelModel import *
 from WordModel import *
+from LetterModel import *
 from Database import *
 
 
@@ -29,6 +31,7 @@ class AppController:
         self.ui.stackedWidget.setCurrentIndex(0)
         self.excelModel = ExcelModel()
         self.wordModel = WordModel()
+        self.letterModel = LetterModel()
         self.bill = Bill(None, Services([]), None)
         #  yaha mjhy rakhni chyeh k ni btana zaror
         # self.serviceTotalValue = 0
@@ -40,6 +43,7 @@ class AppController:
     def initHandlers(self):
         services = self.dao.getAllServices()
         completer = QCompleter(services)
+        self.ui.monthLbl.setText(datetime.datetime.now().strftime("%B"))
         self.ui.complaintDateBox.setDate(
             self.ui.complaintDateBox.date().currentDate())
         self.ui.addQuotationBtn.clicked.connect(self.showAddQuotaionTab)
@@ -49,11 +53,13 @@ class AppController:
         self.ui.addLetterBtn.clicked.connect(self.showAddLetterTab)
         self.ui.addServiceBtn.clicked.connect(self.addService)
         self.ui.saveBtn.setDisabled(True)
+        # self.ui.saveLetterBtn.setDisabled(True)
         self.ui.finalizeBtn.clicked.connect(self.finalize)
         self.ui.deleteServiceBtn.clicked.connect(self.deleteService)
         self.ui.saveBtn.clicked.connect(self.saveBill)
         self.ui.addToBillBtn.clicked.connect(self.showAllQuotations)
-        # self.ui.
+        self.ui.addBillBtn.clicked.connect(self.addDateToBill)
+        self.ui.saveLetterBtn.clicked.connect(self.addLetter)
         self.ui.complaintNoAddToBillBox.returnPressed.connect(lambda: self.showQuotationByComplaintNo(
             self.ui.complaintNoAddToBillBox.text()))
         self.ui.zoneAddToBillComBox.currentTextChanged.connect(
@@ -132,6 +138,10 @@ class AppController:
         mainFolderPath = os.path.join(
             current_directory, parentDirectory, mainFolderName)
         os.mkdir(mainFolderPath)
+        lettersAndReportFolderPath = os.path.join(
+            mainFolderPath, "LETTERS AND REPORTS")
+
+        os.mkdir(lettersAndReportFolderPath)
         for zone in zones:
             subFolderName = "PDF "+month.upper()[0:3] + " "+zone
             print(subFolderName)
@@ -394,6 +404,47 @@ class AppController:
         self.ui.taxValueLbl.setText("")
         self.ui.totalAmountValueLbl.setText("")
         self.ui.ServiceTotalValueLbl.setText("")
+
+    def addDateToExcelAndDatabase(self, complaintno: int, date: str):
+        self.excelModel.addDateToBill(self.dao.getInvoiceIdAndZoneFromComplaintNo(
+            complaintno), date)
+        self.dao.updateJobCompletionDate(complaintno, date)
+
+    def addDateToBill(self, complaintno: int):
+        if (len(self.ui.quotationsTbl.selectionModel().selectedRows())) == 0:
+            return
+        complaintno = int(self.ui.quotationsTbl.selectionModel().selectedRows()[
+            0].data())
+        addDateDialogBox = QDialog()
+        addDateDialogBox.setGeometry(500, 500, 300, 120)
+        # monthComBox.move(60, 50)
+        selectDateBox = QDateEdit(addDateDialogBox)
+        selectDateBox.setDate(
+            datetime.datetime.now())
+        selectDateBox.setDisplayFormat("d/M/yyyy")
+        # selectDateBox.
+        enterBtn = QPushButton("Enter", addDateDialogBox)
+        enterBtn.clicked.connect(
+            lambda: self.addDateToExcelAndDatabase(complaintno, selectDateBox.date().toString("d/MMM/yyyy")))
+
+        enterBtn.move(150, 50)
+        okButton = QPushButton("OK", addDateDialogBox)
+        okButton.clicked.connect(
+            lambda: addDateDialogBox.close())
+
+        okButton.move(150, 90)
+        selectDateBox.move(60, 50)
+
+        addDateDialogBox.setWindowTitle(
+            "Enter Date to Complaint No.: " + str(complaintno))
+        addDateDialogBox.setWindowModality(Qt.ApplicationModal)
+        addDateDialogBox.exec_()
+
+    def addLetter(self):
+        if not self.ui.complaintNoAddLetterBox.text() == "" and not self.ui.branchAddressAddLetterBox.text() == "" and not self.ui.subjectLineBox.text() == "" and not self.ui.letterTxt.toPlainText() == "":
+            # self.ui.saveLetterBtn.setEnabled(True)
+            self.letterModel.saveLetterInfo(Letters(self.ui.subjectLineBox.text(
+            ), self.ui.letterTxt.toPlainText(), int(self.ui.complaintNoAddLetterBox.text()), self.ui.branchAddressAddLetterBox.text(), self.ui.zoneAddLetterComBox.currentText(), self.ui.bankAddLetterComBox.currentText()))
 
 
 if __name__ == "__main__":

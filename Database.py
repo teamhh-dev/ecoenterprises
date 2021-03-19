@@ -110,7 +110,7 @@ class Database:
 
     def fetchTotalRows(self) -> int:
         self.appCursor.execute(
-            "SELECT count(complaint_number) from ecodb1.complaints")
+            "SELECT count(c.complaint_number) from ecodb1.complaints c join ecodb1.bills b on c.complaint_number = b.quotation_id")
         for row in self.appCursor:
             return row[0]
 
@@ -134,7 +134,7 @@ class Database:
 
     def fetchAllQuotations(self) -> list:
         self.appCursor.execute(
-            "SELECT c.complaint_number, c.bank_zone , c.branch_address ,q.quotation_date ,q.total_amount,c.bank_name from ecodb1.complaints c join ecodb1.quotations q on c.complaint_number = q.complaint_number;")
+            "SELECT c.complaint_number, c.bank_zone , c.branch_address ,q.quotation_date ,q.total_amount,c.bank_name from ecodb1.complaints c join ecodb1.quotations q on c.complaint_number = q.complaint_number join ecodb1.bills b on c.complaint_number = b.quotation_id")
         quotationsList = []
         for row in self.appCursor:
             quotationsList.append(row)
@@ -182,11 +182,30 @@ class Database:
         except Exception as e:
             print(e)
 
+    def getInvoiceIdAndZoneFromComplaintNo(self, complaintno: int) -> dict:
+
+        invoiceIDAndZone = {"invoice_id": None, "zone": None}
+        self.appCursor.execute(
+            "SELECT b.invoice_id from ecodb1.quotations q join ecodb1.bills b on q.quotation_id = b.quotation_id where q.complaint_number=%s", (complaintno,))
+        for row in self.appCursor:
+            invoiceIDAndZone["invoice_id"] = row[0]
+        self.appCursor.execute(
+            "select bank_zone from ecodb1.complaints where complaint_number=%s", (complaintno,))
+        for row in self.appCursor:
+            invoiceIDAndZone["zone"] = row[0]
+        return invoiceIDAndZone
+
+    def updateJobCompletionDate(self, comaplaitno: int, date: str):
+        self.appCursor.execute(
+            "update ecodb1.bills set job_completion_date=STR_TO_DATE(%s,'%d/%b/%Y') where quotation_id=%s", (date, comaplaitno,))
+        self.appDatabase.commit()
+
 
 if __name__ == "__main__":
     db = Database()
-    print(len(db.fetchQuotationsByBank('Bank al-habib')))
-    print(len(db.fetchAllQuotations()))
-    print(db.fetchTotalRows())
-    print(db.deleteQuotation(1))
+    # print(len(db.fetchQuotationsByBank('Bank al-habib')))
+    # print(len(db.fetchAllQuotations()))
+    # print(db.fetchTotalRows())
+    # print(db.deleteQuotation(1))
+    print(db.getInvoiceIdFromComplaintNo(1))
     # db.getdata()

@@ -151,3 +151,19 @@ class ExcelModel():
         self.chargesQtyCell = 'E'+str(rowNo+2)
         self.visitTypeCell = 'B'+str(rowNo+2)
         self.visitRatecell = 'G'+str(rowNo+2)
+
+    def addDateToBill(self, invoiceIdAndZone: str, date: str):
+        print(invoiceIdAndZone, ":", date)
+        year = datetime.datetime.now().strftime("%Y")
+        month = datetime.datetime.now().strftime("%m")
+        excelFileName = "Monthly Report "+invoiceIdAndZone["zone"].upper()+" " + \
+            "01-"+"{:0>2d}".format(int(month))+"-"+year+".xlsx"
+        monthFullName = datetime.datetime.now().strftime("%B")
+        fileName = 'User Data/'+monthFullName.upper()+"_"+year + "/"+excelFileName
+        print(fileName)
+        workbook = load_workbook(
+            filename=fileName)
+        worksheet = workbook[invoiceIdAndZone["invoice_id"]]
+        worksheet['A7'] = date
+        workbook.save(
+            filename=fileName)
