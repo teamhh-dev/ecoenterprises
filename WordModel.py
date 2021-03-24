@@ -68,6 +68,7 @@ class WordModel:
         self.document = MailMerge(self.templateFile)
         self.toFileName = "User Data/"
         convert(fileName+".docx")
+        print("its my file"+fileName)
         os.remove(fileName+".docx")
 
 # template = "Invoice.docx"

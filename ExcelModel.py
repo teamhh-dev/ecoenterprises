@@ -1,9 +1,10 @@
 from openpyxl import *
 import datetime
 # from HomePageView import *
-from copy import copy
+from copy import *
 from Bill import *
 from openpyxl.styles.alignment import Alignment
+from openpyxl.styles import *
 
 
 class ExcelModel():
@@ -152,6 +153,25 @@ class ExcelModel():
         self.visitTypeCell = 'B'+str(rowNo+2)
         self.visitRatecell = 'G'+str(rowNo+2)
 
+    def addToSummary(self):
+        file = 'User Data\Summary.xlsx'
+        workbook = load_workbook(filename=file)
+        worksheet = workbook['Bill Summary']
+        worksheet.active = workbook['Bill Summary']
+        worksheet.insert_rows(11)
+        formattedrow = list(worksheet.rows)[10]
+        unformattedrow = list(worksheet.rows)[9]
+
+        for (c1, c2) in zip(formattedrow, unformattedrow):
+            c1.style = copy(c2.style)
+            c1.border = copy(c2.border)
+            c1.number_format = copy(c2.number_format)
+            c1.font = copy(c2.font)
+            c1.alignment = copy(c2.alignment)
+            c1.fill = copy(c2.fill)
+
+        workbook.save(filename=file)
+
     def addDateToBill(self, invoiceIdAndZone: str, date: str):
         print(invoiceIdAndZone, ":", date)
         year = datetime.datetime.now().strftime("%Y")
@@ -167,3 +187,44 @@ class ExcelModel():
         worksheet['A7'] = date
         workbook.save(
             filename=fileName)
+
+    def deleteSheet(self, invoiceIdAndZone: dict, lastSheetName: str):
+        year = datetime.datetime.now().strftime("%Y")
+        month = datetime.datetime.now().strftime("%m")
+        excelFileName = "Monthly Report "+invoiceIdAndZone["zone"].upper()+" " + \
+            "01-"+"{:0>2d}".format(int(month))+"-"+year+".xlsx"
+        monthFullName = datetime.datetime.now().strftime("%B")
+        fileName = 'User Data/'+monthFullName.upper()+"_"+year + "/"+excelFileName
+        print(fileName, ":",
+              invoiceIdAndZone['invoice_id'], ":", lastSheetName)
+        workbook = load_workbook(
+            filename=fileName)
+        # worksheetToBeCopiedTo = workbook[invoiceIdAndZone["invoice_id"]]
+        # worksheetToBeDeletedAndCopied = workbook[lastSheetName]
+
+        # workbook.remove_sheet(worksheetToBeCopiedTo)
+        # worksheetToBeDeletedAndCopied.title = invoiceIdAndZone['invoice_id']
+        # worksheetToBeDeletedAndCopied['D2'] = invoiceIdAndZone['invoice_id']
+        # # workbook.save(filename=fileName)
+        # workbook = load_workbook(
+        #     filename=fileName)
+
+        # workbook.dele
+        print(workbook._sheets)
+        # names = workbook.get_sheet_names()[2:]
+        # names.sort()
+        # print(names)
+        # print(workbook._sheets[2:])
+        # workbook._sheets.sort(key=lambda ws: ws.title)
+        # print(workbook._sheets)
+        lastSheetIdx = len(workbook.sheetnames)-1
+        print(lastSheetIdx)
+        offset = int(workbook._sheets[3].title[2:5]) - \
+            int(workbook._sheets[lastSheetIdx].title[2:5])
+        # print(int(offset))
+        workbook.move_sheet(
+            workbook._sheets[lastSheetIdx].title, offset=offset)
+        # workbook._sheets.sort(key=lambda ws: ws.title)
+        print(workbook._sheets)
+
+        # workbook.save(filename=fileName)

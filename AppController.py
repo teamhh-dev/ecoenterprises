@@ -1,12 +1,13 @@
 
 from copy import deepcopy
 import sys
+import os
 from warnings import catch_warnings
 import PyQt5
 import datetime
 import shutil
 
-from PyQt5.QtCore import QDateTime, Qt, QtFatalMsg
+from PyQt5.QtCore import QDateTime, Qt, QtFatalMsg, QVariant
 from PyQt5.QtWidgets import QDateEdit, QMessageBox, QTableWidgetItem, QTableWidgetSelectionRange, QCompleter, QDialog, QPushButton, QComboBox
 from PyQt5.QtGui import QIcon
 
@@ -48,7 +49,6 @@ class AppController:
             self.ui.complaintDateBox.date().currentDate())
         self.ui.addQuotationBtn.clicked.connect(self.showAddQuotaionTab)
         self.ui.addToBillBtn.clicked.connect(self.showAddBillTab)
-        self.ui.approvalsBtn.clicked.connect(self.showApprovalsTab)
         self.ui.billsBtn.clicked.connect(self.showBillTab)
         self.ui.addLetterBtn.clicked.connect(self.showAddLetterTab)
         self.ui.addServiceBtn.clicked.connect(self.addService)
@@ -60,12 +60,19 @@ class AppController:
         self.ui.addToBillBtn.clicked.connect(self.showAllQuotations)
         self.ui.addBillBtn.clicked.connect(self.addDateToBill)
         self.ui.saveLetterBtn.clicked.connect(self.addLetter)
+        self.ui.billsBtn.clicked.connect(self.showDoneQuotations)
         self.ui.complaintNoAddToBillBox.returnPressed.connect(lambda: self.showQuotationByComplaintNo(
             self.ui.complaintNoAddToBillBox.text()))
         self.ui.zoneAddToBillComBox.currentTextChanged.connect(
             lambda: self.showQuotationsByZone(self.ui.zoneAddToBillComBox.currentText()))
         self.ui.bankAddToBillComBox.currentTextChanged.connect(
             lambda: self.showQuotationsByBank(self.ui.bankAddToBillComBox.currentText()))
+        self.ui.complaintNoBillsBox.returnPressed.connect(lambda: self.showDoneQuotationByComplaintNo(
+            self.ui.complaintNoBillsBox.text()))
+        self.ui.zoneBillsComBox.currentTextChanged.connect(
+            lambda: self.showDoneQuotationsByZone(self.ui.zoneBillsComBox.currentText()))
+        self.ui.bankBillsComBox.currentTextChanged.connect(
+            lambda: self.showDoneQuotationsByBank(self.ui.bankBillsComBox.currentText()))
         self.ui.deleteQuotationBtn.clicked.connect(self.deleteQuotation)
         self.ui.descriptionBox.setCompleter(completer)
         self.ui.descriptionBox.editingFinished.connect(self.textChanged)
@@ -75,6 +82,7 @@ class AppController:
         self.ui.actionCreate_Files_and_Folders.triggered.connect(
             self.openFilesAndFoldersDialog)
         self.showAllQuotations()
+        self.showDoneQuotations()
         # # self.showQuotationsByZone(self.ui.zoneAddToBillComBox.currentText())
         # self.showQuotationByComplaintNo(144)
 
@@ -89,9 +97,6 @@ class AppController:
 
     def showBillTab(self):
         self.ui.stackedWidget.setCurrentIndex(3)
-
-    def showApprovalsTab(self):
-        self.ui.stackedWidget.setCurrentIndex(4)
 
     def textChanged(self):
         self.ui.rateBox.setText(str(self.dao.getServiceRate(
@@ -335,10 +340,15 @@ class AppController:
         self.ui.quotationsTbl.clearContents()
         self.ui.quotationsTbl.model().removeRows(0, self.ui.quotationsTbl.rowCount())
         row, column = 0, 0
-        for row in range(self.dao.fetchTotalRows()):
+        # if self.dao.fetchTotalRows() == 0:
+        #     return
+        allQuotations = self.dao.fetchNotDoneQuotations()
+        quotations_length = len(allQuotations)
+        # for row in range(self.dao.fetchTotalRows()):
+        for row in range(quotations_length):
             self.ui.quotationsTbl.insertRow(row)
             for column in range(self.ui.quotationsTbl.columnCount()):
-                item = self.dao.fetchAllQuotations()[row][column]
+                item = allQuotations[row][column]
                 # print(item)
                 self.ui.quotationsTbl.setItem(
                     row, column, QTableWidgetItem(str(item)))
@@ -381,12 +391,86 @@ class AppController:
                 self.ui.quotationsTbl.setItem(
                     row, column, QTableWidgetItem(str(item)))
 
+    def showDoneQuotations(self):
+        self.ui.billsTbl.clearContents()
+        self.ui.billsTbl.model().removeRows(0, self.ui.billsTbl.rowCount())
+        row, column = 0, 0
+        # if self.dao.fetchTotalRows() == 0:
+        #     return
+        allQuotations = self.dao.fetchDoneQuotations()
+        quotations_length = len(allQuotations)
+        # for row in range(self.dao.fetchTotalRows()):
+        for row in range(quotations_length):
+            self.ui.billsTbl.insertRow(row)
+            for column in range(self.ui.billsTbl.columnCount()):
+                item = allQuotations[row][column]
+                # print(item)
+                self.ui.billsTbl.setItem(
+                    row, column, QTableWidgetItem(str(item)))
+
+    def showDoneQuotationsByZone(self, zone: str):
+        self.ui.billsTbl.clearContents()
+        self.ui.billsTbl.model().removeRows(0, self.ui.billsTbl.rowCount())
+        row, column = 0, 0
+        allQuotations = self.dao.fetchDoneQuotationsByZone(zone)
+        quotations_length = len(allQuotations)
+        for row in range(quotations_length):
+            self.ui.billsTbl.insertRow(row)
+            for column in range(self.ui.billsTbl.columnCount()):
+                item = self.dao.fetchDoneQuotationsByZone(zone)[row][column]
+                # print(item)
+                self.ui.billsTbl.setItem(
+                    row, column, QTableWidgetItem(str(item)))
+
+    def showDoneQuotationsByBank(self, bank: str):
+        self.ui.billsTbl.clearContents()
+        self.ui.billsTbl.model().removeRows(0, self.ui.billsTbl.rowCount())
+        row, column = 0, 0
+        allQuotations = self.dao.fetchDoneQuotationsByBank(bank)
+        quotations_length = len(allQuotations)
+        for row in range(quotations_length):
+            self.ui.billsTbl.insertRow(row)
+            for column in range(self.ui.billsTbl.columnCount()):
+                item = self.dao.fetchDoneQuotationsByBank(bank)[row][column]
+                # print(item)
+                self.ui.billsTbl.setItem(
+                    row, column, QTableWidgetItem(str(item)))
+
+    def showDoneQuotationByComplaintNo(self, complaintno: int):
+        self.ui.billsTbl.clearContents()
+        self.ui.billsTbl.model().removeRows(0, self.ui.billsTbl.rowCount())
+        row, column = 0, 0
+        allQuotations = self.dao.fetchDoneQuotationByComplaintNo(complaintno)
+        quotations_length = len(allQuotations)
+        for row in range(quotations_length):
+            self.ui.billsTbl.insertRow(row)
+            for column in range(self.ui.billsTbl.columnCount()):
+                item = self.dao.fetchDoneQuotationByComplaintNo(complaintno)[
+                    row][column]
+                # print(item)
+                self.ui.billsTbl.setItem(
+                    row, column, QTableWidgetItem(str(item)))
+
     def deleteQuotation(self):
+        if (len(self.ui.quotationsTbl.selectionModel().selectedRows())) == 0:
+            return
+        complaintno = int(self.ui.quotationsTbl.selectionModel().selectedRows()[
+            0].data())
+        zone = (self.ui.quotationsTbl.selectionModel().selectedRows()[
+            0].data())
         cNo = self.ui.quotationsTbl.selectionModel().selectedRows()[0].data()
         row = self.ui.quotationsTbl.selectionModel().selectedRows()[0].row()
         print(cNo, row)
-        self.dao.deleteQuotation(int(cNo))
-        self.ui.quotationsTbl.removeRow(row)
+        invoiceIdAndZone = self.dao.getInvoiceIdAndZoneFromComplaintNo(
+            complaintno)
+        lastSheetName = self.dao.getZoneMaximumInvoiceId(
+            invoiceIdAndZone['zone'])
+        self.excelModel.deleteSheet(
+            invoiceIdAndZone, lastSheetName)
+        # self.dao.deleteQuotation(int(cNo))
+        # self.dao.updateInvoiceId(lastSheetName, invoiceIdAndZone['invoice_id'])
+        # self.ui.quotationsTbl.removeRow(row)
+
         # print(
         #     type(self.ui.quotationsTbl.selectionModel().selectedRows()[0].data()))
         # print(

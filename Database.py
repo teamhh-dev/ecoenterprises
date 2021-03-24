@@ -23,8 +23,8 @@ class Database:
         #     "CREATE TABLE if not exists `ecodb`.`services_details` ( `Service_ID` INT NOT NULL , `Service_Description` VARCHAR(100) NOT NULL , `Service_Rate` INT(10) NOT NULL , PRIMARY KEY (`Service_ID`));")
         # self.appCursor.execute(
         #     "CREATE TABLE if not exists `ecodb`.`quotations` ( `date_of_visit` DATE NOT NULL , `visit_charges` INT(100) NOT NULL DEFAULT '780' , `complaint_no` VARCHAR(30) NOT NULL , `total_price` INT(100) NOT NULL , PRIMARY KEY (`complaint_no`));")
-        self.appCursor.execute("CREATE TABLE IF NOT EXISTS `ecodb1`.`complaints` ( `complaint_number` INT(10) NOT NULL , `bank_name` VARCHAR(100) NOT NULL , `branch_address` VARCHAR(100) NOT NULL , `bank_zone` VARCHAR(15) NOT NULL , `comaplaint_date` DATE NOT NULL , PRIMARY KEY (`complaint_number`));")
-        self.appCursor.execute("CREATE TABLE IF NOT EXISTS `ecodb1`.`quotations` ( `complaint_number` INT(10) NOT NULL , `quotation_id` INT(10) NOT NULL , `reimbursement_charges` FLOAT(10,2) NOT NULL , `total_amount` FLOAT(10,2) NOT NULL , `tax` FLOAT(10,2) NOT NULL , `quotation_date` DATE NOT NULL, PRIMARY KEY (`quotation_id`) ) ;")
+        self.appCursor.execute("CREATE TABLE IF NOT EXISTS `ecodb1`.`complaints` ( `complaint_number` INT(10) NOT NULL , `bank_name` VARCHAR(100) NOT NULL , `branch_address` VARCHAR(100) NOT NULL , `bank_zone` VARCHAR(15) NOT NULL , `complaint_date` DATE NOT NULL , PRIMARY KEY (`complaint_number`));")
+        self.appCursor.execute("CREATE TABLE IF NOT EXISTS `ecodb1`.`quotations` ( `complaint_number` INT(10) NOT NULL , `quotation_id` INT(10) NOT NULL , `reimbursement_charges` FLOAT(10,2) NOT NULL , `total_amount` FLOAT(10,2) NOT NULL , `tax` FLOAT(10,2) NOT NULL , `quotation_date` DATE NOT NULL,`is_done` BOOLEAN NOT NULL DEFAULT FALSE, PRIMARY KEY (`quotation_id`) ) ;")
         self.appCursor.execute("CREATE TABLE IF NOT EXISTS `ecodb1`.`services` ( `service_id` VARCHAR(32) NOT NULL , `quotation_id` INT(10) NOT NULL , `service_description` VARCHAR(150) NOT NULL , `service_rate` FLOAT(10,2) NOT NULL , `service_qty` FLOAT(10,2) NOT NULL , `service_amount` FLOAT(10,2) NOT NULL , PRIMARY KEY (`service_id`));")
         self.appCursor.execute(
             "CREATE TABLE IF NOT EXISTS `ecodb1`.`bills` ( `invoice_id` VARCHAR(20) NOT NULL , `quotation_id` INT(10) NOT NULL , `job_completion_date` DATE NULL,PRIMARY KEY (`invoice_id`) ) ;")
@@ -65,10 +65,10 @@ class Database:
         # l = (complaint.getComplainNo(), complaint.getBankName(),
         #      complaint.getAddress(), complaint.getZone(), complaint.getDate())
         # print(
-        #     "INSERT INTO  `ecodb1`.`complaints` (`complaint_number`, `bank_name`, `branch_address`, `bank_zone`, `comaplaint_date`) VALUES (%s,%s,%s,%s,%s)", l
+        #     "INSERT INTO  `ecodb1`.`complaints` (`complaint_number`, `bank_name`, `branch_address`, `bank_zone`, `complaint_date`) VALUES (%s,%s,%s,%s,%s)", l
         # )
         self.appCursor.execute(
-            "INSERT INTO  `ecodb1`.`complaints` (`complaint_number`, `bank_name`, `branch_address`, `bank_zone`, `comaplaint_date`) VALUES (%s,%s,%s,%s,STR_TO_DATE(%s,'%d/%b/%Y'))",
+            "INSERT INTO  `ecodb1`.`complaints` (`complaint_number`, `bank_name`, `branch_address`, `bank_zone`, `complaint_date`) VALUES (%s,%s,%s,%s,STR_TO_DATE(%s,'%d/%b/%Y'))",
             (complaint.getComplainNo(), complaint.getBankName(),
              complaint.getAddress(), complaint.getZone(), complaint.getDate(),))
         self.appDatabase.commit()
@@ -110,7 +110,7 @@ class Database:
 
     def fetchTotalRows(self) -> int:
         self.appCursor.execute(
-            "SELECT count(c.complaint_number) from ecodb1.complaints c join ecodb1.bills b on c.complaint_number = b.quotation_id")
+            "SELECT count(complaint_number) from ecodb1.quotations where is_done=0")
         for row in self.appCursor:
             return row[0]
 
@@ -132,9 +132,9 @@ class Database:
         for row in self.appCursor:
             return row[0]
 
-    def fetchAllQuotations(self) -> list:
+    def fetchNotDoneQuotations(self) -> list:
         self.appCursor.execute(
-            "SELECT c.complaint_number, c.bank_zone , c.branch_address ,q.quotation_date ,q.total_amount,c.bank_name from ecodb1.complaints c join ecodb1.quotations q on c.complaint_number = q.complaint_number join ecodb1.bills b on c.complaint_number = b.quotation_id")
+            "SELECT c.complaint_number, c.bank_zone , c.branch_address ,q.quotation_date ,q.total_amount,c.bank_name from ecodb1.complaints c join ecodb1.quotations q on c.complaint_number = q.complaint_number where q.is_done=0")
         quotationsList = []
         for row in self.appCursor:
             quotationsList.append(row)
@@ -178,6 +178,15 @@ class Database:
                 "DELETE FROM ecodb1.quotations WHERE quotation_id=%s", (complaintno,))
             self.appCursor.execute(
                 "DELETE FROM ecodb1.services WHERE quotation_id=%s", (complaintno,))
+
+            self.appDatabase.commit()
+        except Exception as e:
+            print(e)
+
+    def updateInvoiceId(self, oldinvoiceid, newinvoiceId: str):
+        try:
+            self.appCursor.execute(
+                ("UPDATE ecodb1.bills set invoice_id=%s where invoice_id=%s"), (newinvoiceId, oldinvoiceid,))
             self.appDatabase.commit()
         except Exception as e:
             print(e)
@@ -198,14 +207,64 @@ class Database:
     def updateJobCompletionDate(self, comaplaitno: int, date: str):
         self.appCursor.execute(
             "update ecodb1.bills set job_completion_date=STR_TO_DATE(%s,'%d/%b/%Y') where quotation_id=%s", (date, comaplaitno,))
+        self.appCursor.execute(
+            "update ecodb1.quotations set is_done=1 where quotation_id=%s", (comaplaitno,))
         self.appDatabase.commit()
+
+    def fetchDoneQuotations(self) -> list:
+        self.appCursor.execute(
+            "SELECT b.invoice_id ,q.complaint_number, b.job_completion_date , c.bank_zone, c.branch_address ,q.total_amount from ecodb1.complaints c join ecodb1.quotations q on c.complaint_number = q.complaint_number join ecodb1.bills b on b.quotation_id = q.quotation_id where q.is_done=1")
+        quotationsList = []
+        for row in self.appCursor:
+            quotationsList.append(row)
+
+        return quotationsList
+
+    def fetchDoneQuotationsByZone(self, zone: str) -> list:
+        self.appCursor.execute(
+            "SELECT b.invoice_id ,q.complaint_number, b.job_completion_date , c.bank_zone, c.branch_address ,q.total_amount from ecodb1.complaints c join ecodb1.quotations q on c.complaint_number = q.complaint_number join ecodb1.bills b on b.quotation_id = q.quotation_id where q.is_done=1 and c.bank_zone =upper(%s)", (zone,))
+        quotationsList = []
+        for row in self.appCursor:
+            quotationsList.append(row)
+
+        return quotationsList
+
+    def fetchDoneQuotationsByBank(self, bank: str) -> list:
+        self.appCursor.execute(
+            "SELECT b.invoice_id ,q.complaint_number, b.job_completion_date , c.bank_zone, c.branch_address ,q.total_amount from ecodb1.complaints c join ecodb1.quotations q on c.complaint_number = q.complaint_number join ecodb1.bills b on b.quotation_id = q.quotation_id where q.is_done=1 and c.bank_name =upper(%s)", (bank,))
+        quotationsList = []
+        for row in self.appCursor:
+            quotationsList.append(row)
+
+        return quotationsList
+
+    def fetchDoneQuotationByComplaintNo(self, complaintno: int) -> list:
+        self.appCursor.execute(
+            "SELECT b.invoice_id ,q.complaint_number, b.job_completion_date , c.bank_zone, c.branch_address ,q.total_amount from ecodb1.complaints c join ecodb1.quotations q on c.complaint_number = q.complaint_number join ecodb1.bills b on b.quotation_id = q.quotation_id where q.is_done=1 and q.complaint_number =%s", (complaintno,))
+        quotationsList = []
+        for row in self.appCursor:
+            quotationsList.append(row)
+
+        return quotationsList
+
+    def getZoneMaximumInvoiceId(self, zone: str):
+        print(zone[0])
+        query = "SELECT invoice_id FROM `ecodb1`.`bills` WHERE invoice_id like %s ORDER by invoice_id DESC LIMIT 1"
+        args = (zone[0],)
+        self.appCursor.execute(
+            query, (zone[0] + "%",))
+
+        for row in self.appCursor:
+            print(row)
+            return row[0]
 
 
 if __name__ == "__main__":
     db = Database()
     # print(len(db.fetchQuotationsByBank('Bank al-habib')))
-    # print(len(db.fetchAllQuotations()))
+    # print((db.fetchDoneQuotations()))
+    print(db.getZoneMaximumInvoiceId(zone="LHR"))
     # print(db.fetchTotalRows())
     # print(db.deleteQuotation(1))
-    print(db.getInvoiceIdFromComplaintNo(1))
+    # print(db.getInvoiceIdFromComplaintNo(1))
     # db.getdata()

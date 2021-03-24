@@ -44,13 +44,13 @@ myList = [
 bill = Bill(ComplaintInfo("test", str(datetime.datetime.now().strftime("%d/%b/%Y")), "BKL",
                           "sample  Branch,sample Zone", "LHR", 8), Services(myList), AdditionalCharges("Visit", 12, 780))
 
-# eM = ExcelModel()
+eM = ExcelModel()
 
 # eM.addBill(bill)
 
-wM = WordModel()
-wM.addBill(bill)
-
+# wM = WordModel()
+# wM.addBill(bill)
+eM.addToSummary()
 # db = Database()
 # db.insertData(bill)
 # print(db.getInvoiceId("FSD"))
