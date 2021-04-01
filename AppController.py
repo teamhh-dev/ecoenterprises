@@ -33,6 +33,7 @@ class AppController:
         self.excelModel = ExcelModel()
         self.wordModel = WordModel()
         self.letterModel = LetterModel()
+        self.summary = Summary([])
         self.bill = Bill(None, Services([]), None)
         #  yaha mjhy rakhni chyeh k ni btana zaror
         # self.serviceTotalValue = 0
@@ -44,6 +45,7 @@ class AppController:
     def initHandlers(self):
         services = self.dao.getAllServices()
         completer = QCompleter(services)
+        completer.setCaseSensitivity(0)
         self.ui.monthLbl.setText(datetime.datetime.now().strftime("%B"))
         self.ui.complaintDateBox.setDate(
             self.ui.complaintDateBox.date().currentDate())
@@ -81,6 +83,8 @@ class AppController:
             self.visitTypeChangeAction)
         self.ui.actionCreate_Files_and_Folders.triggered.connect(
             self.openFilesAndFoldersDialog)
+        self.ui.actionCreate_Summary.triggered.connect(
+            self.openZoneSelectionDialog)
         self.showAllQuotations()
         self.showDoneQuotations()
         # # self.showQuotationsByZone(self.ui.zoneAddToBillComBox.currentText())
@@ -160,6 +164,33 @@ class AppController:
             shutil.copy(source, destination)
 
         # mainFolderName = month.upper()[0:3]+year
+
+    def openZoneSelectionDialog(self):
+        zones = ["LHR", "GUJ", "KPK", "FSD"]
+        zoneNameDialog = QDialog()
+        zoneNameDialog.setGeometry(500, 500, 300, 120)
+        zoneComboBox = QComboBox(zoneNameDialog)
+        zoneComboBox.addItems(zones)
+
+        zoneComboBox.move(60, 50)
+        selectBtn = QPushButton("Select", zoneNameDialog)
+        selectBtn.clicked.connect(
+            lambda: self.createSummary(zoneNameDialog, zoneComboBox.currentText()))
+
+        selectBtn.move(150, 50)
+
+        zoneNameDialog.setWindowTitle("Select Zone...")
+        zoneNameDialog.setWindowModality(Qt.ApplicationModal)
+        zoneNameDialog.exec_()
+
+    def createSummary(self, dialogBox: QDialog, zone: str):
+        dialogBox.close()
+        date = str(datetime.datetime.now().date())
+        month = date[5:7]
+        year = date[:4]
+        records = self.dao.fetchDataForSummary(zone, month, year)
+        self.summary.setRecordsList(records)
+        self.excelModel.addToSummary(self.summary)
 
     def addService(self) -> float:
         # if(self.ui.rftCheckBox.isEnabled()):
@@ -299,6 +330,7 @@ class AppController:
             self.ui.saveBtn.setDisabled(True)
             billComplaintInfo = self.bill.getComplainInfo()
             billServices = self.bill.getServices()
+            print("ok")
             try:
 
                 self.excelModel.addBill(
@@ -397,7 +429,11 @@ class AppController:
         row, column = 0, 0
         # if self.dao.fetchTotalRows() == 0:
         #     return
-        allQuotations = self.dao.fetchDoneQuotations()
+        date = str(datetime.datetime.now().date())
+        month = date[5:7]
+        year = date[:4]
+        # print(month[5:7],month[:4])
+        allQuotations = self.dao.fetchDoneQuotations(month, year)
         quotations_length = len(allQuotations)
         # for row in range(self.dao.fetchTotalRows()):
         for row in range(quotations_length):
@@ -412,12 +448,15 @@ class AppController:
         self.ui.billsTbl.clearContents()
         self.ui.billsTbl.model().removeRows(0, self.ui.billsTbl.rowCount())
         row, column = 0, 0
-        allQuotations = self.dao.fetchDoneQuotationsByZone(zone)
+        date = str(datetime.datetime.now().date())
+        month = date[5:7]
+        year = date[:4]
+        allQuotations = self.dao.fetchDoneQuotationsByZone(zone, month, year)
         quotations_length = len(allQuotations)
         for row in range(quotations_length):
             self.ui.billsTbl.insertRow(row)
             for column in range(self.ui.billsTbl.columnCount()):
-                item = self.dao.fetchDoneQuotationsByZone(zone)[row][column]
+                item = allQuotations[row][column]
                 # print(item)
                 self.ui.billsTbl.setItem(
                     row, column, QTableWidgetItem(str(item)))
@@ -426,12 +465,15 @@ class AppController:
         self.ui.billsTbl.clearContents()
         self.ui.billsTbl.model().removeRows(0, self.ui.billsTbl.rowCount())
         row, column = 0, 0
-        allQuotations = self.dao.fetchDoneQuotationsByBank(bank)
+        date = str(datetime.datetime.now().date())
+        month = date[5:7]
+        year = date[:4]
+        allQuotations = self.dao.fetchDoneQuotationsByBank(bank, month, year)
         quotations_length = len(allQuotations)
         for row in range(quotations_length):
             self.ui.billsTbl.insertRow(row)
             for column in range(self.ui.billsTbl.columnCount()):
-                item = self.dao.fetchDoneQuotationsByBank(bank)[row][column]
+                item = allQuotations[row][column]
                 # print(item)
                 self.ui.billsTbl.setItem(
                     row, column, QTableWidgetItem(str(item)))
@@ -440,13 +482,16 @@ class AppController:
         self.ui.billsTbl.clearContents()
         self.ui.billsTbl.model().removeRows(0, self.ui.billsTbl.rowCount())
         row, column = 0, 0
-        allQuotations = self.dao.fetchDoneQuotationByComplaintNo(complaintno)
+        date = str(datetime.datetime.now().date())
+        month = date[5:7]
+        year = date[:4]
+        allQuotations = self.dao.fetchDoneQuotationByComplaintNo(
+            complaintno, month, year)
         quotations_length = len(allQuotations)
         for row in range(quotations_length):
             self.ui.billsTbl.insertRow(row)
             for column in range(self.ui.billsTbl.columnCount()):
-                item = self.dao.fetchDoneQuotationByComplaintNo(complaintno)[
-                    row][column]
+                item = allQuotations[row][column]
                 # print(item)
                 self.ui.billsTbl.setItem(
                     row, column, QTableWidgetItem(str(item)))
@@ -465,11 +510,14 @@ class AppController:
             complaintno)
         lastSheetName = self.dao.getZoneMaximumInvoiceId(
             invoiceIdAndZone['zone'])
+        bank_address = self.dao.getBranchAddressFromComplaintNo(complaintno)
+        self.wordModel.deleteBill(
+            invoiceIdAndZone['zone'], complaintno, bank_address)
         self.excelModel.deleteSheet(
             invoiceIdAndZone, lastSheetName)
-        # self.dao.deleteQuotation(int(cNo))
-        # self.dao.updateInvoiceId(lastSheetName, invoiceIdAndZone['invoice_id'])
-        # self.ui.quotationsTbl.removeRow(row)
+        self.dao.deleteQuotation(int(cNo))
+        self.dao.updateInvoiceId(lastSheetName, invoiceIdAndZone['invoice_id'])
+        self.ui.quotationsTbl.removeRow(row)
 
         # print(
         #     type(self.ui.quotationsTbl.selectionModel().selectedRows()[0].data()))
@@ -493,6 +541,8 @@ class AppController:
         self.excelModel.addDateToBill(self.dao.getInvoiceIdAndZoneFromComplaintNo(
             complaintno), date)
         self.dao.updateJobCompletionDate(complaintno, date)
+        self.ui.quotationsTbl.removeRow(
+            self.ui.quotationsTbl.selectionModel().selectedRows()[0].row())
 
     def addDateToBill(self, complaintno: int):
         if (len(self.ui.quotationsTbl.selectionModel().selectedRows())) == 0:

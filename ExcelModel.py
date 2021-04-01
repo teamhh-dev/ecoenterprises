@@ -1,3 +1,4 @@
+from Summary import *
 from openpyxl import *
 import datetime
 # from HomePageView import *
@@ -31,7 +32,7 @@ class ExcelModel():
         # self.fileName = 'User Data/Feburary/'+zone+'.xlsx'
         monthFullName = datetime.datetime.now().strftime("%B")
         self.fileName = 'User Data/'+monthFullName.upper()+"_"+year + "/"+excelFileName
-
+        print(self.fileName)
         self.workbook = load_workbook(filename=self.fileName)
         self.worksheet = self.workbook['template']
 
@@ -89,8 +90,6 @@ class ExcelModel():
                 i = 0
                 j = j+1
 
-    # Adding services to worksheet
-
         services.getServicesList().reverse()
         self.sr_number = 1
         for service in services.getServicesList():
@@ -103,7 +102,6 @@ class ExcelModel():
             self.activeWorkSheet['H'+str(self.firstRow)] = service['amount']
             self.firstRow = self.firstRow + 1
             self.sr_number = self.sr_number + 1
-    # Updating the formulas
         if not self.service_len == 0 and not self.service_len == -1 and not self.service_len == -2:
             chargesFormula = "=E{rowno}*G{rowno}".format(rowno=j+3)
             self.activeWorkSheet["H"+str(j+1)] = "=SUM(H16:H"+str(j)+")"
@@ -113,7 +111,7 @@ class ExcelModel():
             # self.activeWorkSheet["H"+str(j+3)] = "=E" + \
             #     str(j+3)+"*"+"G"+str(j+3)
             self.activeWorkSheet["H"+str(j+3)] = chargesFormula
-    # Calling the formatting cells function
+# Calling the formatting cells function
         self.formattingCells(16)
 
     def saveAdditionalCharges(self, additionalCharges: AdditionalCharges):
@@ -126,6 +124,7 @@ class ExcelModel():
         )+" Charges"
         self.activeWorkSheet[self.visitRatecell] = additionalCharges.getPerPersonRate(
         )
+        print(self.chargesQtyCell)
 
     def formattingCells(self, rowNo: int):
         self.firstRow = 16
@@ -153,22 +152,57 @@ class ExcelModel():
         self.visitTypeCell = 'B'+str(rowNo+2)
         self.visitRatecell = 'G'+str(rowNo+2)
 
-    def addToSummary(self):
+    def addToSummary(self, summary: Summary):
         file = 'User Data\Summary.xlsx'
         workbook = load_workbook(filename=file)
-        worksheet = workbook['Bill Summary']
-        worksheet.active = workbook['Bill Summary']
-        worksheet.insert_rows(11)
-        formattedrow = list(worksheet.rows)[10]
-        unformattedrow = list(worksheet.rows)[9]
+        activeSheet = workbook['Bill Summary']
+        # activeSheet = workbook.active
 
-        for (c1, c2) in zip(formattedrow, unformattedrow):
-            c1.style = copy(c2.style)
-            c1.border = copy(c2.border)
-            c1.number_format = copy(c2.number_format)
-            c1.font = copy(c2.font)
-            c1.alignment = copy(c2.alignment)
-            c1.fill = copy(c2.fill)
+        # inserting and formatting rows
+        noOfRows = len(summary.getRecordsList()) - 3
+        if noOfRows > 0:
+            activeSheet.insert_rows(11, noOfRows)
+            formattedrow = list(activeSheet.rows)[9]
+            print(formattedrow[0])
+            # unformattedrow = list(worksheet.rows)[9]
+            for row in range(noOfRows):
+                unformattedrow = list(activeSheet.rows)[10+row]
+                print(unformattedrow[0])
+                for (c1, c2) in zip(formattedrow, unformattedrow):
+                    c2.style = copy(c1.style)
+                    c2.border = copy(c1.border)
+                    c2.number_format = copy(c1.number_format)
+                    c2.font = copy(c1.font)
+                    c2.alignment = copy(c1.alignment)
+                    c2.fill = copy(c1.fill)
+
+        # inserting data into summary
+        records = summary.getRecordsList()
+        totalRecords = len(summary.getRecordsList())
+        record = 0
+        fromRow = 10
+        toRow = fromRow + totalRecords
+        i = 0
+        for i in range(fromRow, toRow):
+            print(records[record][0])
+            activeSheet['A'+str(i)] = record + 1
+            activeSheet['B'+str(i)] = records[record][0]
+            activeSheet['C'+str(i)] = "[" + str(records[record][1]) + "]"
+            activeSheet['D'+str(i)] = records[record][2]
+            activeSheet['E'+str(i)] = records[record][3]
+            activeSheet['F'+str(i)] = records[record][4]
+            activeSheet['G'+str(i)] = records[record][3] + \
+                records[record][4]
+            activeSheet['H'+str(i)] = records[record][5]
+            activeSheet['J'+str(i)] = records[record][6]
+            record = record + 1
+
+        # updating formulas
+        formulaCells = ['E', 'F', 'G', 'H', 'J']
+        if noOfRows > 0:
+            for formulaCell in formulaCells:
+                activeSheet[formulaCell+str(toRow)] = "=SUM(" + \
+                    formulaCell+str(fromRow)+":"+str(toRow-1)+")"
 
         workbook.save(filename=file)
 
@@ -199,32 +233,46 @@ class ExcelModel():
               invoiceIdAndZone['invoice_id'], ":", lastSheetName)
         workbook = load_workbook(
             filename=fileName)
-        # worksheetToBeCopiedTo = workbook[invoiceIdAndZone["invoice_id"]]
-        # worksheetToBeDeletedAndCopied = workbook[lastSheetName]
+        worksheetToBeDeleted = workbook[invoiceIdAndZone["invoice_id"]]
+        lastWorksheet = workbook[lastSheetName]
 
+        offset = int(
+            worksheetToBeDeleted.title[2:5])-int(lastWorksheet.title[2:5])
+        if offset != 0:
+            workbook.move_sheet(lastWorksheet, offset=offset)
+            workbook.remove_sheet(worksheetToBeDeleted)
+            lastWorksheet.title = invoiceIdAndZone['invoice_id']
+            lastWorksheet['D2'] = invoiceIdAndZone['invoice_id']
+
+        else:
+            workbook.remove_sheet(worksheetToBeDeleted)
+
+        workbook.save(filename=fileName)
+
+        # print(lastWorksheet.title, worksheetToBeDeleted.title)
         # workbook.remove_sheet(worksheetToBeCopiedTo)
-        # worksheetToBeDeletedAndCopied.title = invoiceIdAndZone['invoice_id']
-        # worksheetToBeDeletedAndCopied['D2'] = invoiceIdAndZone['invoice_id']
-        # # workbook.save(filename=fileName)
+        # offset = int(worksheetToBeDeleted.title) - \
+        #     int(workbook._sheets[lastSheetIdx].title[2:5])
+
+        # workbook.move_sheet(lastWorksheet, offset=offset)
+
         # workbook = load_workbook(
         #     filename=fileName)
 
         # workbook.dele
-        print(workbook._sheets)
-        # names = workbook.get_sheet_names()[2:]
-        # names.sort()
-        # print(names)
-        # print(workbook._sheets[2:])
-        # workbook._sheets.sort(key=lambda ws: ws.title)
         # print(workbook._sheets)
-        lastSheetIdx = len(workbook.sheetnames)-1
-        print(lastSheetIdx)
-        offset = int(workbook._sheets[3].title[2:5]) - \
-            int(workbook._sheets[lastSheetIdx].title[2:5])
-        # print(int(offset))
-        workbook.move_sheet(
-            workbook._sheets[lastSheetIdx].title, offset=offset)
-        # workbook._sheets.sort(key=lambda ws: ws.title)
-        print(workbook._sheets)
+        # # names = workbook.get_sheet_names()[2:]
+        # # names.sort()
+        # # print(names)
+        # # print(workbook._sheets[2:])
+        # # workbook._sheets.sort(key=lambda ws: ws.title)
+        # # print(workbook._sheets)
+        # lastSheetIdx = len(workbook.sheetnames)-1
+        # print(lastSheetIdx)
+        # offset = int(workbook._sheets[3].title[2:5]) - \
+        #     int(workbook._sheets[lastSheetIdx].title[2:5])
+        # # print(int(offset))
+        # # workbook._sheets.sort(key=lambda ws: ws.title)
+        # print(workbook._sheets)
 
         # workbook.save(filename=fileName)

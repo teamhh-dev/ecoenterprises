@@ -27,8 +27,15 @@ class WordModel:
         #     self.toFileName+month+"_"+year+"/"+"PDF "+month.upper()[0:3]+" "+bill.getComplainInfo().getZone()+"/"+bill.getComplainInfo().getInvoiceId())
         self.saveToFile(saveFilePath)
 
-    def deleteBill(self):
-        pass
+    def deleteBill(self, zone: str, complaintNo: int, address: str):
+
+        year = datetime.datetime.now().strftime("%Y")
+        month = datetime.datetime.now().strftime("%B")
+        deleteFilePath = self.toFileName+month+"_"+year+"/"+"PDF " + \
+            month.upper()[0:3]+" "+zone+"/"+str(complaintNo) + \
+            " "+address
+        print(deleteFilePath)
+        os.remove(deleteFilePath+".pdf")
 
     def saveBillComlaintInfo(self, complainInfo: ComplaintInfo):
         self.document.merge(
