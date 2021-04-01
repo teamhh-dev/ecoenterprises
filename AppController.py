@@ -30,6 +30,8 @@ class AppController:
         self.initHandlers()
         self.MainWindow.show()
         self.ui.stackedWidget.setCurrentIndex(0)
+        self.ui.complaintNoBox.setText("")
+        self.MainWindow.setWindowTitle("ECO ENTERPRISES v1.0")
         self.excelModel = ExcelModel()
         self.wordModel = WordModel()
         self.letterModel = LetterModel()
@@ -85,10 +87,11 @@ class AppController:
             self.openFilesAndFoldersDialog)
         self.ui.actionCreate_Summary.triggered.connect(
             self.openZoneSelectionDialog)
+        self.ui.openCurrentFolder.triggered.connect(
+            lambda: os.startfile("User Data"))
+        self.ui.exitApplication.triggered.connect(exit)
         self.showAllQuotations()
         self.showDoneQuotations()
-        # # self.showQuotationsByZone(self.ui.zoneAddToBillComBox.currentText())
-        # self.showQuotationByComplaintNo(144)
 
     def showAddQuotaionTab(self):
         self.ui.stackedWidget.setCurrentIndex(0)
@@ -167,30 +170,37 @@ class AppController:
 
     def openZoneSelectionDialog(self):
         zones = ["LHR", "GUJ", "KPK", "FSD"]
+        months = {'January': '01', 'February': '02', 'March': '03', 'April': '04', 'May': '05', 'June': '06',
+                  'July': '07', 'August': '08', 'September': '09', 'October': '10', 'November': '11', 'December': '12'}
         zoneNameDialog = QDialog()
         zoneNameDialog.setGeometry(500, 500, 300, 120)
         zoneComboBox = QComboBox(zoneNameDialog)
         zoneComboBox.addItems(zones)
+        monthComBox = QComboBox(zoneNameDialog)
+        monthComBox.addItems(
+            months.keys())
 
-        zoneComboBox.move(60, 50)
+        monthComBox.move(60, 20)
+
+        zoneComboBox.move(60, 60)
         selectBtn = QPushButton("Select", zoneNameDialog)
         selectBtn.clicked.connect(
-            lambda: self.createSummary(zoneNameDialog, zoneComboBox.currentText()))
+            lambda: self.createSummary(zoneNameDialog, zoneComboBox.currentText(), months[monthComBox.currentText()]))
 
-        selectBtn.move(150, 50)
+        selectBtn.move(150, 60)
 
         zoneNameDialog.setWindowTitle("Select Zone...")
         zoneNameDialog.setWindowModality(Qt.ApplicationModal)
         zoneNameDialog.exec_()
 
-    def createSummary(self, dialogBox: QDialog, zone: str):
+    def createSummary(self, dialogBox: QDialog, zone: str, month: str):
         dialogBox.close()
         date = str(datetime.datetime.now().date())
         month = date[5:7]
         year = date[:4]
         records = self.dao.fetchDataForSummary(zone, month, year)
         self.summary.setRecordsList(records)
-        self.excelModel.addToSummary(self.summary)
+        self.excelModel.addToSummary(self.summary, zone, month, year)
 
     def addService(self) -> float:
         # if(self.ui.rftCheckBox.isEnabled()):

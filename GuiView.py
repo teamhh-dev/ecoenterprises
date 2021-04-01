@@ -971,6 +971,8 @@ class Ui_MainWindow(object):
         self.menuExit.setObjectName("menuExit")
         self.menuExit_2 = QtWidgets.QMenu(self.menubar)
         self.menuExit_2.setObjectName("menuExit_2")
+        self.menuOpen = QtWidgets.QMenu(self.menubar)
+        self.menuOpen.setObjectName("menuOpen")
         MainWindow.setMenuBar(self.menubar)
         self.actionCreate_Files_and_Folders = QtWidgets.QAction(MainWindow)
         self.actionCreate_Files_and_Folders.setObjectName(
@@ -980,14 +982,21 @@ class Ui_MainWindow(object):
             "actionPrint_Bills_and_Summary")
         self.actionCreate_Summary = QtWidgets.QAction(MainWindow)
         self.actionCreate_Summary.setObjectName("actionCreate_Summary")
+        self.openCurrentFolder = QtWidgets.QAction(MainWindow)
+        self.openCurrentFolder.setObjectName("openCurrentFolder")
+        self.exitApplication = QtWidgets.QAction(MainWindow)
+        self.exitApplication.setObjectName("exitApplication")
         self.menuGenerate.addAction(self.actionCreate_Files_and_Folders)
         self.menuExit.addAction(self.actionCreate_Summary)
+        self.menuExit_2.addAction(self.exitApplication)
+        self.menuOpen.addAction(self.openCurrentFolder)
+        self.menubar.addAction(self.menuOpen.menuAction())
         self.menubar.addAction(self.menuGenerate.menuAction())
         self.menubar.addAction(self.menuExit.menuAction())
         self.menubar.addAction(self.menuExit_2.menuAction())
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
         self.addLetterBtn.clicked.connect(self.stackedWidget.show)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -1168,9 +1177,24 @@ class Ui_MainWindow(object):
         self.menuGenerate.setTitle(_translate("MainWindow", "Generate"))
         self.menuExit.setTitle(_translate("MainWindow", "Finalize"))
         self.menuExit_2.setTitle(_translate("MainWindow", "Exit"))
+        self.menuOpen.setTitle(_translate("MainWindow", "Open"))
         self.actionCreate_Files_and_Folders.setText(
             _translate("MainWindow", "Create Files and Folders"))
         self.actionPrint_Bills_and_Summary.setText(
             _translate("MainWindow", "Print Bills and Summary"))
         self.actionCreate_Summary.setText(
             _translate("MainWindow", "Create Summary"))
+        self.openCurrentFolder.setText(
+            _translate("MainWindow", "Current Folder..."))
+        self.exitApplication.setText(
+            _translate("MainWindow", "Exit Application"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())

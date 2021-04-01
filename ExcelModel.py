@@ -152,9 +152,15 @@ class ExcelModel():
         self.visitTypeCell = 'B'+str(rowNo+2)
         self.visitRatecell = 'G'+str(rowNo+2)
 
-    def addToSummary(self, summary: Summary):
-        file = 'User Data\Summary.xlsx'
-        workbook = load_workbook(filename=file)
+    def addToSummary(self, summary: Summary, zone, month, year):
+
+        excelFileName = "Monthly Report "+zone.upper()+" " + \
+            "01-"+"{:0>2d}".format(int(month))+"-"+year+".xlsx"
+        monthFullName = datetime.datetime.now().strftime("%B")
+        fileName = 'User Data/'+monthFullName.upper()+"_"+year + "/"+excelFileName
+        print(fileName)
+        # return
+        workbook = load_workbook(filename=fileName)
         activeSheet = workbook['Bill Summary']
         # activeSheet = workbook.active
 
@@ -197,6 +203,11 @@ class ExcelModel():
             activeSheet['J'+str(i)] = records[record][6]
             record = record + 1
 
+        # Date Cell
+        activeSheet['A5'] = "                                                            Bank Al Habib Limited                                Date:" + \
+            "01-"+"{:0>2d}".format(int(month))+"-"+year
+        # Zone Cell
+        activeSheet['A6'] = "Bills Summary "+zone+" ZONE"
         # updating formulas
         formulaCells = ['E', 'F', 'G', 'H', 'J']
         if noOfRows > 0:
@@ -204,7 +215,7 @@ class ExcelModel():
                 activeSheet[formulaCell+str(toRow)] = "=SUM(" + \
                     formulaCell+str(fromRow)+":"+str(toRow-1)+")"
 
-        workbook.save(filename=file)
+        workbook.save(filename=fileName)
 
     def addDateToBill(self, invoiceIdAndZone: str, date: str):
         print(invoiceIdAndZone, ":", date)

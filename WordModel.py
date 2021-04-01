@@ -1,11 +1,11 @@
 # from __future__ import print_function
 
-from datetime import date
+# from datetime import date
 import os
 from Bill import *
-from mailmerge import MailMerge
+from mailmerge import *
 import datetime
-from docx2pdf import convert
+from docx2pdf import *
 
 
 class WordModel:
